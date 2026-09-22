@@ -1,0 +1,12 @@
+# 只用于让 tauri-cli 把固定的 NSIS 与 nsis_tauri_utils 取到 %LOCALAPPDATA%\tauri\NSIS\；不进产品发布清单，构建后删 target/。
+[package]
+name = "steward-nsis-warmup"
+version = "0.0.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+tauri = { version = "=2.11.5" }
+
+[build-dependencies]
+tauri-build = { version = "=2.6.3" }

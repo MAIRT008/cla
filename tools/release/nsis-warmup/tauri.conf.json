@@ -1,0 +1,20 @@
+{
+  "productName": "Steward NSIS Warmup",
+  "identifier": "local.ai-environmental-steward.nsis-warmup",
+  "version": "0.0.0",
+  "build": {
+    "frontendDist": "dist"
+  },
+  "app": {
+    "windows": [],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["nsis"],
+    "icon": ["../../../apps/desktop-host/src-tauri/icons/icon.png", "../../../apps/desktop-host/src-tauri/icons/icon.ico"],
+    "createUpdaterArtifacts": false
+  }
+}

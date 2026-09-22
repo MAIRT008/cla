@@ -1,0 +1,30 @@
+# cargo-about 0.8.4 许可策略：只接受下列许可；报出其他许可时保持失败，交 Codex 逐项裁决，不加通配。
+accepted = [
+    "Apache-2.0",
+    "MIT",
+    "BSD-2-Clause",
+    "BSD-3-Clause",
+    "ISC",
+    "Unicode-3.0",
+    "Unicode-DFS-2016",
+    "Zlib",
+    "MPL-2.0",
+    "CC0-1.0",
+    "BSL-1.0",
+    "OpenSSL",
+    "GPL-3.0-only",
+    "GPL-3.0-or-later",
+]
+
+targets = ["x86_64-pc-windows-msvc"]
+
+# 不查 clearlydefined.io：同一锁文件应得到同一份汇总，不依赖外部服务当时的数据。
+no-clearly-defined = true
+
+# cargo-about 内置、按许可文件 SHA-256 核对的澄清；文件变了就不生效，不扩大 accepted。
+workarounds = [
+    "chrono",
+    "ring",
+    "rustls",
+    "unicode-ident",
+]
