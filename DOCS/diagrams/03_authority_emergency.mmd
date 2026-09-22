@@ -1,0 +1,15 @@
+flowchart TB
+  PLAN["明确计划"] --> CONFIRM["单次用户确认"]
+  MAINT["已授权常规维护"] --> CHECK["校验版本、资源、范围"]
+  DANGER["当前错误路线或保护失效"] --> GUARD["客户端即时保护"]
+  CONFIRM --> EXEC["受管执行"]
+  CHECK --> EXEC
+  GUARD --> EXEC
+  EXEC --> VERIFY["实际回读：生效、失败或未知"]
+  VERIFY --> FIX["诊断与已授权修复"]
+  FIX --> TEST["原方案路径与资源复查"]
+  TEST -->|通过| RESUME["恢复原授权方案"]
+  TEST -->|未通过| HOLD["继续保护并报告"]
+  HOLD --> MANUAL["用户主动选择临时上网"]
+  MANUAL --> EMERGENCY["独立批准的应急通道"]
+  EMERGENCY -. 不修改 .-> CLAUDE["Claude 固定 A 与阻断约束"]

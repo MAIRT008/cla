@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>环境体检</title>
+  <link rel="stylesheet" href="app.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar__brand">环境体检助手</div>
+      <nav>
+        <button class="nav-btn is-active" data-view="inspect" type="button">环境体检</button>
+        <button class="nav-btn" data-view="network" type="button">网络方案</button>
+        <button class="nav-btn" data-view="traffic" type="button">流量与日报</button>
+        <button class="nav-btn" data-view="settings" type="button">设置</button>
+      </nav>
+      <div class="sidebar__status" id="sidebarStatus">等待服务接入</div>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="收起导航">收起导航</button>
+    </aside>
+    <main class="workspace">
+      <header class="header">
+        <h1>环境体检</h1>
+        <p id="headerHint">普通流程不上传 JSON、不填内部 ID。没有对话入口。未接入能力会明确标出。</p>
+      </header>
+      <div id="bridgeMissing" class="error" hidden>服务未接入。标准检查、已有报告和恢复入口仍显示在页面上，不会假装成功。</div>
+      <div id="criticalBanner" class="error" hidden>
+        <span id="criticalText"></span>
+        <button id="criticalAck" type="button">我知道了</button>
+      </div>
+
+      <section class="panel account" id="accountPanel" hidden>
+        <p id="accountStatus">账号：尚未读取</p>
+        <p id="controlStatus">控制端：尚未读取</p>
+        <p id="assignmentStatus" hidden></p>
+        <p id="accountNotice" class="notice" hidden></p>
+        <div class="account__form" id="setupForm" hidden>
+          <h2>首次使用：设置管理员</h2>
+          <p class="muted">这台控制端还没有管理员。请自行设置账号和密码，完成后用它登录。没有默认账号。</p>
+          <label class="field">管理员账号 <input id="setupUsername" autocomplete="username" /></label>
+          <label class="field">密码 <input id="setupPassword" type="password" autocomplete="new-password" /></label>
+          <label class="field">再次输入密码 <input id="setupPasswordConfirm" type="password" autocomplete="new-password" /></label>
+          <button id="setupSubmit" type="button">创建管理员</button>
+        </div>
+        <div class="account__form" id="loginForm" hidden>
+          <h2>登录</h2>
+          <label class="field">账号 <input id="loginUsername" autocomplete="username" /></label>
+          <label class="field">密码 <input id="loginPassword" type="password" autocomplete="current-password" /></label>
+          <button id="loginSubmit" type="button">登录</button>
+        </div>
+        <div class="button-row">
+          <button id="accountRetry" type="button" hidden>重新检测控制端</button>
+          <button id="logoutButton" type="button" hidden>退出登录</button>
+        </div>
+      </section>
+
+      <section class="panel view" id="view-inspect">
+        <div class="button-row">
+          <button id="tabLocal" type="button">本地清理</button>
+          <button id="tabDiag" type="button">网络诊断</button>
+        </div>
+        <div id="inspect-local">
+          <h2>本地环境</h2>
+          <section class="card" id="discoveryCard">
+            <h3>扫描范围</h3>
+            <p class="muted">先发现本机的 Claude 相关位置，再勾选允许只读扫描的位置。授权由系统确认窗口完成，可以随时撤销；清理或修改仍逐项确认。WSL 发行版只登记、不扫描。</p>
+            <div class="button-row">
+              <button id="discoverEnvironment" type="button">发现位置</button>
+              <button id="authorizeRoots" type="button">授权所选位置</button>
+              <button id="revokeRoots" type="button">撤销所选授权</button>
+            </div>
+            <div id="discoveryList" class="discovery-list"></div>
+            <pre id="discoveryView" class="code">尚未发现</pre>
+          </section>
+          <div class="button-row">
+            <button id="scanDeep" type="button">深扫</button>
+            <button id="scanQuick" type="button">快扫</button>
+            <button id="scanFocused" type="button">专项</button>
+            <button id="scanCancel" type="button">取消</button>
+          </div>
+          <p id="localProgress">进度：无</p>
+          <div class="grid">
+            <section class="card">
+              <h3>扫描与账号</h3>
+              <p id="localScanStatus">尚未扫描</p>
+              <fieldset class="account-answer" id="accountAnswers">
+                <legend>按身份回答</legend>
+              </fieldset>
+              <pre id="localGaps" class="code">缺口与保护：无</pre>
+              <button id="localClassify" type="button">查看五类结果</button>
+              <div id="problemList" class="problem-list"></div>
+            </section>
+            <section class="card">
+              <h3>计划与确认</h3>
+              <div id="recommendationList"></div>
+              <pre id="localPlan" class="code">尚未生成</pre>
+              <label class="confirmation"><input id="confirmBox" type="checkbox" /> 我已理解保留项与影响，确认本次处理。</label>
+              <label class="field">恢复对象 <select id="restoreTarget"></select></label>
+              <div class="button-row">
+                <button id="localBuildPlan" type="button">生成计划</button>
+                <button id="localConfirm" type="button">确认</button>
+                <button id="localExecute" type="button">批量执行</button>
+                <button id="localRecheck" type="button">复查</button>
+                <button id="localPreviewRestore" type="button">恢复预览</button>
+                <button id="localRestore" type="button">确认恢复</button>
+                <button id="localResume" type="button">续接执行</button>
+                <button id="localExport" type="button">脱敏导出</button>
+              </div>
+            </section>
+          </div>
+          <pre id="localResult" class="code">尚未执行</pre>
+          <details class="card muted">
+            <summary>开发合成入口（JSON 样本）</summary>
+            <p>主流程不要求此入口。仅用于对照早期离线样机。</p>
+            <input id="sampleFile" type="file" accept="application/json" />
+            <button id="loadEmbedded" type="button">加载内置样本</button>
+            <pre id="samplePreview" class="code"></pre>
+          </details>
+        </div>
+        <div id="inspect-diag" hidden>
+          <h2>网络诊断</h2>
+          <label class="field">环境 <input id="diagEnv" value="synthetic-windows" /></label>
+          <label class="field">Profile <input id="diagProfile" value="Default" /></label>
+          <div class="button-row">
+            <button id="diagScan" type="button">深扫</button>
+            <button id="diagSample" type="button">在默认浏览器中检测</button>
+            <button id="diagBrowserCheck" type="button">读取浏览器回传</button>
+            <button id="diagPlan" type="button">生成修复计划</button>
+            <button id="diagConfirm" type="button">确认修复</button>
+            <button id="diagExecute" type="button">执行</button>
+            <button id="diagRecheck" type="button">复查</button>
+            <button id="diagRestore" type="button">恢复</button>
+            <button id="diagAiMode" type="button">AI 模式诊断</button>
+            <button id="diagAiConfirm" type="button">确认 AI 网络建议</button>
+          </div>
+          <pre id="diagResult" class="code">尚未扫描</pre>
+          <pre id="diagAiView" class="code">AI 模式：尚未运行（标准模式结果与缺测独立呈现）</pre>
+        </div>
+      </section>
+
+      <section class="panel view hidden" id="view-network">
+        <h2>网络方案</h2>
+        <div class="grid">
+          <section class="card">
+            <h3>三套方案</h3>
+            <div class="button-row">
+              <button id="previewDaily" type="button">预览日常单 IP</button>
+              <button id="applyDaily" type="button">应用日常单 IP</button>
+              <button id="previewClaude" type="button">预览 Claude 单 IP</button>
+              <button id="applyClaude" type="button">应用 Claude 单 IP</button>
+              <button id="previewDual" type="button">预览双 IP</button>
+              <button id="applyDual" type="button">应用双 IP</button>
+              <button id="networkMaintenance" type="button">常规维护应用</button>
+              <button id="networkRestore" type="button">恢复上一配置</button>
+            </div>
+            <pre id="networkApply" class="code">尚未应用</pre>
+          </section>
+          <section class="card">
+            <h3>白名单、生命周期、保护、应急</h3>
+            <p id="networkMode">当前方案：尚未读取</p>
+            <label class="field">主机 <input id="whitelistHost" value="direct.example" /></label>
+            <div class="button-row">
+              <button id="whitelistAdd" type="button">加入白名单</button>
+              <button id="whitelistRemove" type="button">删除</button>
+              <button id="whitelistEnable" type="button">启用条目</button>
+              <button id="whitelistDisable" type="button">停用条目</button>
+              <button id="whitelistDefault" type="button">恢复默认白名单</button>
+              <button id="lifecycleClose" type="button">关闭窗口（不停内核）</button>
+              <button id="networkProtect" type="button">触发保护</button>
+              <button id="emergencyOn" type="button">开启应急</button>
+              <button id="emergencyOff" type="button">结束应急</button>
+            </div>
+            <label class="field">应急目标 <input id="emergencyTarget" value="support.example" /></label>
+            <label class="field">应急期限（分钟） <input id="emergencyMinutes" value="30" /></label>
+            <label class="confirmation"><input id="emergencyConfirm" type="checkbox" /> 我确认本次临时应急的目标范围与到期时刻；Claude 原保护不因此解除。</label>
+            <pre id="networkSide" class="code"></pre>
+          </section>
+        </div>
+      </section>
+
+      <section class="panel view hidden" id="view-traffic">
+        <h2>流量与日报</h2>
+        <div class="grid">
+          <section class="card">
+            <h3>监测与保护</h3>
+            <pre id="monitorScope" class="code">启用后才开始采集、自动保护与两小时归档。</pre>
+            <div class="button-row">
+              <button id="monitorEnable" type="button">启用监测与保护</button>
+              <button id="monitorRefresh" type="button">刷新状态</button>
+            </div>
+            <pre id="monitorLive" class="code">实时：尚未启用</pre>
+            <pre id="monitorSchedule" class="code">归档与日报：尚未运行</pre>
+            <pre id="monitorAlerts" class="code">提示：无</pre>
+          </section>
+          <section class="card">
+            <h3>本地日志与诊断包</h3>
+            <p id="logRootView">日志目录：宿主未回报</p>
+            <div class="button-row">
+              <button id="openLogFolder" type="button">打开日志目录</button>
+              <button id="logExportPreview" type="button">预览诊断包</button>
+            </div>
+            <div id="logExportChoices"></div>
+            <label class="confirmation"><input id="logExportConfirm" type="checkbox" /> 我看过预览：导出的是逐个脱敏的副本，只留在本机，由我决定是否转交。</label>
+            <div class="button-row">
+              <button id="logExportCreate" type="button">导出诊断包</button>
+              <button id="openExportFolder" type="button">打开导出目录</button>
+            </div>
+            <pre id="logExportResult" class="code">诊断包：尚未导出</pre>
+          </section>
+          <section class="card">
+            <h3>额度、速率与分布</h3>
+            <button id="refreshTraffic" type="button">刷新额度与事件</button>
+            <pre id="quotaView" class="code">尚未读取</pre>
+            <pre id="trafficRates" class="code">速率与 A/B 分布：尚未读取</pre>
+          </section>
+          <section class="card">
+            <h3>日报、时间线与历史</h3>
+            <pre id="dailyView" class="code">尚未读取</pre>
+            <pre id="eventTimeline" class="code">事件时间线：空</pre>
+            <pre id="historyView" class="code">历史：空</pre>
+            <div class="button-row">
+              <button id="exportDailyJson" type="button">导出 JSON</button>
+              <button id="exportDailyMd" type="button">导出 Markdown</button>
+              <button id="aiDailyNote" type="button">生成 AI 附注</button>
+            </div>
+            <pre id="aiNoteView" class="code">AI 附注：尚未生成</pre>
+          </section>
+        </div>
+      </section>
+
+      <section class="panel view hidden" id="view-settings">
+        <h2>设置</h2>
+        <div class="card">
+          <h3>当前身份与能力</h3>
+          <p id="identityView">用户：未接入</p>
+          <p id="capabilityView">模型能力由服务端配置，普通用户不填 key。</p>
+          <button id="refreshCapabilities" type="button">刷新模型能力</button>
+          <pre id="capabilityDetail" class="code">模型能力：尚未读取</pre>
+          <label class="field">界面色系
+            <select id="themeSelect">
+              <option value="default">清新青绿</option>
+              <option value="neutral">中性灰</option>
+            </select>
+          </label>
+          <label class="field">默认语言
+            <select id="langSelect">
+              <option value="zh-CN">中文（简体）</option>
+            </select>
+          </label>
+          <button id="clearSettings" type="button">重置界面偏好</button>
+          <p class="muted">只清本应用偏好键，不清业务记录、备份或账号会话。</p>
+        </div>
+        <div class="card admin" id="adminCard" hidden>
+          <h3>管理后台</h3>
+          <p class="muted">只有服务端判定的管理员会话能看到。每个操作都由控制端再核对权限；切换管理对象不改变你自己的登录身份。</p>
+          <div class="button-row">
+            <button id="adminRefresh" type="button">刷新管理数据</button>
+            <button id="adminServiceState" type="button">服务状态</button>
+          </div>
+          <p id="adminNotice" class="notice" hidden></p>
+          <p id="adminError" class="error" hidden></p>
+
+          <section class="admin__section">
+            <h4>应用用户</h4>
+            <label class="field">管理对象 <select id="adminUserSelect"></select></label>
+            <button id="adminSelectUser" type="button">查看所选用户</button>
+            <p id="adminTargetLine" class="muted">尚未选择用户</p>
+            <div class="admin__form">
+              <label class="field">新用户账号 <input id="adminNewUsername" autocomplete="off" /></label>
+              <label class="field">初始密码 <input id="adminNewPassword" type="password" autocomplete="new-password" /></label>
+              <button id="adminCreateUser" type="button">创建普通用户</button>
+            </div>
+            <div class="admin__form">
+              <label class="field">新密码 <input id="adminResetPasswordInput" type="password" autocomplete="new-password" /></label>
+              <button id="adminResetPassword" type="button">重置所选用户密码</button>
+            </div>
+            <div class="button-row">
+              <button id="adminDisableUser" type="button">停用所选用户</button>
+              <button id="adminEnableUser" type="button">启用所选用户</button>
+              <button id="adminRevokeSessions" type="button">撤销所选用户全部会话</button>
+            </div>
+            <pre id="adminUsersView" class="code">用户：尚未读取</pre>
+            <pre id="adminSessionsView" class="code">会话：尚未读取</pre>
+          </section>
+
+          <section class="admin__section">
+            <h4>服务器模型配置</h4>
+            <p class="muted">Key 只写不读；保存只代表已配置，是否调用成功以「验证状态」为准。普通用户没有这个入口。</p>
+            <label class="field">任务
+              <select id="adminModelTask">
+                <option value="cleanup">cleanup</option>
+                <option value="network_diagnosis">network_diagnosis</option>
+                <option value="daily_analysis">daily_analysis</option>
+              </select>
+            </label>
+            <label class="confirmation"><input id="adminModelEnabled" type="checkbox" checked /> 启用该任务</label>
+            <label class="field">端点（https） <input id="adminModelBaseUrl" autocomplete="off" /></label>
+            <label class="field">模型 <input id="adminModelName" autocomplete="off" /></label>
+            <label class="field">策略版本 <input id="adminModelPolicy" autocomplete="off" /></label>
+            <label class="field">调用次数上限 <input id="adminModelCalls" /></label>
+            <label class="field">Token 上限 <input id="adminModelTokens" /></label>
+            <label class="field">单次输出上限 <input id="adminModelOutput" /></label>
+            <label class="field">超时（毫秒） <input id="adminModelTimeout" /></label>
+            <label class="field">API Key（留空不改） <input id="adminModelKey" type="password" autocomplete="off" /></label>
+            <button id="adminModelSave" type="button">保存模型配置</button>
+            <pre id="adminModelView" class="code">模型配置：尚未读取</pre>
+          </section>
+
+          <section class="admin__section">
+            <h4>配额适配（Remnawave）</h4>
+            <p class="muted">只覆盖 Remnawave 用户额度路径，不代表任意机场订阅都能按用户限额。地址与管理令牌只写不读。</p>
+            <label class="confirmation"><input id="adminQuotaEnabled" type="checkbox" checked /> 启用配额适配</label>
+            <label class="field">服务地址 <input id="adminQuotaUrl" type="password" autocomplete="off" /></label>
+            <label class="field">管理令牌（留空不改） <input id="adminQuotaToken" type="password" autocomplete="off" /></label>
+            <label class="field">超时（毫秒） <input id="adminQuotaTimeout" /></label>
+            <button id="adminQuotaSave" type="button">保存配额适配</button>
+            <pre id="adminQuotaAdapterView" class="code">配额适配：尚未读取</pre>
+          </section>
+
+          <section class="admin__section">
+            <h4>分环境探测服务</h4>
+            <p class="muted">按环境配置回显、DoH、Probe、情报与 STUN 地址；客户端登录后按环境取用。没有配置的环境如实显示缺测。</p>
+            <label class="field">环境 <input id="adminProbeEnv" autocomplete="off" placeholder="windows-host" /></label>
+            <label class="field">回显地址 <input id="adminProbeEcho" autocomplete="off" /></label>
+            <label class="field">DoH 地址 <input id="adminProbeDoh" autocomplete="off" /></label>
+            <label class="field">Probe 地址 <input id="adminProbeBase" autocomplete="off" /></label>
+            <label class="field">情报地址 <input id="adminProbeIntel" autocomplete="off" /></label>
+            <label class="field">STUN 地址（逗号分隔） <input id="adminProbeStun" autocomplete="off" /></label>
+            <label class="field">客户端类型
+              <select id="adminProbeKind">
+                <option value="webview">webview</option>
+                <option value="wsl-cli">wsl-cli</option>
+                <option value="cli">cli</option>
+              </select>
+            </label>
+            <div class="button-row">
+              <button id="adminProbeSave" type="button">保存探测服务</button>
+              <button id="adminProbeRemove" type="button">删除该环境配置</button>
+            </div>
+            <pre id="adminProbeView" class="code">探测服务：尚未读取</pre>
+          </section>
+
+          <section class="admin__section">
+            <h4>资源与订阅</h4>
+            <label class="field">资源编号 <input id="adminResourceId" autocomplete="off" /></label>
+            <label class="field">角色
+              <select id="adminResourceRole">
+                <option value="A">出口 A</option>
+                <option value="B">出口 B</option>
+                <option value="front">前置</option>
+              </select>
+            </label>
+            <label class="field">主机 <input id="adminResourceHost" autocomplete="off" /></label>
+            <label class="field">端口 <input id="adminResourcePort" value="1080" /></label>
+            <label class="field">共享属性
+              <select id="adminResourceSharing">
+                <option value="dedicated">独享</option>
+                <option value="shared">共享</option>
+              </select>
+            </label>
+            <label class="field">状态
+              <select id="adminResourceStatus">
+                <option value="ACTIVE">ACTIVE</option>
+                <option value="DISABLED">DISABLED</option>
+              </select>
+            </label>
+            <label class="field">到期时间（ISO 8601，可空） <input id="adminResourceExpires" autocomplete="off" /></label>
+            <label class="field">credential_ref（可空） <input id="adminResourceCredential" autocomplete="off" /></label>
+            <button id="adminResourceSave" type="button">保存资源</button>
+            <pre id="adminResourcesView" class="code">资源：尚未读取</pre>
+            <label class="field">订阅源编号 <input id="adminSourceId" autocomplete="off" /></label>
+            <label class="field">格式
+              <select id="adminSourceFormat">
+                <option value="clash-yaml">clash-yaml</option>
+                <option value="mihomo-yaml">mihomo-yaml</option>
+              </select>
+            </label>
+            <label class="field">订阅链接（只写，留空不改） <input id="adminSourceUrl" type="password" autocomplete="off" /></label>
+            <button id="adminSourceSave" type="button">保存订阅源</button>
+            <label class="field">手动提供订阅内容（可空，空则按已保存链接拉取） <textarea id="adminSourceBody"></textarea></label>
+            <button id="adminSourceRefresh" type="button">刷新订阅</button>
+            <pre id="adminSourcesView" class="code">订阅源：尚未读取</pre>
+          </section>
+
+          <section class="admin__section">
+            <h4>方案模板（高级编辑区）</h4>
+            <p class="muted">JSON 结构由控制端校验并指出出错位置；模板不保存秘密。</p>
+            <label class="field">模板编号 <input id="adminTemplateId" autocomplete="off" /></label>
+            <label class="field">模板 JSON <textarea id="adminTemplateJson"></textarea></label>
+            <label class="confirmation"><input id="adminTemplatePublished" type="checkbox" /> 设为已发布模板</label>
+            <button id="adminTemplateSave" type="button">保存模板</button>
+            <pre id="adminTemplatesView" class="code">模板：尚未读取</pre>
+          </section>
+
+          <section class="admin__section">
+            <h4>分配与发布（所选用户）</h4>
+            <label class="field">环境引用（可空） <input id="adminAssignEnv" autocomplete="off" /></label>
+            <label class="field">推荐档位
+              <select id="adminAssignClass">
+                <option value="">不指定</option>
+                <option value="free">free</option>
+                <option value="pro">pro</option>
+                <option value="max_5x">max_5x</option>
+                <option value="max_20x">max_20x</option>
+              </select>
+            </label>
+            <label class="confirmation"><input id="adminModeDaily" type="checkbox" checked /> 日常单 IP</label>
+            <label class="confirmation"><input id="adminModeClaude" type="checkbox" /> Claude 专用单 IP</label>
+            <label class="confirmation"><input id="adminModeDual" type="checkbox" /> Claude 专用双 IP</label>
+            <label class="field">前置 <select id="adminAssignFront"></select></label>
+            <label class="field">出口 A <select id="adminAssignA"></select></label>
+            <label class="field">出口 B <select id="adminAssignB"></select></label>
+            <label class="field">有效期至（ISO 8601） <input id="adminAssignValidUntil" autocomplete="off" /></label>
+            <label class="field">模板 <select id="adminAssignTemplate"></select></label>
+            <button id="adminAssignSave" type="button">保存候选分配</button>
+            <label class="confirmation"><input id="adminPublishConfirm" type="checkbox" /> 我确认本次发布中出口 A、地区或保护边界的变化</label>
+            <div class="button-row">
+              <button id="adminPublish" type="button">发布分配</button>
+              <button id="adminRevoke" type="button">撤销已发布分配</button>
+            </div>
+            <pre id="adminAssignmentView" class="code">分配：尚未读取</pre>
+            <label class="field">个人凭据引用 <select id="adminCredentialRef"></select></label>
+            <label class="field">接入用户名 <input id="adminCredentialUsername" autocomplete="off" /></label>
+            <label class="field">接入密码（只写） <input id="adminCredentialPassword" type="password" autocomplete="off" /></label>
+            <div class="button-row">
+              <button id="adminCredentialSave" type="button">保存个人凭据</button>
+              <button id="adminCredentialRevoke" type="button">撤销该凭据</button>
+            </div>
+            <pre id="adminCredentialsView" class="code">个人凭据：尚未读取</pre>
+          </section>
+
+          <section class="admin__section">
+            <h4>额度与状态（所选用户）</h4>
+            <p class="muted">额度数值只是可修改的建议值，提交的是你在这里填写的内容。权威是服务节点，结果以回读为准。</p>
+            <label class="field">额度 <input id="adminLimitValue" value="250" /></label>
+            <label class="field">单位
+              <select id="adminLimitUnit">
+                <option value="GB">GB（10^9 字节）</option>
+                <option value="GiB">GiB（2^30 字节）</option>
+              </select>
+            </label>
+            <label class="field">周期
+              <select id="adminLimitPeriod">
+                <option value="MONTH">MONTH</option>
+                <option value="MONTH_ROLLING">MONTH_ROLLING</option>
+                <option value="WEEK">WEEK</option>
+                <option value="DAY">DAY</option>
+                <option value="NO_RESET">NO_RESET</option>
+              </select>
+            </label>
+            <label class="field">权威侧到期时间（ISO 8601） <input id="adminLimitExpire" autocomplete="off" /></label>
+            <div class="button-row">
+              <button id="adminAllocate" type="button">建立额度身份</button>
+              <button id="adminLimit" type="button">调整额度</button>
+              <button id="adminSuspend" type="button">停用代理服务</button>
+              <button id="adminResume" type="button">恢复代理服务</button>
+              <button id="adminUsage" type="button">刷新用量</button>
+              <button id="adminPool" type="button">资源池状态</button>
+              <button id="adminEvents" type="button">事件</button>
+            </div>
+            <pre id="adminQuotaView" class="code">额度：尚未读取</pre>
+          </section>
+          <pre id="adminResult" class="code"></pre>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script type="module" src="native-boot.mjs"></script>
+  <script src="bridge.js"></script>
+  <script defer src="app.bundle.js"></script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+flowchart TB
+  subgraph PC["用户 Windows 电脑"]
+    UI["管家界面与本地 AI 工具编排"]
+    FACT["发现与采集：文件、默认浏览器、网络"]
+    PLAN["精确计划与用户确认"]
+    FILE["用户权限文件适配：备份、执行、复查"]
+    NET["网络服务：版本应用与紧急保护"]
+    CORE["内置 Mihomo"]
+    REPORT["统一采集、分类、归档、标准日报"]
+    LOCAL["本地提示词、证据、恢复材料"]
+    UI --> FACT
+    FACT --> PLAN
+    PLAN --> FILE
+    PLAN --> NET
+    NET --> CORE
+    CORE --> REPORT
+    REPORT --> LOCAL
+    FILE --> LOCAL
+    REPORT -->|当前危险，预授权| NET
+    LOCAL --> UI
+  end
+  SERVER["管理后台：用户、资源、模型配置、事件"]
+  MODEL["模型提供方"]
+  LIMIT["可控服务节点：用户计量与停用"]
+  POOL["共享上游与用户固定 A/B"]
+  UI -->|已授权脱敏事实与本地提示词| SERVER
+  SERVER --> MODEL
+  MODEL -->|分析与工具请求| SERVER
+  SERVER --> UI
+  SERVER -->|候选受管配置| NET
+  REPORT -->|最小汇总与事件，独立通信| SERVER
+  SERVER -->|管理接口| LIMIT
+  CORE ==>|独立用户身份| LIMIT
+  LIMIT ==> POOL

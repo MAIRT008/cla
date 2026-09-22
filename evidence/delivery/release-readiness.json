@@ -1,0 +1,698 @@
+{
+ "schema": "steward-release-readiness-1",
+ "generated_on": "offline development machine: no Rust toolchain, no built binaries, nothing installed or executed",
+ "check": {
+  "status": "NOT_READY",
+  "items": [
+   {
+    "id": "control",
+    "class": "runtime",
+    "status": "MISSING",
+    "reasons": [
+     "MISSING"
+    ]
+   },
+   {
+    "id": "service",
+    "class": "runtime",
+    "status": "MISSING",
+    "reasons": [
+     "MISSING"
+    ]
+   },
+   {
+    "id": "service-install",
+    "class": "runtime",
+    "status": "MISSING",
+    "reasons": [
+     "MISSING"
+    ]
+   },
+   {
+    "id": "service-uninstall",
+    "class": "runtime",
+    "status": "MISSING",
+    "reasons": [
+     "MISSING"
+    ]
+   },
+   {
+    "id": "mihomo",
+    "class": "runtime",
+    "status": "MISSING",
+    "reasons": [
+     "MISSING",
+     "PIN_REQUIRED"
+    ]
+   },
+   {
+    "id": "collect-logs",
+    "class": "runtime",
+    "status": "PRESENT",
+    "reasons": []
+   },
+   {
+    "id": "collect-logs-cmd",
+    "class": "runtime",
+    "status": "PRESENT",
+    "reasons": []
+   },
+   {
+    "id": "license-gpl",
+    "class": "source_license",
+    "status": "PRESENT",
+    "reasons": []
+   },
+   {
+    "id": "license-service-ipc",
+    "class": "source_license",
+    "status": "PRESENT",
+    "reasons": []
+   },
+   {
+    "id": "license-js-yaml",
+    "class": "source_license",
+    "status": "PRESENT",
+    "reasons": []
+   },
+   {
+    "id": "notice",
+    "class": "source_license",
+    "status": "PRESENT",
+    "reasons": []
+   },
+   {
+    "id": "rust-third-party",
+    "class": "source_license",
+    "status": "MISSING",
+    "reasons": [
+     "MISSING"
+    ]
+   },
+   {
+    "id": "lock-host",
+    "class": "build_input",
+    "status": "MISSING",
+    "reasons": [
+     "MISSING"
+    ]
+   },
+   {
+    "id": "lock-control",
+    "class": "build_input",
+    "status": "MISSING",
+    "reasons": [
+     "MISSING"
+    ]
+   },
+   {
+    "id": "lock-service",
+    "class": "build_input",
+    "status": "MISSING",
+    "reasons": [
+     "MISSING"
+    ]
+   },
+   {
+    "id": "field-experiments",
+    "class": "test_material",
+    "status": "PRESENT",
+    "reasons": []
+   },
+   {
+    "id": "loopback-collector",
+    "class": "test_material",
+    "status": "PRESENT",
+    "reasons": []
+   }
+  ],
+  "tools": [
+   {
+    "id": "rustc",
+    "required": true,
+    "status": "TOOL_MISSING",
+    "version": null
+   },
+   {
+    "id": "cargo",
+    "required": true,
+    "status": "TOOL_MISSING",
+    "version": null
+   },
+   {
+    "id": "tauri-cli",
+    "required": true,
+    "status": "TOOL_MISSING",
+    "version": null
+   },
+   {
+    "id": "cargo-about",
+    "required": true,
+    "status": "TOOL_MISSING",
+    "version": null
+   },
+   {
+    "id": "node",
+    "required": true,
+    "status": "PRESENT",
+    "version": "v22.19.0"
+   },
+   {
+    "id": "powershell",
+    "required": true,
+    "status": "PRESENT",
+    "version": "5.1.26100.9444"
+   },
+   {
+    "id": "nsis",
+    "required": true,
+    "status": "TOOL_MISSING",
+    "version": null
+   }
+  ],
+  "frontend": {
+   "status": "OK",
+   "modules": 80
+  }
+ },
+ "bridge_ops": {
+  "count": 45,
+  "ops": [
+   "DescribeCapabilities",
+   "ReadNetworkState",
+   "ApplyNetworkPlan",
+   "ProtectEnvironment",
+   "NetworkLifecycle",
+   "FileRead",
+   "FileWrite",
+   "FileRemove",
+   "FileCopy",
+   "FileExists",
+   "FileWalk",
+   "DirIsolate",
+   "DirPreviewRestore",
+   "DirRestore",
+   "RecordsLoad",
+   "RecordSave",
+   "BackupSave",
+   "DbInspect",
+   "DbMutate",
+   "DbSimulate",
+   "DbFingerprint",
+   "DbSnapshot",
+   "DbPreviewRestore",
+   "DbRestore",
+   "EmergencyHosts",
+   "EmergencyOpen",
+   "EmergencyClose",
+   "ControlStatus",
+   "ControlSetupAdmin",
+   "SessionLoad",
+   "SessionSave",
+   "SessionClear",
+   "DiscoverEnvironment",
+   "AuthorizeRoots",
+   "RevokeRoots",
+   "BrowserDiagListen",
+   "BrowserDiagLaunch",
+   "BrowserDiagReceive",
+   "BrowserDiagClose",
+   "LogSources",
+   "LogRead",
+   "AppLogAppend",
+   "LogExportWrite",
+   "LogOpenFolder",
+   "NotifyCritical"
+  ]
+ },
+ "control_routes": {
+  "count": 44,
+  "routes": [
+   "GET /api/admin/users",
+   "POST /api/admin/users",
+   "POST /api/admin/users/status",
+   "POST /api/admin/users/password-reset",
+   "GET /api/admin/sessions",
+   "POST /api/admin/sessions/revoke",
+   "GET /api/ai/capabilities",
+   "POST /api/ai/turn",
+   "GET /api/admin/model-config",
+   "PUT /api/admin/model-config",
+   "GET /api/admin/resources",
+   "PUT /api/admin/resources",
+   "GET /api/admin/templates",
+   "PUT /api/admin/templates",
+   "GET /api/admin/subscriptions",
+   "PUT /api/admin/subscriptions",
+   "POST /api/admin/subscriptions/refresh",
+   "GET /api/admin/assignments",
+   "POST /api/admin/assignments",
+   "POST /api/admin/assignments/publish",
+   "POST /api/admin/assignments/revoke",
+   "GET /api/admin/credentials",
+   "PUT /api/admin/credentials",
+   "POST /api/admin/credentials/revoke",
+   "GET /api/network/assignment",
+   "GET /api/network/credentials",
+   "POST /api/network/receipts",
+   "GET /api/network/quota",
+   "GET /api/network/events",
+   "POST /api/network/events",
+   "POST /api/admin/quota/allocate",
+   "POST /api/admin/quota/limit",
+   "POST /api/admin/quota/suspend",
+   "POST /api/admin/quota/resume",
+   "GET /api/admin/quota/usage",
+   "GET /api/admin/quota/pool",
+   "GET /api/admin/quota-adapter",
+   "PUT /api/admin/quota-adapter",
+   "GET /api/admin/events",
+   "GET /api/admin/service-state",
+   "GET /api/admin/probe-services",
+   "PUT /api/admin/probe-services",
+   "POST /api/admin/probe-services/remove",
+   "GET /api/network/probe-services"
+  ]
+ },
+ "segments": [
+  {
+   "id": "page-bridge-host",
+   "title": "页面 → Tauri bridge → 宿主受限操作",
+   "hops": [
+    {
+     "caller": {
+      "file": "apps/desktop-ui/index.html",
+      "symbol": "src=\"native-boot.mjs\""
+     },
+     "callee": {
+      "file": "apps/desktop-ui/native-boot.mjs",
+      "symbol": "bootNativeSteward"
+     },
+     "process": "WebView2 渲染进程",
+     "status": "WIRED_OFFLINE_VERIFIED"
+    },
+    {
+     "caller": {
+      "file": "apps/desktop-ui/native-boot.mjs",
+      "symbol": "tauri('steward_request'"
+     },
+     "callee": {
+      "file": "apps/desktop-host/src-tauri/src/commands.rs",
+      "symbol": "pub fn steward_request"
+     },
+     "process": "WebView2 → 宿主进程（Tauri IPC）",
+     "status": "WIRED_UNCOMPILED"
+    },
+    {
+     "caller": {
+      "file": "apps/desktop-host/src-tauri/src/commands.rs",
+      "symbol": "dispatch_logged(&state, &op"
+     },
+     "callee": {
+      "file": "apps/desktop-host/src-tauri/src/commands.rs",
+      "symbol": "pub fn dispatch("
+     },
+     "process": "宿主进程",
+     "status": "WIRED_UNCOMPILED"
+    }
+   ],
+   "input": "op 与 payload，按 apps/desktop-host/bridge-contract.mjs 的 OPS；写操作只带宿主签发的授权引用",
+   "failure": "未知操作 NATIVE_OP_UNKNOWN；缺授权 NATIVE_AUTHORIZATION_REQUIRED；越界 NATIVE_PATH_OUT_OF_SCOPE；页面收到 {ok:false, code}，没有桥时显示 UI_BACKEND_NOT_ATTACHED",
+   "logs": "<数据根>\\logs\\app-*.log：每个失败的原生操作一行 native.op_failed（操作名与错误码）",
+   "offline_evidence": [
+    [
+     "tests/delivery/native-chain.test.mjs",
+     "契约：commands.rs 与 registered_ops 同契约一致"
+    ],
+    [
+     "tests/delivery/native-chain.test.mjs",
+     "正式启动路径只吃宿主原语"
+    ],
+    [
+     "tests/ui/journeys.test.mjs",
+     "桥接契约：正式页面先装原生组合根"
+    ],
+    [
+     "tests/delivery/release-candidate.test.mjs",
+     "RC6 R14 正式页面按浏览器方式加载"
+    ]
+   ],
+   "experiments": [
+    "E01",
+    "E02",
+    "E32"
+   ]
+  },
+  {
+   "id": "host-control",
+   "title": "宿主 → Rust 控制端进程 → 44 条业务路由",
+   "hops": [
+    {
+     "caller": {
+      "file": "apps/desktop-host/src-tauri/src/lib.rs",
+      "symbol": "control.start();"
+     },
+     "callee": {
+      "file": "apps/desktop-host/src-tauri/src/control_process.rs",
+      "symbol": "pub fn start(self: &Arc<Self>)"
+     },
+     "process": "宿主进程（setup 后台线程）",
+     "status": "WIRED_UNCOMPILED"
+    },
+    {
+     "caller": {
+      "file": "apps/desktop-host/src-tauri/src/host.rs",
+      "symbol": "resources.join(\"control\").join(control_executable_name())"
+     },
+     "callee": {
+      "file": "services/control-rs/src/main.rs",
+      "symbol": "fn main()"
+     },
+     "process": "宿主 spawn <安装目录>\\control\\ai-steward-control.exe 子进程",
+     "status": "WIRED_UNCOMPILED"
+    },
+    {
+     "caller": {
+      "file": "apps/desktop-ui/product-runtime.mjs",
+      "symbol": "createHttpControlPort"
+     },
+     "callee": {
+      "file": "services/control-rs/src/router.rs",
+      "symbol": "pub const ROUTES"
+     },
+     "process": "页面 → 回环 HTTP → 控制端",
+     "status": "WIRED_UNCOMPILED"
+    }
+   ],
+   "input": "资源目录里的控制端程序；经 stdin 交付的一次性首启凭据；控制端 stdout 回报的回环监听地址与 /health 握手",
+   "failure": "握手失败或超时：ControlStatus 为 failed 并带错误码，页面显示控制端未就绪；退出界面时宿主只停自己启动的子进程",
+   "logs": "<数据根>\\logs\\host-control-*.log；<数据根>\\control\\logs\\control-*.log",
+   "offline_evidence": [
+    [
+     "tests/control-runtime/login-flow.test.mjs",
+     "首启：空控制端显示管理员设置页"
+    ],
+    [
+     "tests/control-runtime/admin-journey.test.mjs",
+     "RC2 完整管理旅程"
+    ],
+    [
+     "tests/control-runtime/admin-journey.test.mjs",
+     "RC4 管理员按环境配置探测服务"
+    ]
+   ],
+   "experiments": [
+    "E01",
+    "E31",
+    "E47"
+   ]
+  },
+  {
+   "id": "network-service",
+   "title": "页面网络端口 → 宿主签名 IPC → 产品网络服务 → Mihomo/WFP",
+   "hops": [
+    {
+     "caller": {
+      "file": "src/adapters/network/nativePorts.mjs",
+      "symbol": "invoke('ApplyNetworkPlan'"
+     },
+     "callee": {
+      "file": "apps/desktop-host/src-tauri/src/network_runtime.rs",
+      "symbol": "pub fn apply_network_plan"
+     },
+     "process": "页面 → 宿主进程",
+     "status": "WIRED_UNCOMPILED"
+    },
+    {
+     "caller": {
+      "file": "apps/desktop-host/src-tauri/src/network_runtime.rs",
+      "symbol": "state.network.write(ServiceCommand::ValidateConfig"
+     },
+     "callee": {
+      "file": "apps/desktop-host/vendor/service-ipc/src/core/server.rs",
+      "symbol": "pub async fn serve_connection"
+     },
+     "process": "宿主 → 命名管道 \\\\.\\pipe\\ai-environmental-steward-service → 产品网络服务（LocalSystem）",
+     "status": "WIRED_UNCOMPILED"
+    },
+    {
+     "caller": {
+      "file": "apps/desktop-host/vendor/service-ipc/src/core/network/mod.rs",
+      "symbol": "ServiceCommand::ApplyConfig => self.apply_config(payload)"
+     },
+     "callee": {
+      "file": "apps/desktop-host/vendor/service-ipc/src/core/manager.rs",
+      "symbol": "async fn spawn_core"
+     },
+     "process": "产品网络服务 → Mihomo 子进程",
+     "status": "WIRED_UNCOMPILED"
+    },
+    {
+     "caller": {
+      "file": "apps/desktop-host/vendor/service-ipc/src/core/network/mod.rs",
+      "symbol": "pub protection: Box<dyn ProtectionBackend>"
+     },
+     "callee": {
+      "file": "apps/desktop-host/vendor/service-ipc/src/core/wfp.rs",
+      "symbol": "pub fn product_protection"
+     },
+     "process": "产品网络服务 → WFP",
+     "status": "WIRED_UNCOMPILED"
+    }
+   ],
+   "input": "受管配置 YAML（页面编译，宿主写草稿、签 envelope）、预授权保护引用、环境引用",
+   "failure": "配置阶段逐项呈现，回读不通过就 FAILED 并恢复 last-valid；保护未确认不放行；服务不可达时页面显示 SERVICE_UNREACHABLE",
+   "logs": "%ProgramData%\\ai-environmental-steward-service\\logs\\service*.log 与 core*.log",
+   "offline_evidence": [
+    [
+     "tests/network/rc3-runtime.test.mjs",
+     "RC3 Task2-4 所有权"
+    ],
+    [
+     "tests/network/rc3-runtime.test.mjs",
+     "RC3 Task3/5 配置阶段逐项呈现"
+    ],
+    [
+     "tests/network/loopback-endpoints.test.mjs",
+     "RC3-R4 原生载荷"
+    ]
+   ],
+   "experiments": [
+    "E17",
+    "E21",
+    "E39",
+    "E40",
+    "E41",
+    "E42"
+   ]
+  },
+  {
+   "id": "audit-runtime",
+   "title": "日志/计数 → RC5 审计运行时 → 归档/日报/导出",
+   "hops": [
+    {
+     "caller": {
+      "file": "apps/desktop-ui/native.mjs",
+      "symbol": "createAuditRuntime({"
+     },
+     "callee": {
+      "file": "src/adapters/audit/runtime.mjs",
+      "symbol": "export function createAuditRuntime"
+     },
+     "process": "WebView2 渲染进程",
+     "status": "WIRED_OFFLINE_VERIFIED"
+    },
+    {
+     "caller": {
+      "file": "src/adapters/audit/runtime.mjs",
+      "symbol": "network.observeLive("
+     },
+     "callee": {
+      "file": "src/core/network/controller.mjs",
+      "symbol": "async observeLive(state"
+     },
+     "process": "页面（每秒一拍，经 ReadNetworkState → 服务 ObserveRuntime）",
+     "status": "WIRED_OFFLINE_VERIFIED"
+    },
+    {
+     "caller": {
+      "file": "src/adapters/audit/serviceLogs.mjs",
+      "symbol": "'LogRead'"
+     },
+     "callee": {
+      "file": "apps/desktop-host/src-tauri/src/logs.rs",
+      "symbol": "pub fn log_read"
+     },
+     "process": "页面 → 宿主读服务日志目录",
+     "status": "WIRED_UNCOMPILED"
+    },
+    {
+     "caller": {
+      "file": "src/adapters/audit/runtime.mjs",
+      "symbol": "archiveLogs"
+     },
+     "callee": {
+      "file": "src/core/audit/archive.mjs",
+      "symbol": "export async function archiveLogs"
+     },
+     "process": "页面",
+     "status": "WIRED_OFFLINE_VERIFIED"
+    },
+    {
+     "caller": {
+      "file": "apps/desktop-ui/native.mjs",
+      "symbol": "invoke('NotifyCritical'"
+     },
+     "callee": {
+      "file": "apps/desktop-host/src-tauri/src/lifecycle.rs",
+      "symbol": "pub fn notify_critical"
+     },
+     "process": "页面 → 宿主 → Windows 通知",
+     "status": "WIRED_UNCOMPILED"
+    },
+    {
+     "caller": {
+      "file": "src/adapters/audit/diagnosticExport.mjs",
+      "symbol": "'LogExportWrite'"
+     },
+     "callee": {
+      "file": "apps/desktop-host/src-tauri/src/logs.rs",
+      "symbol": "pub fn export_write"
+     },
+     "process": "页面 → 宿主写导出目录",
+     "status": "WIRED_UNCOMPILED"
+    }
+   ],
+   "input": "内核连接快照与累计计数、内核日志尾巴与 core.log 快照、服务端额度快照",
+   "failure": "读不到记缺口（SERVICE_UNREACHABLE、CORE_NOT_RUNNING、MONITOR_PAUSED、APP_NOT_RUNNING），不判连续；写盘失败显示没能保存并重试；系统通知弹不出记 FAILED、危急横幅保留",
+   "logs": "<数据根>\\logs\\app-*.log（monitor.*、audit.*）；运行记录在 <数据根>\\workspace\\audit\\runs\\",
+   "offline_evidence": [
+    [
+     "tests/delivery/audit-runtime.test.mjs",
+     "RC5 FD-04/F23-F29/A26/A28 真实格式内核日志经宿主只读归档"
+    ],
+    [
+     "tests/delivery/audit-runtime.test.mjs",
+     "RC5 Round 2 FD-04/A36 同一分钟内停顿 30 秒"
+    ],
+    [
+     "tests/delivery/audit-runtime.test.mjs",
+     "RC6 FD-04/F17 窗口隐藏时"
+    ],
+    [
+     "tests/ui/journeys.test.mjs",
+     "RC6 旅程：窗口隐藏时危急事件"
+    ]
+   ],
+   "experiments": [
+    "E48",
+    "E49",
+    "E50",
+    "E51",
+    "E52",
+    "E53"
+   ]
+  },
+  {
+   "id": "installer",
+   "title": "安装器 → 服务/控制端/资源落点 → 启动与卸载入口",
+   "hops": [
+    {
+     "caller": {
+      "file": "tools/release/release.mjs",
+      "symbol": "assembleRelease({root, inputs, out})"
+     },
+     "callee": {
+      "file": "tools/release/assemble.mjs",
+      "symbol": "export async function assembleRelease"
+     },
+     "process": "构建机 Node",
+     "status": "WIRED_OFFLINE_VERIFIED"
+    },
+    {
+     "caller": {
+      "file": "apps/desktop-host/src-tauri/tauri.conf.json",
+      "symbol": "\"installerHooks\""
+     },
+     "callee": {
+      "file": "apps/desktop-host/vendor/service-ipc/resources/installer.nsi",
+      "symbol": "!macro NSIS_HOOK_POSTINSTALL"
+     },
+     "process": "NSIS 安装器（管理员）",
+     "status": "WIRED_UNCOMPILED"
+    },
+    {
+     "caller": {
+      "file": "apps/desktop-host/vendor/service-ipc/resources/installer.nsi",
+      "symbol": "--action install"
+     },
+     "callee": {
+      "file": "apps/desktop-host/vendor/service-ipc/src/bin/install_service.rs",
+      "symbol": "fn install(arguments"
+     },
+     "process": "NSIS → <安装目录>\\service\\ai-environmental-steward-service-install.exe",
+     "status": "WIRED_UNCOMPILED"
+    },
+    {
+     "caller": {
+      "file": "apps/desktop-host/vendor/service-ipc/src/bin/install_service.rs",
+      "symbol": "manager.create_service(&info, access)"
+     },
+     "callee": {
+      "file": "apps/desktop-host/vendor/service-ipc/src/bin/service.rs",
+      "symbol": "fn main()"
+     },
+     "process": "服务控制管理器启动 LocalSystem 服务",
+     "status": "WIRED_UNCOMPILED"
+    },
+    {
+     "caller": {
+      "file": "apps/desktop-host/src-tauri/tauri.conf.json",
+      "symbol": "\"control/ai-steward-control.exe\""
+     },
+     "callee": {
+      "file": "apps/desktop-host/src-tauri/src/host.rs",
+      "symbol": "resources.join(\"control\")"
+     },
+     "process": "安装目录资源 → 宿主定位控制端",
+     "status": "WIRED_UNCOMPILED"
+    },
+    {
+     "caller": {
+      "file": "apps/desktop-host/vendor/service-ipc/resources/installer.nsi",
+      "symbol": "!macro NSIS_HOOK_PREUNINSTALL"
+     },
+     "callee": {
+      "file": "apps/desktop-host/vendor/service-ipc/src/bin/uninstall_service.rs",
+      "symbol": "fn uninstall()"
+     },
+     "process": "NSIS 卸载器（管理员）",
+     "status": "WIRED_UNCOMPILED"
+    }
+   ],
+   "input": "装配目录 build/release-staging（install/、frontend/、release-manifest.json）；安装时取得的用户 SID、网络状态根与宿主路径",
+   "failure": "维护阶段保护未确认或服务停不下来：安装中止、现有版本照常运行；升级后服务起不来：回到旧服务版本并提示；卸载撤不净保护：卸载中止、服务重启保持管理",
+   "logs": "%ProgramData%\\ai-environmental-steward-service\\logs\\installer-*.log 与 install-*.log；构建机 build\\logs\\<时间>-<进程号>\\",
+   "offline_evidence": [
+    [
+     "tests/delivery/release-candidate.test.mjs",
+     "RC6 R02 装配只按显式清单复制"
+    ],
+    [
+     "tests/delivery/release-candidate.test.mjs",
+     "RC6 R03 装配遇缺件"
+    ],
+    [
+     "tests/delivery/release-candidate.test.mjs",
+     "RC6 R08 发布构建输入"
+    ]
+   ],
+   "experiments": [
+    "E54",
+    "E55",
+    "E56",
+    "E58"
+   ]
+  }
+ ]
+}

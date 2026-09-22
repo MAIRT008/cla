@@ -1,0 +1,34 @@
+[package]
+name = "ai-steward-control"
+version = "0.2.0"
+description = "本应用控制端：首启与会话、应用用户管理、服务器模型配置与 AI 路由、资源/模板/订阅/分配、个人凭据、配额适配与最小事件"
+edition = "2021"
+license = "GPL-3.0-only"
+# getrandom 0.4.3 文档写明需要 Rust 1.85；其余依赖的 MSRV 未逐一核对，见 DEPENDENCIES.md。
+rust-version = "1.85"
+publish = false
+
+[lib]
+name = "ai_steward_control"
+path = "src/lib.rs"
+
+[[bin]]
+name = "ai-steward-control"
+path = "src/main.rs"
+
+# 版本逐项在 crates.io / docs.rs 核对过，来源与许可见 DEPENDENCIES.md。
+# 本机没有 cargo/rustc，依赖未下载、未编译，也没有 Cargo.lock。
+[dependencies]
+serde_json = "=1.0.151"
+rusqlite = { version = "=0.40.2", features = ["bundled"] }
+argon2 = "=0.6.0"
+getrandom = "=0.4.3"
+sha2 = "=0.11.0"
+axum = { version = "=0.8.9", default-features = false, features = ["http1", "tokio"] }
+tokio = { version = "=1.53.1", features = ["rt-multi-thread", "net", "sync"] }
+ureq = "=3.4.2"
+regex = "=1.13.1"
+yaml-rust2 = "=0.13.0"
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "=0.61.2", features = ["Win32_Foundation", "Win32_Security", "Win32_Security_Cryptography"] }

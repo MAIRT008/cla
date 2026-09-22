@@ -1,0 +1,42 @@
+[package]
+name = "ai-steward-desktop-host"
+version = "0.1.0"
+description = "桌面宿主：受限原生桥、本地授权，以及经产品网络服务执行的受管网络命令"
+edition = "2021"
+license = "GPL-3.0-only"
+
+[lib]
+name = "ai_steward_desktop_host"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[features]
+default = []
+tauri = ["dep:tauri", "dep:tauri-plugin-dialog", "dep:tauri-plugin-single-instance", "dep:tauri-plugin-notification", "dep:tauri-build"]
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+# RC3：Mihomo、受管配置与 WFP 归产品网络服务所有，宿主只经这个本地 path 依赖签发并转发固定命令。
+# 本机没有 cargo/rustc，未编译验证。
+steward-service-ipc = { path = "../vendor/service-ipc", features = ["client"] }
+# T9 Round 2：Owner 裁决由 Rust 宿主拥有第三方 SQLite 能力（Chromium Cookie v24 / CC Switch v18）。
+# 本机没有 cargo/rustc，也无法取得该依赖，尚未编译验证。
+rusqlite = { version = "0.37", features = ["bundled"] }
+# 不能关默认特性：Builder::default() 只在 wry 特性下存在（docs.rs tauri 2.11.5 核对），原写法在 --features tauri 下编不过。
+# RC6：托盘图标需要 tray-icon 特性（与 CVR v2.5.2 在同一 tauri 版本上开的特性相同）。
+tauri = { version = "2.11.5", optional = true, features = ["tray-icon"] }
+# Tauri v2 把对话框拆成独立插件：本地用户确认窗口必须走 tauri-plugin-dialog 的 DialogExt。
+# 本机没有 cargo/rustc，也无法取得该依赖，尚未编译验证。
+tauri-plugin-dialog = { version = "2", optional = true }
+# RC6：单实例用官方插件（按产品标识命名，只聚焦既有窗口），不复用 CVR 固定端口 HTTP 单实例；要求 tauri ^2.10。
+tauri-plugin-single-instance = { version = "=2.4.5", optional = true }
+# RC6：窗口隐藏时的危急系统通知；版本与 CVR v2.5.2 在 tauri 2.11.5 上锁定并使用的相同。
+tauri-plugin-notification = { version = "=2.3.3", optional = true }
+# 以上都没有下载或编译过；Cargo.lock 在构建机生成。
+
+# RC1：宿主为托管控制端生成一次性首启凭据，取系统安全随机源；版本与 services/control-rs 一致。
+getrandom = "=0.4.3"
+
+# RC6：Tauri 2 的 generate_context! 要靠 tauri-build 生成权限清单与 Windows 资源（图标、清单）；版本取 CVR v2.5.2 与 tauri 2.11.5 同锁的一版。
+[build-dependencies]
+tauri-build = { version = "=2.6.3", optional = true }

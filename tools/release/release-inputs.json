@@ -1,0 +1,53 @@
+{
+ "schema": "steward-release-inputs-1",
+ "product": {
+  "name": "AI Environmental Steward",
+  "identifier": "local.ai-environmental-steward.desktop",
+  "version": "0.1.0"
+ },
+ "staging_root": "build/release-staging",
+ "frontend": {
+  "entry": "apps/desktop-ui/index.html",
+  "forbidden": ["node:", "services/control/", "fixtures/", "tests/", "experiments/", "dist/", "evidence/", "apps/desktop-ui/compose.mjs"]
+ },
+ "excluded": ["services/control/", "fixtures/", "experiments/", "dist/", "tests/", "evidence/", "node_modules/"],
+ "bundled_by_tauri": [
+  {"id": "host", "note": "tauri build 生成桌面宿主主程序与 NSIS 安装器；页面取自装配目录 frontend/"},
+  {"id": "webview2", "note": "安装器按 webviewInstallMode=embedBootstrapper 内嵌引导程序；运行时是系统组件"}
+ ],
+ "items": [
+  {"id": "control", "class": "runtime", "source": "services/control-rs/target/release/ai-steward-control.exe", "target": "control/ai-steward-control.exe", "built": true, "sha256": null, "origin": "cargo build --release --manifest-path services/control-rs/Cargo.toml", "license": "license-gpl", "required": true},
+  {"id": "service", "class": "runtime", "source": "apps/desktop-host/vendor/service-ipc/target/release/ai-environmental-steward-service.exe", "target": "service/ai-environmental-steward-service.exe", "built": true, "sha256": null, "origin": "cargo build --release --features service --manifest-path apps/desktop-host/vendor/service-ipc/Cargo.toml", "license": "license-service-ipc", "required": true},
+  {"id": "service-install", "class": "runtime", "source": "apps/desktop-host/vendor/service-ipc/target/release/ai-environmental-steward-service-install.exe", "target": "service/ai-environmental-steward-service-install.exe", "built": true, "sha256": null, "origin": "同上", "license": "license-service-ipc", "required": true},
+  {"id": "service-uninstall", "class": "runtime", "source": "apps/desktop-host/vendor/service-ipc/target/release/ai-environmental-steward-service-uninstall.exe", "target": "service/ai-environmental-steward-service-uninstall.exe", "built": true, "sha256": null, "origin": "同上", "license": "license-service-ipc", "required": true},
+  {"id": "mihomo", "class": "runtime", "source": "build/inputs/mihomo-windows-amd64-v1.19.30.exe", "target": "service/core/mihomo-windows-amd64-v1.19.30.exe", "sha256": null, "pin": "PIN_REQUIRED", "origin": "MetaCubeX/mihomo release v1.19.30 的 windows-amd64 资产（资产文件名以发布页为准），对应源码提交 ac017cdd246ce8bd547653d927e7bf77d7ee73d5；取得并核对后把解压出的程序哈希写进本项再装配", "license": "license-gpl", "required": true},
+  {"id": "collect-logs", "class": "runtime", "source": "tools/release/collect-logs.ps1", "target": "support/collect-logs.ps1", "sha256": null, "origin": "本仓库", "license": "license-gpl", "required": true},
+  {"id": "collect-logs-cmd", "class": "runtime", "source": "tools/release/collect-logs.cmd", "target": "support/collect-logs.cmd", "sha256": null, "origin": "本仓库", "license": "license-gpl", "required": true},
+  {"id": "license-gpl", "class": "source_license", "source": "tools/release/licenses/GPL-3.0.txt", "target": "licenses/GPL-3.0.txt", "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986", "origin": "与 Mihomo v1.19.30、CVR v2.5.2 固定源码的 LICENSE 逐字节一致", "required": true},
+  {"id": "license-service-ipc", "class": "source_license", "source": "apps/desktop-host/vendor/service-ipc/LICENSE", "target": "licenses/service-ipc-LICENSE.txt", "sha256": "8b1ba204bb69a0ade2bfcf65ef294a920f6bb361b317dba43c7ef29d96332b9b", "origin": "上游 clash-verge-service-ipc 2.3.3 @ b964ed29 的 LICENSE", "required": true},
+  {"id": "license-js-yaml", "class": "source_license", "source": "vendor/deps/js-yaml-4.3.0/LICENSE", "target": "licenses/js-yaml-LICENSE.txt", "sha256": "a07bc24468b9654ce76a547d47a2db282d07733b715db4c73a98bd63961f9550", "origin": "js-yaml 4.3.0（npm，CVR pnpm-lock 锁定版本；vendor/deps/js-yaml-4.3.0/SOURCE.json），随页面装入", "required": true},
+  {"id": "notice", "class": "source_license", "source": "tools/release/NOTICE.md", "target": "licenses/NOTICE.md", "sha256": null, "origin": "本仓库：组件、版本、许可与对应源码取得方式", "required": true},
+  {"id": "rust-third-party", "class": "source_license", "source": "build/inputs/THIRD-PARTY-RUST.txt", "target": "licenses/THIRD-PARTY-RUST.txt", "built": true, "sha256": null, "origin": "构建机按三份 Cargo.lock 用 cargo-about 生成的 Rust 依赖许可汇总", "required": true},
+  {"id": "lock-host", "class": "build_input", "source": "apps/desktop-host/src-tauri/Cargo.lock", "target": null, "built": true, "sha256": null, "origin": "构建机 cargo 生成；哈希记进 release-manifest.json", "required": true},
+  {"id": "lock-control", "class": "build_input", "source": "services/control-rs/Cargo.lock", "target": null, "built": true, "sha256": null, "origin": "同上", "required": true},
+  {"id": "lock-service", "class": "build_input", "source": "apps/desktop-host/vendor/service-ipc/Cargo.lock", "target": null, "built": true, "sha256": null, "origin": "同上", "required": true},
+  {"id": "rustc", "class": "build_tool", "required": true, "probe": ["rustc", "--version"], "note": "≥ 1.85；复用决策记 1.95"},
+  {"id": "cargo", "class": "build_tool", "required": true, "probe": ["cargo", "--version"]},
+  {"id": "tauri-cli", "class": "build_tool", "required": true, "probe": ["cargo", "tauri", "--version"], "note": "2.x，与 tauri 2.11.5 配套"},
+  {"id": "cargo-about", "class": "build_tool", "required": true, "probe": ["cargo", "about", "--version"], "note": "生成 THIRD-PARTY-RUST.txt；版本在构建机固定并记录"},
+  {"id": "node", "class": "build_tool", "required": true, "probe": ["node", "--version"], "note": "≥ 22，只跑 tools/release 与页面包生成"},
+  {"id": "powershell", "class": "build_tool", "required": true, "probe": ["powershell.exe", "-NoProfile", "-Command", "$PSVersionTable.PSVersion.ToString()"], "note": "Windows PowerShell 5.1，构建脚本与日志收集器"},
+  {"id": "nsis", "class": "build_tool", "required": true, "probe": {"file": "%LOCALAPPDATA%/tauri/NSIS/makensis.exe"}, "note": "tauri-cli 在 Windows 上只用自己缓存目录 %LOCALAPPDATA%/tauri/NSIS 里的 NSIS 与 nsis_tauri_utils，不找系统 PATH；构建机先让 cargo tauri build 取得它再检查"},
+  {"id": "field-experiments", "class": "test_material", "source": "evidence/delivery/t10-real-experiments.md", "target": null, "sha256": null, "origin": "异机实验清单，随测试批次另行转交", "required": true},
+  {"id": "loopback-collector", "class": "test_material", "source": "tools/acceptance/collect-loopback-endpoints.ps1", "target": null, "sha256": null, "origin": "E40 回环端点采集脚本", "required": true}
+ ],
+ "not_adopted": [
+  {"id": "tauri-plugin-mihomo", "reason": "0.5.4 只是历史候选，三份 Cargo.toml 与调用链都不使用"},
+  {"id": "tauri-plugin-updater", "reason": "没有发布地址、签名与 Owner 裁决，不做远程更新"},
+  {"id": "tauri-plugin-autostart / deep-link / shell / http / window-state", "reason": "不注册"},
+  {"id": "cvr-http-singleton", "reason": "CVR 固定端口 33331/11233 的 HTTP 单实例与 scheme/PAC 入口，改用官方单实例插件"},
+  {"id": "cvr-installer-template", "reason": "CVR 自定义 NSIS 模板按上游进程名批量结束进程并操作上游服务"},
+  {"id": "cvr-icons", "reason": "上游商标图标；产品图标由 tools/release/make-icons.mjs 生成"},
+  {"id": "node-control", "reason": "services/control/ 与 JavaScript OpenAI SDK 只是行为基线，产品运行路径是 Rust 控制端"}
+ ]
+}

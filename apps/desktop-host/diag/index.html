@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>浏览器环境检测</title>
+<style>
+  :root { color-scheme: light dark; --fg: #1d1d1f; --muted: #5f6368; --bg: #fafafa; }
+  @media (prefers-color-scheme: dark) { :root { --fg: #e8eaed; --muted: #9aa0a6; --bg: #202124; } }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 15px/1.6 system-ui, "Microsoft YaHei", sans-serif; }
+  main { max-width: 560px; margin: 12vh auto 0; padding: 0 16px; }
+  h1 { font-size: 20px; margin: 0 0 12px; }
+  p { margin: 8px 0; }
+  .muted { color: var(--muted); font-size: 13px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>AI 环境管家 · 浏览器环境检测</h1>
+  <p id="status">正在读取这个浏览器的时区、语言与网络候选地址……</p>
+  <p class="muted">本页只在本机运行，只把检测结果交回本机的 AI 环境管家；不读 Cookie、不读其他网站的数据、不播放声音。</p>
+</main>
+<script id="steward-session" type="application/json">__STEWARD_DIAG_SESSION__</script>
+<script>
+(async () => {
+  const statusLine = document.getElementById('status');
+  const session = JSON.parse(document.getElementById('steward-session').textContent);
+  const errors = [];
+
+  function platformSample() {
+    const resolved = new Intl.DateTimeFormat().resolvedOptions();
+    const parts = new Intl.NumberFormat().formatToParts(12345.6);
+    return {
+      timezone: resolved.timeZone || '',
+      utc_offset_minutes: -new Date().getTimezoneOffset(),
+      locale: navigator.language || resolved.locale || '',
+      system_locale: resolved.locale || navigator.language || '',
+      user_languages: Array.from(navigator.languages || []),
+      format_settings: {
+        decimal: (parts.find((part) => part.type === 'decimal') || {}).value || '',
+        group: (parts.find((part) => part.type === 'group') || {}).value || '',
+        calendar: resolved.calendar,
+        numbering_system: resolved.numberingSystem,
+      },
+      online: navigator.onLine,
+      hardware_concurrency: navigator.hardwareConcurrency ?? null,
+      device_memory_gb: navigator.deviceMemory ?? null,
+      user_agent: navigator.userAgent || '',
+      cookie_enabled: navigator.cookieEnabled ?? null,
+      client_kind: 'default_browser',
+    };
+  }
+
+  function classify(text) {
+    const type = (/ typ (\w+)/.exec(text) || [])[1] || 'unknown';
+    const address = (/ (\d{1,3}(?:\.\d{1,3}){3}|[0-9a-f:]+:[0-9a-f:]*|\S+\.local) /i.exec(` ${text} `) || [])[1] || null;
+    const mdns = Boolean(address && address.endsWith('.local'));
+    const family = mdns ? 'mdns' : address && address.includes(':') ? 'ipv6' : address ? 'ipv4' : 'unknown';
+    return {type, address, family, host: type === 'host', srflx: type === 'srflx', relay: type === 'relay', mdns};
+  }
+
+  async function iceSample() {
+    if (typeof RTCPeerConnection !== 'function') return {status: 'UNSUPPORTED', candidates: [], public_candidates: false, limitation: 'NO_PEER_CONNECTION'};
+    const candidates = [];
+    const connection = new RTCPeerConnection({iceServers: Array.isArray(session.ice_servers) ? session.ice_servers : []});
+    let complete = false;
+    await new Promise((resolve) => {
+      const timer = setTimeout(resolve, 3000);
+      connection.onicecandidate = (event) => {
+        if (!event || !event.candidate) {
+          complete = true;
+          clearTimeout(timer);
+          resolve();
+          return;
+        }
+        candidates.push(classify(event.candidate.candidate || ''));
+      };
+      try {
+        connection.createDataChannel('diag');
+        connection.createOffer().then((offer) => connection.setLocalDescription(offer)).catch((error) => {
+          errors.push({surface: 'ice', message: String(error && error.message || error)});
+          clearTimeout(timer);
+          resolve();
+        });
+      } catch (error) {
+        errors.push({surface: 'ice', message: String(error && error.message || error)});
+        clearTimeout(timer);
+        resolve();
+      }
+    });
+    try { connection.close(); } catch {}
+    const publicCandidates = candidates.some((item) => item.srflx || item.relay);
+    return {
+      status: candidates.length || complete ? 'OBSERVED' : 'NO_CANDIDATES',
+      candidates,
+      public_candidates: publicCandidates,
+      host_only: candidates.length > 0 && !publicCandidates,
+      stun_configured: Array.isArray(session.ice_servers) && session.ice_servers.length > 0,
+      limitation: publicCandidates ? null : 'NO_PUBLIC_STUN_CANDIDATE',
+    };
+  }
+
+  async function sha256(text) {
+    if (!(globalThis.crypto && crypto.subtle)) return null;
+    const bytes = new TextEncoder().encode(text);
+    const digest = await crypto.subtle.digest('SHA-256', bytes);
+    return Array.from(new Uint8Array(digest)).map((byte) => byte.toString(16).padStart(2, '0')).join('');
+  }
+
+  async function fingerprintSample() {
+    const out = {canvas: {status: 'UNSUPPORTED'}, webgl: {status: 'UNSUPPORTED'}, screen: null, account_risk: 'NOT_INFERRED'};
+    try {
+      const canvas = document.createElement('canvas');
+      const context = canvas.getContext('2d');
+      if (context && context.fillText) {
+        context.fillText('AI Steward fingerprint', 2, 12);
+        const data = canvas.toDataURL();
+        out.canvas = {status: 'OBSERVED', hash: await sha256(data), length: data.length};
+      }
+    } catch (error) {
+      out.canvas = {status: 'DENIED'};
+    }
+    try {
+      const gl = document.createElement('canvas').getContext('webgl');
+      if (gl && gl.getParameter) out.webgl = {status: 'OBSERVED', vendor: gl.getParameter(gl.VENDOR), renderer: gl.getParameter(gl.RENDERER)};
+    } catch (error) {
+      out.webgl = {status: 'DENIED'};
+    }
+    if (typeof screen === 'object' && screen) {
+      out.screen = {width: screen.width, height: screen.height, color_depth: screen.colorDepth, device_pixel_ratio: globalThis.devicePixelRatio || 1};
+    }
+    return out;
+  }
+
+  const sample = {};
+  try { sample.platform = platformSample(); } catch (error) { errors.push({surface: 'platform', message: String(error && error.message || error)}); }
+  try { sample.ice = await iceSample(); } catch (error) { errors.push({surface: 'ice', message: String(error && error.message || error)}); }
+  try { sample.fingerprint = await fingerprintSample(); } catch (error) { errors.push({surface: 'fingerprint', message: String(error && error.message || error)}); }
+
+  const body = {
+    session_ref: session.session_ref,
+    session_nonce: session.session_nonce,
+    script_version: session.script_version,
+    task_ref: session.task_ref,
+    environment_ref: session.environment_ref,
+    profile_ref: session.profile_ref || null,
+    user_agent: navigator.userAgent || '',
+    sample,
+    errors,
+  };
+  try {
+    const response = await fetch(session.report_path, {
+      method: 'POST',
+      headers: {'content-type': 'application/json'},
+      body: JSON.stringify(body),
+      credentials: 'omit',
+      cache: 'no-store',
+    });
+    statusLine.textContent = response.ok
+      ? '检测结果已交回 AI 环境管家。可以关闭这个页面，回到应用里查看结果。'
+      : `结果没能交回（HTTP ${response.status}）。请回到应用里重新发起检测。`;
+  } catch (error) {
+    statusLine.textContent = '结果没能交回：本机的检测会话可能已经结束。请回到应用里重新发起检测。';
+  }
+})();
+</script>
+</body>
+</html>

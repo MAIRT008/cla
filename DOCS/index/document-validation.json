@@ -1,0 +1,20 @@
+{
+  "version": "1.3",
+  "checked_at": "2026-09-17T09:07:50.226238+00:00",
+  "status": "PASS",
+  "product_status": "UNVERIFIED",
+  "checks": {
+    "requirements": {
+      "functions": 146,
+      "acceptance": 126,
+      "rules": 80
+    },
+    "cross_module_scenarios": 20,
+    "local_links": 133,
+    "mermaid_source_pairs": 4,
+    "source_hashes": 26,
+    "historical_markdown_preserved": 8,
+    "scope": "Current canonical Markdown, indexes, diagram sources and verifier only; not historical Word/audits or product runtime."
+  },
+  "errors": []
+}

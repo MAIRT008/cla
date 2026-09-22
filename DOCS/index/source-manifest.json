@@ -1,0 +1,144 @@
+{
+  "version": "1.3",
+  "current": [
+    {
+      "path": "README.md",
+      "sha256": "96cfc63990fed703fcafadaacea99b9719d2b0bff70985dcf0572d187cce8929"
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "d8bc796bd767b9a796cf1f6a22b6a3e765db5c0973c9e54623ae5b2ff5e13a8f"
+    },
+    {
+      "path": "ARCHITECTURE.md",
+      "sha256": "ec6bb18b2276b98a06fdf33a6bc3c58be14d0b73c60568a2e8faa16ccbf65bcc"
+    },
+    {
+      "path": "PROJECT_OVERVIEW.md",
+      "sha256": "af790c4fc617848926e4b48c909bfca866c88446a1933db5fe0b6a7c08862b74"
+    },
+    {
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "path": "DOCS/ACCEPTANCE.md",
+      "sha256": "c241331e7acaeec455bb9d5bc08da10ccd56b204e7c007691a0c804e0b61b8e2"
+    },
+    {
+      "path": "DOCS/CHANGELOG.md",
+      "sha256": "491c7f1097c817803eabc593cfd4664e83ecb79924b267527abb7a7f15018e67"
+    },
+    {
+      "path": "DOCS/DOCUMENT_INDEX.md",
+      "sha256": "08321e2e178581e576e87c918bb7457428fa3ae154a4f3c446e26bff68050f72"
+    },
+    {
+      "path": "DOCS/IMPLEMENTATION_PLAN.md",
+      "sha256": "8ae4db1878ad66336986a7d9d5a774c5c3c6a61a56e5a8dd5e6773f2fe1f4615"
+    },
+    {
+      "path": "DOCS/INTERFACES.md",
+      "sha256": "c91f5cfaf4cfb68fb8de668a193c590af95813054fbf79c199d5d84e810ee571"
+    },
+    {
+      "path": "DOCS/OPEN_DECISIONS.md",
+      "sha256": "f53d7f5fa625b69548e4126a6894b4d2c6e5bc452e1d7fb91ebbac6ff5c3f563"
+    },
+    {
+      "path": "DOCS/RELEASE_SCOPE.md",
+      "sha256": "05562036da9b8e218191a132ce1517bf11819355e856987008947db77a040480"
+    },
+    {
+      "path": "DOCS/REUSE_PLAN.md",
+      "sha256": "66397b3686af4a73bfcdbcc881dd6542b5898ab3b80c48302bc6cf5996c72122"
+    },
+    {
+      "path": "DOCS/RUNTIME_BEHAVIOR.md",
+      "sha256": "08fc27052972717a937bb8b99e08c9a6415376aa7f8752711e3fb5a4f491839e"
+    },
+    {
+      "path": "DOCS/SCORING_AND_ROUTING.md",
+      "sha256": "96a11cb746fd7e5d2b6dadc9521294a1c56d6d856d0da3a98831371f712b4c2d"
+    },
+    {
+      "path": "DOCS/SECURITY_PRIVACY.md",
+      "sha256": "eed95e7d5d6c0ad554ee48a1cdfee4a1b768a702f39ff69ed2e265e031847bf3"
+    },
+    {
+      "path": "DOCS/SOURCE_DECISIONS.md",
+      "sha256": "b52304231d47d14cc25ef42f2495b1dc5d5512eb3ed8d065865108b01a79a7a6"
+    },
+    {
+      "path": "DOCS/V1_PLAN.md",
+      "sha256": "2752ca0b59ff1b2fee00412bc9585806dfd4522f6c820e5994d483704f16bd8c"
+    },
+    {
+      "path": "DOCS/diagrams/01_system_architecture.mmd",
+      "sha256": "3f374a5292f72b7e166b8dab9f2d05d71d05e448ed56e53e8cef3aab3c1af216"
+    },
+    {
+      "path": "DOCS/diagrams/02_network_modes.mmd",
+      "sha256": "4a941468c664082e9060e5296ab226043b728c7eb40906a80cdefcbcad875c8a"
+    },
+    {
+      "path": "DOCS/diagrams/03_authority_emergency.mmd",
+      "sha256": "d2d484cf70052c1ef2db3ffe5f04002514573d87563a0bd3f1d8c47ea5debea0"
+    },
+    {
+      "path": "DOCS/diagrams/04_audit_dataflow.mmd",
+      "sha256": "f6be8fd77591cdac469cac85c51f465e24685e1fac6e5027d13f847f74a81b18"
+    },
+    {
+      "path": "tools/verify_documents.py",
+      "sha256": "30701e90ba52d27b28475ab37558f87944685dbc1d15ba990ca67c3e35b25d2f"
+    }
+  ],
+  "pre_revision_markdown": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "e7423bfbc160676b1aafcae063acaefbc09c44fd27e792fed070ffecce054580"
+    },
+    {
+      "path": "ARCHITECTURE.md",
+      "sha256": "9b89f91070b514993b4c1535f01201f1df3733278220a4356afbc1ac50d31d19"
+    },
+    {
+      "path": "PROJECT_OVERVIEW.md",
+      "sha256": "a2eb3faee090eb49b449d975f028b45730d5cb22defafa23460f5c090127d1f9"
+    },
+    {
+      "path": "README.md",
+      "sha256": "ed6c333fb6cee6a55dcc741f502c5bce8d76b5765f6f22c1245cd464ecd6aecf"
+    },
+    {
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "sha256": "49b0972ca401ca037b1676cb02c6e911a7c408731d62a133f0b23241f1ae4064"
+    },
+    {
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "sha256": "affe73a85ef75d0c4296f10421656645394e0c92ef6406442b018b351aa13214"
+    },
+    {
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "sha256": "58990871144c74691329eefc100f5b6f9946e022040c5a4d7f785a9206727086"
+    },
+    {
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "sha256": "969dc314092c8556506077904267e818ab37179e32e605f942fc69a52302910f"
+    }
+  ],
+  "note": "Historical hashes are provenance only. Runtime product status is UNVERIFIED."
+}

@@ -1,0 +1,11 @@
+{
+  "package": "js-yaml",
+  "version": "4.3.0",
+  "resolved": "https://registry.npmjs.org/js-yaml/-/js-yaml-4.3.0.tgz",
+  "integrity_sha256": "8594EE34496DD2E41EC934FD202843DC993BE9AB2D7D5D47579146962FBDFAE6",
+  "license": "MIT",
+  "license_file": "LICENSE",
+  "install_scripts_run": false,
+  "system_install": false,
+  "notes": "Locked CVR pnpm-lock version. Extracted to vendor/deps for T5 Mihomo YAML dump/load only."
+}

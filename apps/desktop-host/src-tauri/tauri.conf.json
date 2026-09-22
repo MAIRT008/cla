@@ -1,0 +1,57 @@
+{
+  "productName": "AI Environmental Steward",
+  "identifier": "local.ai-environmental-steward.desktop",
+  "version": "0.1.0",
+  "build": {
+    "frontendDist": "../../../build/release-staging/frontend"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "url": "apps/desktop-ui/index.html",
+        "title": "AI Environmental Steward",
+        "width": 1100,
+        "height": 760,
+        "additionalBrowserArgs": "--disable-features=msWebOOUI,msPdfOOUI,msSmartScreenProtection,IntensiveWakeUpThrottling,CalculateNativeWinOcclusion --disable-background-timer-throttling --disable-renderer-backgrounding --disable-backgrounding-occluded-windows"
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "plugins": {},
+  "bundle": {
+    "active": true,
+    "targets": ["nsis"],
+    "icon": ["icons/icon.png", "icons/icon.ico"],
+    "copyright": "GNU General Public License v3.0",
+    "createUpdaterArtifacts": false,
+    "resources": {
+      "../../../build/release-staging/install/control/ai-steward-control.exe": "control/ai-steward-control.exe",
+      "../../../build/release-staging/install/service/ai-environmental-steward-service.exe": "service/ai-environmental-steward-service.exe",
+      "../../../build/release-staging/install/service/ai-environmental-steward-service-install.exe": "service/ai-environmental-steward-service-install.exe",
+      "../../../build/release-staging/install/service/ai-environmental-steward-service-uninstall.exe": "service/ai-environmental-steward-service-uninstall.exe",
+      "../../../build/release-staging/install/service/core/mihomo-windows-amd64-v1.19.30.exe": "service/core/mihomo-windows-amd64-v1.19.30.exe",
+      "../../../build/release-staging/install/support/collect-logs.ps1": "support/collect-logs.ps1",
+      "../../../build/release-staging/install/support/collect-logs.cmd": "support/collect-logs.cmd",
+      "../../../build/release-staging/install/licenses/GPL-3.0.txt": "licenses/GPL-3.0.txt",
+      "../../../build/release-staging/install/licenses/service-ipc-LICENSE.txt": "licenses/service-ipc-LICENSE.txt",
+      "../../../build/release-staging/install/licenses/js-yaml-LICENSE.txt": "licenses/js-yaml-LICENSE.txt",
+      "../../../build/release-staging/install/licenses/NOTICE.md": "licenses/NOTICE.md",
+      "../../../build/release-staging/install/licenses/THIRD-PARTY-RUST.txt": "licenses/THIRD-PARTY-RUST.txt",
+      "../../../build/release-staging/release-manifest.json": "release-manifest.json"
+    },
+    "windows": {
+      "webviewInstallMode": {
+        "type": "embedBootstrapper",
+        "silent": true
+      },
+      "nsis": {
+        "installMode": "perMachine",
+        "languages": ["SimpChinese", "English"],
+        "installerHooks": "../vendor/service-ipc/resources/installer.nsi"
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+build/
+node_modules/
+**/target/
+fixtures/
+experiments/
+dist/
+services/control/
+*.pfx
+*.p12
+*.pem
+*.key
+.env
+.env.*

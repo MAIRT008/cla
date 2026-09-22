@@ -1,0 +1,2 @@
+# 按字节保存：三份许可文件的 SHA-256 固定在 release-inputs.json，Windows runner 默认 core.autocrlf=true 会改写换行。
+* -text

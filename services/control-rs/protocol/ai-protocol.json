@@ -1,0 +1,285 @@
+{
+  "cleanup": {
+    "prompt_version": "cleanup-v1",
+    "tool_catalog_version": "cleanup-tools-v1",
+    "tools": [
+      {
+        "type": "function",
+        "function": {
+          "name": "DiscoverEnvironment",
+          "description": "Read already collected permitted scan evidence.",
+          "parameters": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "scan_id"
+            ],
+            "properties": {
+              "scan_id": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "InspectObject",
+          "description": "Inspect one discovered object only.",
+          "parameters": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "scan_id",
+              "object_ref"
+            ],
+            "properties": {
+              "scan_id": {
+                "type": "string"
+              },
+              "object_ref": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "BuildActionPlan",
+          "description": "Build a program-validated plan; it does not confirm or execute it.",
+          "parameters": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "scan_id"
+            ],
+            "properties": {
+              "scan_id": {
+                "type": "string"
+              },
+              "recommendation_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "proposal": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "ExecuteConfirmedPlan",
+          "description": "Execute only an already user-confirmed plan.",
+          "parameters": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "plan_id",
+              "version",
+              "action_ids",
+              "operation_id"
+            ],
+            "properties": {
+              "plan_id": {
+                "type": "string"
+              },
+              "version": {},
+              "action_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "operation_id": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "RecheckAction",
+          "description": "Recheck one action of the current plan.",
+          "parameters": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "plan_id",
+              "action_id"
+            ],
+            "properties": {
+              "plan_id": {
+                "type": "string"
+              },
+              "action_id": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "network_diagnosis": {
+    "prompt_version": "network-diagnosis-v1",
+    "tool_catalog_version": "network-diagnosis-tools-v1",
+    "tools": [
+      {
+        "type": "function",
+        "function": {
+          "name": "InspectNetworkEvidence",
+          "description": "Read only a supplied finite diagnostic protocol port.",
+          "parameters": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "port"
+            ],
+            "properties": {
+              "port": {
+                "enum": [
+                  "environment",
+                  "profile",
+                  "configuration",
+                  "history",
+                  "dns",
+                  "exit"
+                ]
+              }
+            }
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "BuildNetworkPlan",
+          "description": "Build one supported finite-port network plan without applying it.",
+          "parameters": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "environment_ref",
+              "profile_ref",
+              "action_id",
+              "reason"
+            ],
+            "properties": {
+              "environment_ref": {
+                "type": "string"
+              },
+              "profile_ref": {
+                "type": "string"
+              },
+              "action_id": {
+                "type": "string"
+              },
+              "reason": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "ApplyNetworkPlan",
+          "description": "Apply only an already locally confirmed finite-port plan.",
+          "parameters": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "plan_id"
+            ],
+            "properties": {
+              "plan_id": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "RecheckNetworkPlan",
+          "description": "Read finite-port recheck evidence after application.",
+          "parameters": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "plan_id"
+            ],
+            "properties": {
+              "plan_id": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "daily_analysis": {
+    "prompt_version": "daily-analysis-v1",
+    "tool_catalog_version": "daily-analysis-tools-v1",
+    "tools": [
+      {
+        "type": "function",
+        "function": {
+          "name": "ReadDailyFacts",
+          "description": "Read the already derived daily-report facts.",
+          "parameters": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "report_id"
+            ],
+            "properties": {
+              "report_id": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "SaveDailyAnalysis",
+          "description": "Save a fact-referenced independent daily-analysis note.",
+          "parameters": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "fact_refs",
+              "analysis"
+            ],
+            "properties": {
+              "fact_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "analysis": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

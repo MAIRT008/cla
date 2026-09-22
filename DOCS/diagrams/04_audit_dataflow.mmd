@@ -1,0 +1,15 @@
+flowchart TB
+  LIVE["当前网络事件"] --> GUARD["即时保护"]
+  LOG["可见运行日志"] --> ARCHIVE["每两小时只读归档与哈希"]
+  ARCHIVE --> DUE["LA 09:00 后首个可用唤醒检查到期"]
+  DUE --> WINDOW["续接上一完整有效窗口，否则最近 24 小时"]
+  WINDOW --> CLASS["单一声明版本分类器与记录去重"]
+  BYTES["真实字节样本与缺测"] --> RESULT["同一结构化标准结果"]
+  QUOTA["服务端用户配额快照"] --> RESULT
+  CLASS --> RESULT
+  LIVE --> RESULT
+  RESULT --> MD["不可改写的每日 MD"]
+  RESULT --> JSON["同窗口每日 JSON"]
+  RESULT -. 授权脱敏汇总，独立任务 .-> AI["本地提示词经服务器调用模型"]
+  AI --> NOTE["分析附注：解释、依据、待办"]
+  NOTE --> VIEW["关联原日报展示"]

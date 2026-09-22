@@ -1,0 +1,3525 @@
+{
+  "version": "1.3",
+  "entries": [
+    {
+      "module": "FD-01",
+      "id": "R01",
+      "key": "FD-01/R01",
+      "kind": "rule",
+      "title": "交互参考环境管家式体验：自动扫描、分类展示、明确建议、一次确认、一键处理和复查。",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 64,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "R02",
+      "key": "FD-01/R02",
+      "kind": "rule",
+      "title": "首次默认深度扫描；已启用 AI 时进行 AI 深度分析。没有 AI 时仍可运行标准深度扫描。",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 65,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "R03",
+      "key": "FD-01/R03",
+      "kind": "rule",
+      "title": "日常默认快速体检，保留手动深度扫描和专项扫描入口。",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 66,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "R04",
+      "key": "FD-01/R04",
+      "kind": "rule",
+      "title": "标准模式与 AI 增强模式共用一套界面和执行能力；应用没有对话框。",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 67,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "R05",
+      "key": "FD-01/R05",
+      "kind": "rule",
+      "title": "扫描与计划阶段只读；AI 主导识别和处理规划，用户确认具体清单后可调用客户端受限工具执行与复查；任何清理、修改、隔离或恢复须在该确认范围内。",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 68,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "R06",
+      "key": "FD-01/R06",
+      "kind": "rule",
+      "title": "应用负责专业判断和推荐，用户负责最终是否采用。不能只列路径让用户自行研究。",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 69,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "R07",
+      "key": "FD-01/R07",
+      "kind": "rule",
+      "title": "项目记录、项目记忆、项目配置受保护；其他已识别的 Claude 相关数据可以提供清理选项，但不是全部自动删除。",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 70,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "R08",
+      "key": "FD-01/R08",
+      "kind": "rule",
+      "title": "账号状态由用户确认：正常使用则保留对应登录与身份资料；已被限制／风控则把已识别的对应本地资料纳入推荐清理。",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 71,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "R09",
+      "key": "FD-01/R09",
+      "kind": "rule",
+      "title": "正常账号的资料存在不扣分；用户声明账号受限也不自动把所有关联文件判为危急。",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 72,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "R10",
+      "key": "FD-01/R10",
+      "kind": "rule",
+      "title": "采用 100 分制与危急、重要、轻度三级问题；待核验是证据状态，不是第四个严重等级。",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 73,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "R11",
+      "key": "FD-01/R11",
+      "kind": "rule",
+      "title": "从严检查范围、证据和通过条件；不以夸大严重程度、重复扣分或隐藏检查缺口实现“严格”。",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 74,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "R12",
+      "key": "FD-01/R12",
+      "kind": "rule",
+      "title": "同一根本问题关联多个文件时归并展示；执行仍保留精确到文件、字段或数据库记录的对象清单。",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 75,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "R13",
+      "key": "FD-01/R13",
+      "kind": "rule",
+      "title": "只有执行并复查确认问题解决后才恢复分数；用户保留真实问题不会自动抹除扣分。",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 76,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "R14",
+      "key": "FD-01/R14",
+      "kind": "rule",
+      "title": "删除、字段修改、记录清除、隔离保留、原本不存在、执行失败分别记录，不混算。",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 77,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "F01",
+      "key": "FD-01/F01",
+      "kind": "function",
+      "title": "自动发现客户端与数据位置",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 368,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "F02",
+      "key": "FD-01/F02",
+      "kind": "function",
+      "title": "发现浏览器与 Profile",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 369,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "F03",
+      "key": "FD-01/F03",
+      "kind": "function",
+      "title": "区分 Windows／WSL／其他可访问环境",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 370,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "F04",
+      "key": "FD-01/F04",
+      "kind": "function",
+      "title": "首次深度扫描",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 371,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "F05",
+      "key": "FD-01/F05",
+      "kind": "function",
+      "title": "日常快速体检",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 372,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "F06",
+      "key": "FD-01/F06",
+      "kind": "function",
+      "title": "专项扫描",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 373,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "F07",
+      "key": "FD-01/F07",
+      "kind": "function",
+      "title": "标准模式",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 374,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "F08",
+      "key": "FD-01/F08",
+      "kind": "function",
+      "title": "AI 主导识别与精确处理",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 375,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "F09",
+      "key": "FD-01/F09",
+      "kind": "function",
+      "title": "账号与 org_id 关联识别",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 376,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "F10",
+      "key": "FD-01/F10",
+      "kind": "function",
+      "title": "用户确认账号状态",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 377,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "F11",
+      "key": "FD-01/F11",
+      "kind": "function",
+      "title": "正常账号保护",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 378,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "F12",
+      "key": "FD-01/F12",
+      "kind": "function",
+      "title": "受限账号资料识别",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 379,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "F13",
+      "key": "FD-01/F13",
+      "kind": "function",
+      "title": "项目三类资料保护",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 380,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "F14",
+      "key": "FD-01/F14",
+      "kind": "function",
+      "title": "第三方与配置关联检查",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 381,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "F15",
+      "key": "FD-01/F15",
+      "kind": "function",
+      "title": "浏览器站点数据检查",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 382,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "F16",
+      "key": "FD-01/F16",
+      "kind": "function",
+      "title": "活动状态与归档区分",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 383,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "F17",
+      "key": "FD-01/F17",
+      "kind": "function",
+      "title": "五类结果与问题归并",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 384,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "F18",
+      "key": "FD-01/F18",
+      "kind": "function",
+      "title": "严重度与证据状态",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 385,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "F19",
+      "key": "FD-01/F19",
+      "kind": "function",
+      "title": "固定规则评分",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 386,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "F20",
+      "key": "FD-01/F20",
+      "kind": "function",
+      "title": "推荐处理方案",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 387,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "F21",
+      "key": "FD-01/F21",
+      "kind": "function",
+      "title": "一次确认后执行",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 388,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "F22",
+      "key": "FD-01/F22",
+      "kind": "function",
+      "title": "字段与记录级处理",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 389,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "F23",
+      "key": "FD-01/F23",
+      "kind": "function",
+      "title": "执行前检查与异常处理",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 390,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "F24",
+      "key": "FD-01/F24",
+      "kind": "function",
+      "title": "备份／隔离／恢复",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 391,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "F25",
+      "key": "FD-01/F25",
+      "kind": "function",
+      "title": "执行后复查与重新评分",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 392,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "F26",
+      "key": "FD-01/F26",
+      "kind": "function",
+      "title": "脱敏报告与历史记录",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 393,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "F27",
+      "key": "FD-01/F27",
+      "kind": "function",
+      "title": "AI 失效与断网降级",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 394,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "F28",
+      "key": "FD-01/F28",
+      "kind": "function",
+      "title": "规则与案例维护",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 395,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "A01",
+      "key": "FD-01/A01",
+      "kind": "acceptance",
+      "title": "首次打开且已授权 AI",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 403,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "A02",
+      "key": "FD-01/A02",
+      "kind": "acceptance",
+      "title": "无模型配置／AI 失败／断网",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 404,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "A03",
+      "key": "FD-01/A03",
+      "kind": "acceptance",
+      "title": "用户回答账号正常",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 405,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "A04",
+      "key": "FD-01/A04",
+      "kind": "acceptance",
+      "title": "用户回答账号受限",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 406,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "A05",
+      "key": "FD-01/A05",
+      "kind": "acceptance",
+      "title": "用户未回答或归属未知",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 407,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "A06",
+      "key": "FD-01/A06",
+      "kind": "acceptance",
+      "title": "多账号共享浏览器数据",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 408,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "A07",
+      "key": "FD-01/A07",
+      "kind": "acceptance",
+      "title": "项目记录中出现旧邮箱或 org_id",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 409,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "A08",
+      "key": "FD-01/A08",
+      "kind": "acceptance",
+      "title": "JSON 混合项目字段和认证字段",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 410,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "A09",
+      "key": "FD-01/A09",
+      "kind": "acceptance",
+      "title": "同名文件清后重新生成",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 411,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "A10",
+      "key": "FD-01/A10",
+      "kind": "acceptance",
+      "title": "针对站点 Cookie／数据库记录清理",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 412,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "A11",
+      "key": "FD-01/A11",
+      "kind": "acceptance",
+      "title": "旧备份含登录资料与项目资料",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 413,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "A12",
+      "key": "FD-01/A12",
+      "kind": "acceptance",
+      "title": "同一问题涉及多个文件",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 414,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "A13",
+      "key": "FD-01/A13",
+      "kind": "acceptance",
+      "title": "存在危急／重要问题",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 415,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "A14",
+      "key": "FD-01/A14",
+      "kind": "acceptance",
+      "title": "关键范围未读到",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 416,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "A15",
+      "key": "FD-01/A15",
+      "kind": "acceptance",
+      "title": "用户保留已确认问题",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 417,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "A16",
+      "key": "FD-01/A16",
+      "kind": "acceptance",
+      "title": "确认后文件改变或被占用",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 418,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "A17",
+      "key": "FD-01/A17",
+      "kind": "acceptance",
+      "title": "处理部分成功、部分失败",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 419,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "A18",
+      "key": "FD-01/A18",
+      "kind": "acceptance",
+      "title": "执行后复查",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 420,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "A19",
+      "key": "FD-01/A19",
+      "kind": "acceptance",
+      "title": "恢复备份",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 421,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "A20",
+      "key": "FD-01/A20",
+      "kind": "acceptance",
+      "title": "导出或交给 AI 的资料",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 422,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "A21",
+      "key": "FD-01/A21",
+      "kind": "acceptance",
+      "title": "标准与 AI 同案例对照",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 423,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-01",
+      "id": "A22",
+      "key": "FD-01/A22",
+      "kind": "acceptance",
+      "title": "历史来源冲突或证据缺口",
+      "path": "DOCS/01_Claude检测_本地文件环境检测与清理_功能文档_v1.0.md",
+      "line": 424,
+      "source_sha256": "d9417b8e8be8e3005e547710d763c6fb13dca08b83febc0e541dc38a3a7740c0"
+    },
+    {
+      "module": "FD-02",
+      "id": "R01",
+      "key": "FD-02/R01",
+      "kind": "rule",
+      "title": "产品是检测、诊断、处理、复查与恢复的一体化应用，不是网页检测站的桌面外壳。",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 64,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "R02",
+      "key": "FD-02/R02",
+      "kind": "rule",
+      "title": "Clash 内置于本应用；代理状态读取、规则调整、配置应用和结果回读由应用内部能力完成。",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 65,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "R03",
+      "key": "FD-02/R03",
+      "kind": "rule",
+      "title": "同一份生效网络配置由一个明确的应用内管理入口维护；不让两个客户端同时写入同一配置。",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 66,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "R04",
+      "key": "FD-02/R04",
+      "kind": "rule",
+      "title": "首次提供深度检查，日常默认快速体检，保留专项检查；不要求普通用户先填技术问卷。",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 67,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "R05",
+      "key": "FD-02/R05",
+      "kind": "rule",
+      "title": "标准与 AI 增强模式共用界面、测量和执行能力；没有聊天框。",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 68,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "R06",
+      "key": "FD-02/R06",
+      "kind": "rule",
+      "title": "普通扫描只读配置，可执行获授权的网络探测；不自动切出口、关 TUN、重启内核或改防火墙。",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 69,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "R07",
+      "key": "FD-02/R07",
+      "kind": "rule",
+      "title": "应用负责专业判断和明确推荐，用户决定是否采用；操作影响不能隐藏在「一键优化」中。",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 70,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "R08",
+      "key": "FD-02/R08",
+      "kind": "rule",
+      "title": "本机能够处理的受支持问题，确认后直接处理；外部条件不足和仅供参考的项目单独标记。",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 71,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "R09",
+      "key": "FD-02/R09",
+      "kind": "rule",
+      "title": "结果绑定实际浏览器、Profile、客户端、运行环境、探测路径与时间；不将 WebView 扫描结果冒充日常浏览器结果。",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 72,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "R10",
+      "key": "FD-02/R10",
+      "kind": "rule",
+      "title": "采用一个主要的 100 分环境评分，越高越好；危急、重要、轻度三级问题与证据状态分开。",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 73,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "R11",
+      "key": "FD-02/R11",
+      "kind": "rule",
+      "title": "从严检查范围、真实路径、确认依据和通过条件；未观测到不等于安全，也不等于确认故障。",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 74,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "R12",
+      "key": "FD-02/R12",
+      "kind": "rule",
+      "title": "AI 主导证据关联、补充检查和处理计划，可经本地受限工具调用已确认的修复与复查；程序验证授权、计算分数并执行，不接收模型任意命令。",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 75,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "R13",
+      "key": "FD-02/R13",
+      "kind": "rule",
+      "title": "固定出口故障不静默切换到未经批准的节点或直连；AI 不决定临场更换出口。",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 76,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "R14",
+      "key": "FD-02/R14",
+      "kind": "rule",
+      "title": "断网保护演练单独授权；演练之后报告原状态恢复情况，不混进普通扫描。",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 77,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "R15",
+      "key": "FD-02/R15",
+      "kind": "rule",
+      "title": "原配置先记录，变更范围先展示；用户确认后不临场扩大对象或动作，复查完成后才认定问题解决。",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 78,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "R16",
+      "key": "FD-02/R16",
+      "kind": "rule",
+      "title": "CleanIP 为产品对标，开源仓库为实现候选；复用代码不等于接受其全部权重、结论或默认修改。",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 79,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "R17",
+      "key": "FD-02/R17",
+      "kind": "rule",
+      "title": "网络结果不替代账号状态确认；不根据连通、Cookie 存在或 IP 得分判断账号是否被风控。",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 80,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "R18",
+      "key": "FD-02/R18",
+      "kind": "rule",
+      "title": "FD-01 的项目记录、记忆、配置保护与正常登录保留规则继续有效，不由网络优化静默绕过。",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 81,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "N01",
+      "key": "FD-02/N01",
+      "kind": "function",
+      "title": "自动发现客户端与网络配置",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 391,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "N02",
+      "key": "FD-02/N02",
+      "kind": "function",
+      "title": "实际浏览器与 Profile 检查",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 392,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "N03",
+      "key": "FD-02/N03",
+      "kind": "function",
+      "title": "Windows／WSL／客体区分",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 393,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "N04",
+      "key": "FD-02/N04",
+      "kind": "function",
+      "title": "首次深度扫描",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 394,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "N05",
+      "key": "FD-02/N05",
+      "kind": "function",
+      "title": "日常快速体检",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 395,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "N06",
+      "key": "FD-02/N06",
+      "kind": "function",
+      "title": "专项检查",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 396,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "N07",
+      "key": "FD-02/N07",
+      "kind": "function",
+      "title": "出口 IP 与归属检查",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 397,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "N08",
+      "key": "FD-02/N08",
+      "kind": "function",
+      "title": "信誉标签与外部情报",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 398,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "N09",
+      "key": "FD-02/N09",
+      "kind": "function",
+      "title": "多路径出口对比",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 399,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "N10",
+      "key": "FD-02/N10",
+      "kind": "function",
+      "title": "DNS 配置与出口检查",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 400,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "N11",
+      "key": "FD-02/N11",
+      "kind": "function",
+      "title": "WebRTC／STUN 检查",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 401,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "N12",
+      "key": "FD-02/N12",
+      "kind": "function",
+      "title": "IPv6 路径检查",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 402,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "N13",
+      "key": "FD-02/N13",
+      "kind": "function",
+      "title": "浏览器与运行配置一致性",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 403,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "N14",
+      "key": "FD-02/N14",
+      "kind": "function",
+      "title": "指纹与隐私详情",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 404,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "N15",
+      "key": "FD-02/N15",
+      "kind": "function",
+      "title": "Claude 连接与稳定性检查",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 405,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "N16",
+      "key": "FD-02/N16",
+      "kind": "function",
+      "title": "TLS 高级诊断",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 406,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "N17",
+      "key": "FD-02/N17",
+      "kind": "function",
+      "title": "内置 Clash 运行态读取",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 407,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "N18",
+      "key": "FD-02/N18",
+      "kind": "function",
+      "title": "内置 Clash 统一配置应用",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 408,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "N19",
+      "key": "FD-02/N19",
+      "kind": "function",
+      "title": "固定出口保护检查与演练",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 409,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "N20",
+      "key": "FD-02/N20",
+      "kind": "function",
+      "title": "标准模式",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 410,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "N21",
+      "key": "FD-02/N21",
+      "kind": "function",
+      "title": "AI 分析与工具编排",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 411,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "N22",
+      "key": "FD-02/N22",
+      "kind": "function",
+      "title": "状态、严重度与操作影响",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 412,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "N23",
+      "key": "FD-02/N23",
+      "kind": "function",
+      "title": "统一评分",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 413,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "N24",
+      "key": "FD-02/N24",
+      "kind": "function",
+      "title": "问题归并与跨模块关联",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 414,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "N25",
+      "key": "FD-02/N25",
+      "kind": "function",
+      "title": "三类处理方式与推荐清单",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 415,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "N26",
+      "key": "FD-02/N26",
+      "kind": "function",
+      "title": "一次确认与精确授权",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 416,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "N27",
+      "key": "FD-02/N27",
+      "kind": "function",
+      "title": "执行前检查与受限执行",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 417,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "N28",
+      "key": "FD-02/N28",
+      "kind": "function",
+      "title": "候选出口选择",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 418,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "N29",
+      "key": "FD-02/N29",
+      "kind": "function",
+      "title": "备份与恢复",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 419,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "N30",
+      "key": "FD-02/N30",
+      "kind": "function",
+      "title": "复查与结果更新",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 420,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "N31",
+      "key": "FD-02/N31",
+      "kind": "function",
+      "title": "脱敏导出与历史结果",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 421,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "N32",
+      "key": "FD-02/N32",
+      "kind": "function",
+      "title": "外部探测与数据使用控制",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 422,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "N33",
+      "key": "FD-02/N33",
+      "kind": "function",
+      "title": "AI／网络／服务失败降级",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 423,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "N34",
+      "key": "FD-02/N34",
+      "kind": "function",
+      "title": "对标与开源能力复用",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 424,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "A01",
+      "key": "FD-02/A01",
+      "kind": "acceptance",
+      "title": "首次使用且授权 AI",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 432,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "A02",
+      "key": "FD-02/A02",
+      "kind": "acceptance",
+      "title": "没有模型、AI 失败或网络中断",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 433,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "A03",
+      "key": "FD-02/A03",
+      "kind": "acceptance",
+      "title": "发现可修复的 Clash 规则问题",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 434,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "A04",
+      "key": "FD-02/A04",
+      "kind": "acceptance",
+      "title": "检测到另一代理工具冲突",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 435,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "A05",
+      "key": "FD-02/A05",
+      "kind": "acceptance",
+      "title": "当前出口符合／不符合用户批准方案",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 436,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "A06",
+      "key": "FD-02/A06",
+      "kind": "acceptance",
+      "title": "预期出口或实际客户端未确认",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 437,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "A07",
+      "key": "FD-02/A07",
+      "kind": "acceptance",
+      "title": "IP 情报服务缺失或多源冲突",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 438,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "A08",
+      "key": "FD-02/A08",
+      "kind": "acceptance",
+      "title": "DNS 显示未捕获",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 439,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "A09",
+      "key": "FD-02/A09",
+      "kind": "acceptance",
+      "title": "多组 STUN 没有返回公网候选",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 440,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "A10",
+      "key": "FD-02/A10",
+      "kind": "acceptance",
+      "title": "IPv6 探测无结果",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 441,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "A11",
+      "key": "FD-02/A11",
+      "kind": "acceptance",
+      "title": "应用 WebView 与用户浏览器不同",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 442,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "A12",
+      "key": "FD-02/A12",
+      "kind": "acceptance",
+      "title": "Windows 正常、WSL 未测或异常",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 443,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "A13",
+      "key": "FD-02/A13",
+      "kind": "acceptance",
+      "title": "基础端点连接成功／失败",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 444,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "A14",
+      "key": "FD-02/A14",
+      "kind": "acceptance",
+      "title": "JA3／JA4 等来自不同连接",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 445,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "A15",
+      "key": "FD-02/A15",
+      "kind": "acceptance",
+      "title": "引入多个外部分数",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 446,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "A16",
+      "key": "FD-02/A16",
+      "kind": "acceptance",
+      "title": "有危急问题或关键检查未完成",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 447,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "A17",
+      "key": "FD-02/A17",
+      "kind": "acceptance",
+      "title": "总结与分项可能冲突",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 448,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "A18",
+      "key": "FD-02/A18",
+      "kind": "acceptance",
+      "title": "仅检测到字体／硬件／正常代理特征",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 449,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "A19",
+      "key": "FD-02/A19",
+      "kind": "acceptance",
+      "title": "用户确认后配置被修改",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 450,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "A20",
+      "key": "FD-02/A20",
+      "kind": "acceptance",
+      "title": "修复涉及共享或项目配置",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 451,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "A21",
+      "key": "FD-02/A21",
+      "kind": "acceptance",
+      "title": "用户取消或保留问题",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 452,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "A22",
+      "key": "FD-02/A22",
+      "kind": "acceptance",
+      "title": "建议换线路但没有可用候选",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 453,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "A23",
+      "key": "FD-02/A23",
+      "kind": "acceptance",
+      "title": "用户未授权断网演练",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 454,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "A24",
+      "key": "FD-02/A24",
+      "kind": "acceptance",
+      "title": "演练内核／TUN／固定出口故障",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 455,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "A25",
+      "key": "FD-02/A25",
+      "kind": "acceptance",
+      "title": "恢复时发现用户后续改动",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 456,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "A26",
+      "key": "FD-02/A26",
+      "kind": "acceptance",
+      "title": "配置应用成功但连接仍异常",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 457,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "A27",
+      "key": "FD-02/A27",
+      "kind": "acceptance",
+      "title": "导出与 AI 分析资料",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 458,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-02",
+      "id": "A28",
+      "key": "FD-02/A28",
+      "kind": "acceptance",
+      "title": "标准／AI、开源候选与截图对照",
+      "path": "DOCS/02_Claude检测_网络与浏览器环境检测诊断及优化_功能文档_v1.0.md",
+      "line": 459,
+      "source_sha256": "34c34bbda327fdc18fad955ca9097db74570997b612374da79eb20d5c952c416"
+    },
+    {
+      "module": "FD-03",
+      "id": "R01",
+      "key": "FD-03/R01",
+      "kind": "rule",
+      "title": "Clash 集成在本应用内；后台、客户端、检测页使用同一套受管配置关系。",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 72,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "R02",
+      "key": "FD-03/R02",
+      "kind": "rule",
+      "title": "普通用户不用配置订阅、代理参数或复杂规则；方案由我们做好并按用户分配。",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 73,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "R03",
+      "key": "FD-03/R03",
+      "kind": "rule",
+      "title": "第一版有日常单 IP、Claude 专用单 IP、Claude 专用双 IP 三套方案。",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 74,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "R04",
+      "key": "FD-03/R04",
+      "kind": "rule",
+      "title": "每用户明确分配订阅、前置代理、固定出口 A／B、可用方案、有效期和流量额度。",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 75,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "R05",
+      "key": "FD-03/R05",
+      "kind": "rule",
+      "title": "三套方案尽量保持 Claude 最终出口 A 不变；双 IP 不是 Claude 在两个出口之间轮换。",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 76,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "R06",
+      "key": "FD-03/R06",
+      "kind": "rule",
+      "title": "日常模式中仅命中允许直连白名单的普通目标可直连；未命中仍可访问，但走固定出口。",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 77,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "R07",
+      "key": "FD-03/R07",
+      "kind": "rule",
+      "title": "Claude 受保护连接规则优先于用户直连白名单，白名单不能将其放开到直连。",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 78,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "R08",
+      "key": "FD-03/R08",
+      "kind": "rule",
+      "title": "Claude 专用模式以 TUN 接管公网流量，默认不启用国内公网直连白名单；必要基础通信另行限定。",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 79,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "R09",
+      "key": "FD-03/R09",
+      "kind": "rule",
+      "title": "日常白名单在专用模式中保留但不生效；切回后恢复，不要求用户重新录入。",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 80,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "R10",
+      "key": "FD-03/R10",
+      "kind": "rule",
+      "title": "方案推荐对应免费／Pro／Max 5x／Max 20x，是产品推荐，不是官方账号风控分级。",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 81,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "R11",
+      "key": "FD-03/R11",
+      "kind": "rule",
+      "title": "月度额度由后台按用户配置，250 GB 为示例，不写死为所有用户的统一值。",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 82,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "R12",
+      "key": "FD-03/R12",
+      "kind": "rule",
+      "title": "用户用量按代理上传＋下载汇总；双 IP 合计，允许的多设备合计，代理链不重复向用户扣量。",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 83,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "R13",
+      "key": "FD-03/R13",
+      "kind": "rule",
+      "title": "白名单真实直连及本机／局域网通信不计入托管代理额度；不能仅按目标名称推定计量归属。",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 84,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "R14",
+      "key": "FD-03/R14",
+      "kind": "rule",
+      "title": "硬限额必须由可控的服务端或具备相应能力的上游执行，客户端计数用于展示和辅助核对。",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 85,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "R15",
+      "key": "FD-03/R15",
+      "kind": "rule",
+      "title": "重启、重装、切换模式、恢复配置不能重置服务端用量或绕过用户额度。",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 86,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "R16",
+      "key": "FD-03/R16",
+      "kind": "rule",
+      "title": "额度耗尽暂停托管代理，不自动解除 TUN／出口保护、不换未知出口、不降级直连。",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 87,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "R17",
+      "key": "FD-03/R17",
+      "kind": "rule",
+      "title": "常规更新在已授权范围内自动完成；改变 Claude 最终出口、地区或保护边界不得伪装成普通刷新。",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 88,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "R18",
+      "key": "FD-03/R18",
+      "kind": "rule",
+      "title": "新配置先验证再应用，应用后复查；失败时保留或恢复仍有效、仍获授权的配置。",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 89,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "R19",
+      "key": "FD-03/R19",
+      "kind": "rule",
+      "title": "后台不可达时可沿用本地最后有效配置，但不能绕过服务端到期、暂停或额度限制。",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 90,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "R20",
+      "key": "FD-03/R20",
+      "kind": "rule",
+      "title": "用户点击切换后，运行态和路径通过检查才显示切换成功；不能仅切换界面标签。",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 91,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "R21",
+      "key": "FD-03/R21",
+      "kind": "rule",
+      "title": "AI 可分析和编排经确认的受管修复，无聊天框；模型配置在服务端、提示词在客户端；代理运行、更新、计量、保护与恢复不依赖模型在线。",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 92,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "R22",
+      "key": "FD-03/R22",
+      "kind": "rule",
+      "title": "网络资源与凭据按用户隔离；不采集 Claude 密码、OAuth Token 和对话正文来分配网络服务。",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 93,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "F01",
+      "key": "FD-03/F01",
+      "kind": "function",
+      "title": "用户与资源绑定",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 416,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "F02",
+      "key": "FD-03/F02",
+      "kind": "function",
+      "title": "三套预设方案",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 417,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "F03",
+      "key": "FD-03/F03",
+      "kind": "function",
+      "title": "简单推荐与可用性展示",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 418,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "F04",
+      "key": "FD-03/F04",
+      "kind": "function",
+      "title": "按用户方案分配",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 419,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "F05",
+      "key": "FD-03/F05",
+      "kind": "function",
+      "title": "后台订阅管理",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 420,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "F06",
+      "key": "FD-03/F06",
+      "kind": "function",
+      "title": "前置代理与固定出口绑定",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 421,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "F07",
+      "key": "FD-03/F07",
+      "kind": "function",
+      "title": "单／双固定出口分工",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 422,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "F08",
+      "key": "FD-03/F08",
+      "kind": "function",
+      "title": "资源就绪与有效性检查",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 423,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "F09",
+      "key": "FD-03/F09",
+      "kind": "function",
+      "title": "首次启用与自动维护授权",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 424,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "F10",
+      "key": "FD-03/F10",
+      "kind": "function",
+      "title": "内置 Clash 统一管理",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 425,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "F11",
+      "key": "FD-03/F11",
+      "kind": "function",
+      "title": "日常规则分流",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 426,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "F12",
+      "key": "FD-03/F12",
+      "kind": "function",
+      "title": "Claude 单 IP 方案",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 427,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "F13",
+      "key": "FD-03/F13",
+      "kind": "function",
+      "title": "Claude 双 IP 方案",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 428,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "F14",
+      "key": "FD-03/F14",
+      "kind": "function",
+      "title": "必要基础通信范围",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 429,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "F15",
+      "key": "FD-03/F15",
+      "kind": "function",
+      "title": "用户直连清单管理",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 430,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "F16",
+      "key": "FD-03/F16",
+      "kind": "function",
+      "title": "保护优先级",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 431,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "F17",
+      "key": "FD-03/F17",
+      "kind": "function",
+      "title": "清单保存与模式联动",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 432,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "F18",
+      "key": "FD-03/F18",
+      "kind": "function",
+      "title": "当前配置与路径回读",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 433,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "F19",
+      "key": "FD-03/F19",
+      "kind": "function",
+      "title": "一键方案切换",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 434,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "F20",
+      "key": "FD-03/F20",
+      "kind": "function",
+      "title": "实际环境复查",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 435,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "F21",
+      "key": "FD-03/F21",
+      "kind": "function",
+      "title": "失败回退与原状态恢复",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 436,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "F22",
+      "key": "FD-03/F22",
+      "kind": "function",
+      "title": "日常运行状态管理",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 437,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "F23",
+      "key": "FD-03/F23",
+      "kind": "function",
+      "title": "自动订阅刷新",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 438,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "F24",
+      "key": "FD-03/F24",
+      "kind": "function",
+      "title": "自动规则维护",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 439,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "F25",
+      "key": "FD-03/F25",
+      "kind": "function",
+      "title": "配置版本发布与应用",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 440,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "F26",
+      "key": "FD-03/F26",
+      "kind": "function",
+      "title": "敏感变更确认",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 441,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "F27",
+      "key": "FD-03/F27",
+      "kind": "function",
+      "title": "后台离线与缓存配置",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 442,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "F28",
+      "key": "FD-03/F28",
+      "kind": "function",
+      "title": "用户月度额度设置",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 443,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "F29",
+      "key": "FD-03/F29",
+      "kind": "function",
+      "title": "服务端计量与硬限额接入",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 444,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "F30",
+      "key": "FD-03/F30",
+      "kind": "function",
+      "title": "上传下载合计与链路去重",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 445,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "F31",
+      "key": "FD-03/F31",
+      "kind": "function",
+      "title": "双 IP 与允许的多端汇总",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 446,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "F32",
+      "key": "FD-03/F32",
+      "kind": "function",
+      "title": "直连额度排除",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 447,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "F33",
+      "key": "FD-03/F33",
+      "kind": "function",
+      "title": "周期重置与用量展示",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 448,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "F34",
+      "key": "FD-03/F34",
+      "kind": "function",
+      "title": "告警与异常区分",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 449,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "F35",
+      "key": "FD-03/F35",
+      "kind": "function",
+      "title": "配额耗尽安全暂停",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 450,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "F36",
+      "key": "FD-03/F36",
+      "kind": "function",
+      "title": "调额后恢复与账目连续",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 451,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "F37",
+      "key": "FD-03/F37",
+      "kind": "function",
+      "title": "FD-02 修复联动",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 452,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "F38",
+      "key": "FD-03/F38",
+      "kind": "function",
+      "title": "AI 分析与受管修复",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 453,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "F39",
+      "key": "FD-03/F39",
+      "kind": "function",
+      "title": "资源与秘密隔离",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 454,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "F40",
+      "key": "FD-03/F40",
+      "kind": "function",
+      "title": "变更报告与来源登记",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 455,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "A01",
+      "key": "FD-03/A01",
+      "kind": "acceptance",
+      "title": "后台已为新用户分配资源",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 463,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "A02",
+      "key": "FD-03/A02",
+      "kind": "acceptance",
+      "title": "用户未分配资源或无 B 出口",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 464,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "A03",
+      "key": "FD-03/A03",
+      "kind": "acceptance",
+      "title": "查看网络方案推荐",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 465,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "A04",
+      "key": "FD-03/A04",
+      "kind": "acceptance",
+      "title": "日常模式访问白名单与非白名单",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 466,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "A05",
+      "key": "FD-03/A05",
+      "kind": "acceptance",
+      "title": "用户白名单与 Claude 连接范围冲突",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 467,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "A06",
+      "key": "FD-03/A06",
+      "kind": "acceptance",
+      "title": "添加仅域名或含子域名条目",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 468,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "A07",
+      "key": "FD-03/A07",
+      "kind": "acceptance",
+      "title": "日常切到专用后再切回",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 469,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "A08",
+      "key": "FD-03/A08",
+      "kind": "acceptance",
+      "title": "后台模板与规则更新",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 470,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "A09",
+      "key": "FD-03/A09",
+      "kind": "acceptance",
+      "title": "Claude 专用单 IP",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 471,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "A10",
+      "key": "FD-03/A10",
+      "kind": "acceptance",
+      "title": "Claude 专用双 IP",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 472,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "A11",
+      "key": "FD-03/A11",
+      "kind": "acceptance",
+      "title": "三方案依次切换",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 473,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "A12",
+      "key": "FD-03/A12",
+      "kind": "acceptance",
+      "title": "双 IP 切回单 IP且有运行中连接",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 474,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "A13",
+      "key": "FD-03/A13",
+      "kind": "acceptance",
+      "title": "外部代理冲突或权限不足",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 475,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "A14",
+      "key": "FD-03/A14",
+      "kind": "acceptance",
+      "title": "用户额度示例为每月 250 GB",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 476,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "A15",
+      "key": "FD-03/A15",
+      "kind": "acceptance",
+      "title": "同用户双出口和获准多设备并发",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 477,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "A16",
+      "key": "FD-03/A16",
+      "kind": "acceptance",
+      "title": "前置代理与固定出口两段传输",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 478,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "A17",
+      "key": "FD-03/A17",
+      "kind": "acceptance",
+      "title": "日常直连与局域网通信",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 479,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "A18",
+      "key": "FD-03/A18",
+      "kind": "acceptance",
+      "title": "切换方案、重启或重新安装客户端",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 480,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "A19",
+      "key": "FD-03/A19",
+      "kind": "acceptance",
+      "title": "达额度上限且客户端统计被停止",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 481,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "A20",
+      "key": "FD-03/A20",
+      "kind": "acceptance",
+      "title": "日常方案超额",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 482,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "A21",
+      "key": "FD-03/A21",
+      "kind": "acceptance",
+      "title": "Claude 专用方案超额",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 483,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "A22",
+      "key": "FD-03/A22",
+      "kind": "acceptance",
+      "title": "上游余额耗尽但用户还有额度",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 484,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "A23",
+      "key": "FD-03/A23",
+      "kind": "acceptance",
+      "title": "用量同步失败或本机时间变化",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 485,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "A24",
+      "key": "FD-03/A24",
+      "kind": "acceptance",
+      "title": "服务端周期重置或后台调整额度",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 486,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "A25",
+      "key": "FD-03/A25",
+      "kind": "acceptance",
+      "title": "授权范围内订阅／规则更新",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 487,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "A26",
+      "key": "FD-03/A26",
+      "kind": "acceptance",
+      "title": "更新要求改变 A、地区或保护边界",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 488,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "A27",
+      "key": "FD-03/A27",
+      "kind": "acceptance",
+      "title": "下载成功但配置或路径验证失败",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 489,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "A28",
+      "key": "FD-03/A28",
+      "kind": "acceptance",
+      "title": "后台离线但已有配置与资源仍有效",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 490,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "A29",
+      "key": "FD-03/A29",
+      "kind": "acceptance",
+      "title": "恢复旧配置时用户已超额或资源被撤销",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 491,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "A30",
+      "key": "FD-03/A30",
+      "kind": "acceptance",
+      "title": "关闭界面、停止内核、保护演练",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 492,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "A31",
+      "key": "FD-03/A31",
+      "kind": "acceptance",
+      "title": "FD-02 提出修复且用户确认",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 493,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "A32",
+      "key": "FD-03/A32",
+      "kind": "acceptance",
+      "title": "AI 不可用或未配置",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 494,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "A33",
+      "key": "FD-03/A33",
+      "kind": "acceptance",
+      "title": "配置下发、后台操作及报告导出",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 495,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-03",
+      "id": "A34",
+      "key": "FD-03/A34",
+      "kind": "acceptance",
+      "title": "未验证系统、分类方式或供应商能力",
+      "path": "DOCS/03_内置Clash_托管网络方案与用户流量配额管理_功能文档_v1.0.md",
+      "line": 496,
+      "source_sha256": "180438cf2d73a514c44e926f191ff11f8156f59bc59c44523564aadf7ab70060"
+    },
+    {
+      "module": "FD-04",
+      "id": "R01",
+      "key": "FD-04/R01",
+      "kind": "rule",
+      "title": "监测、紧急保护、归档和日报属于同一应用的协作能力，不再建设独立 Clash 控制面。",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 70,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "R02",
+      "key": "FD-04/R02",
+      "kind": "rule",
+      "title": "已确认 WRONG_ROUTE 或破坏 Claude 出口约束的关键保护异常，客户端立即启动预授权保护并报告，不等两小时归档或日报。",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 71,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "R03",
+      "key": "FD-04/R03",
+      "kind": "rule",
+      "title": "第一响应由客户端程序完成，不依赖 AI、后台在线或上报成功；不以停止 Clash／TUN 本身代替有效保护。",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 72,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "R04",
+      "key": "FD-04/R04",
+      "kind": "rule",
+      "title": "阻断指令发出、已确认生效、失败或未确认必须分开；断开现有错误连接还须防止再次错误连接。",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 73,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "R05",
+      "key": "FD-04/R05",
+      "kind": "rule",
+      "title": "后台管理事件、模板和资源，客户端负责实际执行与反馈；后台发布成功不等于用户端修复成功。",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 74,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "R06",
+      "key": "FD-04/R06",
+      "kind": "rule",
+      "title": "AI 只读分析脱敏证据并建议修复；不拥有任意管理员终端、不自行解除保护或换出口。",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 75,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "R07",
+      "key": "FD-04/R07",
+      "kind": "rule",
+      "title": "紧急阻断按首次启用的范围授权执行；新修复、复测和恢复分别遵循既有明确授权边界。",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 76,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "R08",
+      "key": "FD-04/R08",
+      "kind": "rule",
+      "title": "正确固定链的连接错误、预期拒绝和错误路线分别分类，不将超时一律判成泄漏。",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 77,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "R09",
+      "key": "FD-04/R09",
+      "kind": "rule",
+      "title": "日常白名单直连、Claude 单 IP 与双 IP 分工分别按 FD-03 判定；用事件发生时的方案，不用今日配置重判旧记录。",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 78,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "R10",
+      "key": "FD-04/R10",
+      "kind": "rule",
+      "title": "日志不可读或覆盖不完整立即报告；无日志不等于无流量、无泄漏或保护已失效。",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 79,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "R11",
+      "key": "FD-04/R11",
+      "kind": "rule",
+      "title": "每两小时是归档节奏，不是应急反应时限，也不是完整日志覆盖保证。",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 80,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "R12",
+      "key": "FD-04/R12",
+      "kind": "rule",
+      "title": "时间与日期目录按 America/Los_Angeles 解释；日报当地 09:00 后到期，首次可用唤醒补做，不承诺准点。",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 81,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "R13",
+      "key": "FD-04/R13",
+      "kind": "rule",
+      "title": "归档不改、不删源日志；原始内容按 SHA-256 去重，latest 日志使用时间戳快照，归档后核验。",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 82,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "R14",
+      "key": "FD-04/R14",
+      "kind": "rule",
+      "title": "daily_audit.due=true 时继续当日审计，不因当前小时不等于 09 跳过；执行前再次检查是否已有完整日报。",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 83,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "R15",
+      "key": "FD-04/R15",
+      "kind": "rule",
+      "title": "当天两份完整有效非空日报已存在则不重复生成，非 PASS 结论也算已交付；不追溯伪造漏跑日期。",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 84,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "R16",
+      "key": "FD-04/R16",
+      "kind": "rule",
+      "title": "日报采用左闭右开窗口，归档和当前源日志合并、按文件及规范化记录去重，重复快照不累加成流量或事件。",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 85,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "R17",
+      "key": "FD-04/R17",
+      "kind": "rule",
+      "title": "旧 classification_version=2 原口径保留；产品化适配须有独立可追溯版本，不改旧定义或历史报告。",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 86,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "R18",
+      "key": "FD-04/R18",
+      "kind": "rule",
+      "title": "归档、回放、每日审计共用分类器；AI 不临时重写过滤、分类或统计逻辑。",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 87,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "R19",
+      "key": "FD-04/R19",
+      "kind": "rule",
+      "title": "日报包含本机流量、服务端额度快照、Claude 路由、紧急处置、证据覆盖与诊断待办。",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 88,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "R20",
+      "key": "FD-04/R20",
+      "kind": "rule",
+      "title": "字节用量来自实际计量，不从日志条数推算；本机明细不冒充用户全部设备用量，缺数据不填零。",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 89,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "R21",
+      "key": "FD-04/R21",
+      "kind": "rule",
+      "title": "PASS_ROUTE 只说明该条记录的路由与错误情况，不代表应用层成功、整机无绕行或账号正常。",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 90,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "R22",
+      "key": "FD-04/R22",
+      "kind": "rule",
+      "title": "WRONG_ROUTE>0 保留 FAIL；覆盖不足同时显示 MONITORING_INCOMPLETE，后续修好不抹掉窗口内事件。",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 91,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "R23",
+      "key": "FD-04/R23",
+      "kind": "rule",
+      "title": "完整明细默认留本地；后台只收用量汇总、最小事件与处置状态，更多证据须经授权且脱敏。",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 92,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "R24",
+      "key": "FD-04/R24",
+      "kind": "rule",
+      "title": "归档／审计只读，不启动 Claude／浏览器、不发测试请求、不改网、不删文件、不复制认证材料。",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 93,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "R25",
+      "key": "FD-04/R25",
+      "kind": "rule",
+      "title": "源日志意外含秘密时作为异常处理，不把凭据原样复制到普通归档；不把脱敏副本声称为原始字节一致。",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 94,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "R26",
+      "key": "FD-04/R26",
+      "kind": "rule",
+      "title": "暂不增加独立“流量安全分”；沿用问题等级，需完整重新评估时调用 FD-02。",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 95,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "F01",
+      "key": "FD-04/F01",
+      "kind": "function",
+      "title": "监测启用与范围授权",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 437,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "F02",
+      "key": "FD-04/F02",
+      "kind": "function",
+      "title": "实时速率与连接展示",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 438,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "F03",
+      "key": "FD-04/F03",
+      "kind": "function",
+      "title": "本机可辨应用用量",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 439,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "F04",
+      "key": "FD-04/F04",
+      "kind": "function",
+      "title": "代理／直连／A-B 分布",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 440,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "F05",
+      "key": "FD-04/F05",
+      "kind": "function",
+      "title": "配额视图衔接",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 441,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "F06",
+      "key": "FD-04/F06",
+      "kind": "function",
+      "title": "累计量与缺测处理",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 442,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "F07",
+      "key": "FD-04/F07",
+      "kind": "function",
+      "title": "方案与规则状态监测",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 443,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "F08",
+      "key": "FD-04/F08",
+      "kind": "function",
+      "title": "事件时方案映射",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 444,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "F09",
+      "key": "FD-04/F09",
+      "kind": "function",
+      "title": "Claude 范围识别",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 445,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "F10",
+      "key": "FD-04/F10",
+      "kind": "function",
+      "title": "旧版本进程专项",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 446,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "F11",
+      "key": "FD-04/F11",
+      "kind": "function",
+      "title": "第三方日志端点上下文",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 447,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "F12",
+      "key": "FD-04/F12",
+      "kind": "function",
+      "title": "四类路由分类",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 448,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "F13",
+      "key": "FD-04/F13",
+      "kind": "function",
+      "title": "分类版本与共用回放",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 449,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "F14",
+      "key": "FD-04/F14",
+      "kind": "function",
+      "title": "危急事件识别",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 450,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "F15",
+      "key": "FD-04/F15",
+      "kind": "function",
+      "title": "客户端即时阻断",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 451,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "F16",
+      "key": "FD-04/F16",
+      "kind": "function",
+      "title": "阻断结果验证",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 452,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "F17",
+      "key": "FD-04/F17",
+      "kind": "function",
+      "title": "事件通知和归并",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 453,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "F18",
+      "key": "FD-04/F18",
+      "kind": "function",
+      "title": "后台最小事件上报",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 454,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "F19",
+      "key": "FD-04/F19",
+      "kind": "function",
+      "title": "离线待报与补报",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 455,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "F20",
+      "key": "FD-04/F20",
+      "kind": "function",
+      "title": "后台模板／资源处置",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 456,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "F21",
+      "key": "FD-04/F21",
+      "kind": "function",
+      "title": "AI 每日分析与修复建议",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 457,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "F22",
+      "key": "FD-04/F22",
+      "kind": "function",
+      "title": "受控修复与恢复",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 458,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "F23",
+      "key": "FD-04/F23",
+      "kind": "function",
+      "title": "两小时归档安排",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 459,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "F24",
+      "key": "FD-04/F24",
+      "kind": "function",
+      "title": "实际日志来源适配",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 460,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "F25",
+      "key": "FD-04/F25",
+      "kind": "function",
+      "title": "SHA-256 文件去重",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 461,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "F26",
+      "key": "FD-04/F26",
+      "kind": "function",
+      "title": "latest 时间戳快照",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 462,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "F27",
+      "key": "FD-04/F27",
+      "kind": "function",
+      "title": "归档后校验",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 463,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "F28",
+      "key": "FD-04/F28",
+      "kind": "function",
+      "title": "静默与归档异常报告",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 464,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "F29",
+      "key": "FD-04/F29",
+      "kind": "function",
+      "title": "日报到期判断",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 465,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "F30",
+      "key": "FD-04/F30",
+      "kind": "function",
+      "title": "日报幂等与补件",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 466,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "F31",
+      "key": "FD-04/F31",
+      "kind": "function",
+      "title": "审计窗口与去重",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 467,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "F32",
+      "key": "FD-04/F32",
+      "kind": "function",
+      "title": "证据覆盖核验",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 468,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "F33",
+      "key": "FD-04/F33",
+      "kind": "function",
+      "title": "统一 MD／JSON 日报",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 469,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "F34",
+      "key": "FD-04/F34",
+      "kind": "function",
+      "title": "路由与覆盖双状态",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 470,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "F35",
+      "key": "FD-04/F35",
+      "kind": "function",
+      "title": "应急处置时间线",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 471,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "F36",
+      "key": "FD-04/F36",
+      "kind": "function",
+      "title": "日报用量与配额快照",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 472,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "F37",
+      "key": "FD-04/F37",
+      "kind": "function",
+      "title": "历史不可改写",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 473,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "F38",
+      "key": "FD-04/F38",
+      "kind": "function",
+      "title": "脱敏诊断包",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 474,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "F39",
+      "key": "FD-04/F39",
+      "kind": "function",
+      "title": "原始日志秘密异常",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 475,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "F40",
+      "key": "FD-04/F40",
+      "kind": "function",
+      "title": "监控证据清理保护",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 476,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "F41",
+      "key": "FD-04/F41",
+      "kind": "function",
+      "title": "只读任务权限边界",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 477,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "F42",
+      "key": "FD-04/F42",
+      "kind": "function",
+      "title": "AI／后台失效降级",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 478,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "F43",
+      "key": "FD-04/F43",
+      "kind": "function",
+      "title": "用户与后台分层视图",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 479,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "F44",
+      "key": "FD-04/F44",
+      "kind": "function",
+      "title": "历史样例回归",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 480,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "A01",
+      "key": "FD-04/A01",
+      "kind": "acceptance",
+      "title": "首次启用监测与保护",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 490,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "A02",
+      "key": "FD-04/A02",
+      "kind": "acceptance",
+      "title": "本机有已识别和未知来源连接",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 491,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "A03",
+      "key": "FD-04/A03",
+      "kind": "acceptance",
+      "title": "日常白名单与非白名单访问",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 492,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "A04",
+      "key": "FD-04/A04",
+      "kind": "acceptance",
+      "title": "Claude 单 IP 与双 IP 切换",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 493,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "A05",
+      "key": "FD-04/A05",
+      "kind": "acceptance",
+      "title": "主机与 WSL／客体覆盖不同",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 494,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "A06",
+      "key": "FD-04/A06",
+      "kind": "acceptance",
+      "title": "发现当前 WRONG_ROUTE，AI 和后台不可用",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 495,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "A07",
+      "key": "FD-04/A07",
+      "kind": "acceptance",
+      "title": "关键保护失效但尚无错误连接",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 496,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "A08",
+      "key": "FD-04/A08",
+      "kind": "acceptance",
+      "title": "已发阻断指令但执行失败",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 497,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "A09",
+      "key": "FD-04/A09",
+      "kind": "acceptance",
+      "title": "错误连接断开后尝试重连",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 498,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "A10",
+      "key": "FD-04/A10",
+      "kind": "acceptance",
+      "title": "固定链拨号 timeout／closed network",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 499,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "A11",
+      "key": "FD-04/A11",
+      "kind": "acceptance",
+      "title": "预期 REJECT",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 500,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "A12",
+      "key": "FD-04/A12",
+      "kind": "acceptance",
+      "title": "日志中有关键词但实际字段不匹配",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 501,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "A13",
+      "key": "FD-04/A13",
+      "kind": "acceptance",
+      "title": "第三方日志目标缺相关进程上下文",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 502,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "A14",
+      "key": "FD-04/A14",
+      "kind": "acceptance",
+      "title": "claude.exe.old.<数字时间戳> 出现",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 503,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "A15",
+      "key": "FD-04/A15",
+      "kind": "acceptance",
+      "title": "普通 Chrome 与受管专用浏览器共存",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 504,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "A16",
+      "key": "FD-04/A16",
+      "kind": "acceptance",
+      "title": "重复实时事件和多次失败",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 505,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "A17",
+      "key": "FD-04/A17",
+      "kind": "acceptance",
+      "title": "后台修正已发布、客户端尚未应用",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 506,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "A18",
+      "key": "FD-04/A18",
+      "kind": "acceptance",
+      "title": "修复要求改变 A／地区／保护范围",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 507,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "A19",
+      "key": "FD-04/A19",
+      "kind": "acceptance",
+      "title": "修复成功但未完成真实复查",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 508,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "A20",
+      "key": "FD-04/A20",
+      "kind": "acceptance",
+      "title": "后台离线后恢复，事件多次重传",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 509,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "A21",
+      "key": "FD-04/A21",
+      "kind": "acceptance",
+      "title": "代理额度耗尽或上游资源先耗尽",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 510,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "A22",
+      "key": "FD-04/A22",
+      "kind": "acceptance",
+      "title": "内核累计计数重置、重启或样本重复",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 511,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "A23",
+      "key": "FD-04/A23",
+      "kind": "acceptance",
+      "title": "用户多设备而本机只有一端数据",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 512,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "A24",
+      "key": "FD-04/A24",
+      "kind": "acceptance",
+      "title": "两小时归档得到重复文件及 latest 更新",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 513,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "A25",
+      "key": "FD-04/A25",
+      "kind": "acceptance",
+      "title": "源日志不可读、轮转缺失或哈希不符",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 514,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "A26",
+      "key": "FD-04/A26",
+      "kind": "acceptance",
+      "title": "due=false 且归档正常无新 WRONG_ROUTE",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 515,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "A27",
+      "key": "FD-04/A27",
+      "kind": "acceptance",
+      "title": "due=false 但新归档出现 WRONG_ROUTE",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 516,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "A28",
+      "key": "FD-04/A28",
+      "kind": "acceptance",
+      "title": "当地 09:00 后首次唤醒发生在 11:00",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 517,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "A29",
+      "key": "FD-04/A29",
+      "kind": "acceptance",
+      "title": "当天双报告完整且结论 FAIL／不完整",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 518,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "A30",
+      "key": "FD-04/A30",
+      "kind": "acceptance",
+      "title": "只有 MD 或 JSON 一份有效报告",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 519,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "A31",
+      "key": "FD-04/A31",
+      "kind": "acceptance",
+      "title": "重试前另一执行已交付双报告",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 520,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "A32",
+      "key": "FD-04/A32",
+      "kind": "acceptance",
+      "title": "多日漏跑或当天交付后又有新事故",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 521,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "A33",
+      "key": "FD-04/A33",
+      "kind": "acceptance",
+      "title": "上一完整报告为 FAIL 或 MONITORING_INCOMPLETE",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 522,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "A34",
+      "key": "FD-04/A34",
+      "kind": "acceptance",
+      "title": "记录恰在窗口边界或多快照重复",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 523,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "A35",
+      "key": "FD-04/A35",
+      "kind": "acceptance",
+      "title": "WRONG_ROUTE>0 且窗口不完整",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 524,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "A36",
+      "key": "FD-04/A36",
+      "kind": "acceptance",
+      "title": "没有错误但无法证明覆盖完整",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 525,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "A37",
+      "key": "FD-04/A37",
+      "kind": "acceptance",
+      "title": "源日志意外含秘密或模型输入含秘密",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 526,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "A38",
+      "key": "FD-04/A38",
+      "kind": "acceptance",
+      "title": "只读审计执行或 AI 被日志文字诱导",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 527,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "A39",
+      "key": "FD-04/A39",
+      "kind": "acceptance",
+      "title": "FD-01 普通日志清理与监控同时存在",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 528,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "A40",
+      "key": "FD-04/A40",
+      "kind": "acceptance",
+      "title": "用户所贴 7／2／9、1247／0／36 样例",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 529,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "A41",
+      "key": "FD-04/A41",
+      "kind": "acceptance",
+      "title": "同一数据输出 MD 和 JSON",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 530,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    },
+    {
+      "module": "FD-04",
+      "id": "A42",
+      "key": "FD-04/A42",
+      "kind": "acceptance",
+      "title": "AI 失败、无模型或服务端数据延迟",
+      "path": "DOCS/04_流量监测_紧急保护日志归档与每日审计_功能文档_v1.0.md",
+      "line": 531,
+      "source_sha256": "1c98de0afff242066f5f11e7306b1bcbd4143af623e1d52cf4e098a8907d741d"
+    }
+  ]
+}
