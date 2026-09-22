@@ -10,10 +10,21 @@
 
 **Spec:** `evidence/delivery/build-packaging.md` §4、`evidence/delivery/t10-real-experiments.md` E54、`tools/release/release-inputs.json`。
 
+## 裁决更新（2026-09-22，Codex，经 Owner 同意）
+
+自 Round 1 复核之后的这条裁决起生效，不追溯改变此前的复核记录：
+
+- `MAIRT008/cla` 保持公开。
+- 允许上传经过白名单与秘密扫描的源码镜像、工作流，以及 pin 阶段诊断证据。
+- 工作流取消“非 private 就失败”，改为只记录仓库可见性；其余边界检查全部保留。
+- 仍禁止上传真实配置、账号资料、Token、证书、私钥和个人日志。
+- 当前只运行 `mode=pin`。安装包和正式 build 产物的公开上传，要等 pin 复核和 GPL 源码提供方式的裁决之后再放行。
+- 不安装 `gh`：工作流在 GitHub 网页上手动运行，产物也从网页下载。
+
 ## Global Constraints
 
 - 本轮只做 E54 构建闭环；不启动 Azure，不安装产品，不启停服务，不运行 Mihomo，不改 WFP/TUN/DNS/代理/路由，不做 E53、E55—E58。
-- GitHub 仓库必须保持 private；不得为了免额度改成 public。
+- GitHub 仓库必须保持 private；不得为了免额度改成 public。（已被上方 2026-09-22 裁决更新取代：仓库保持公开。）
 - 不上传 `fixtures/`、`experiments/`、`dist/`、`build/`、`node_modules/`、真实配置、账号资料、Token、签名证书或签名私钥。
 - 不修改当前工作目录的网络、系统服务、Rust/Node 环境；所有下载、编译和打包只发生在 GitHub runner。
 - 工作流 `permissions` 固定为 `contents: read`；不得自动 commit、push、创建 release 或写回默认分支。

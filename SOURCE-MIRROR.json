@@ -43,7 +43,7 @@
  },
  "totals": {
   "files": 350,
-  "bytes": 10445020
+  "bytes": 10445830
  },
  "files": [
   {
@@ -598,8 +598,8 @@
   },
   {
    "path": "evidence/development/opus-e54-github-actions-task.md",
-   "bytes": 15592,
-   "sha256": "fb4b4ae72d7d485004f2c553b9999d53dea08166b86d9f7d8bcaf3e4ed5c9c0a"
+   "bytes": 16402,
+   "sha256": "f99cde5b3c75201415cf17ac3acf2db4593c2c6a885b1a437ae4c5644349588b"
   },
   {
    "path": "services/control-rs/Cargo.toml",
@@ -1852,6 +1852,17 @@
      "path": "tests/delivery/release-candidate.test.mjs",
      "bytes": 62628,
      "sha256": "69b270f1e970b56d006c7a1d7516c40fc6477453448ed2e321e537f0d820872b"
+    }
+   ]
+  },
+  {
+   "utc": "2026-09-22T09:32:33.650Z",
+   "reason": "2026-09-22 裁决更新：施工单补“裁决更新”一节（仓库保持公开、只跑 pin、build 产物待裁决），原 private 约束标注已取代",
+   "files": [
+    {
+     "path": "evidence/development/opus-e54-github-actions-task.md",
+     "bytes": 16402,
+     "sha256": "f99cde5b3c75201415cf17ac3acf2db4593c2c6a885b1a437ae4c5644349588b"
     }
    ]
   }
