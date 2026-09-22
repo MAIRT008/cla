@@ -39,10 +39,24 @@ function Step([string]$name, [string]$file, [string[]]$arguments, [string]$workd
   $output = Join-Path $LogDir "$name.log"
   Log "step.begin $name :: $file $($arguments -join ' ')"
   Push-Location $workdir
+  # Windows PowerShell 5.1 在 Stop 下会把重定向进来的原生命令 stderr 当终止错误，cargo 的进度都写 stderr：调用期间切到 Continue，只按退出码判断。
+  # 退出码先置 -1，命令起不来时把原因记进步骤日志并按失败返回，不沿用上一步的 0；步骤日志写不进去则照旧终止整个构建。
+  $previous = $ErrorActionPreference
+  $ErrorActionPreference = 'Continue'
+  $global:LASTEXITCODE = -1
+  $logFailed = $false
   try {
-    & $file @arguments *>&1 | ForEach-Object { [System.IO.File]::AppendAllText($output, "$_`r`n", $Utf8) }
+    & $file @arguments *>&1 | ForEach-Object {
+      try { [System.IO.File]::AppendAllText($output, "$_`r`n", $Utf8) } catch { $logFailed = $true; throw }
+    }
     $code = $LASTEXITCODE
+  } catch {
+    $ErrorActionPreference = $previous
+    if ($logFailed) { throw }
+    [System.IO.File]::AppendAllText($output, "step.start_failed $($_.Exception.Message)`r`n", $Utf8)
+    $code = -1
   } finally {
+    $ErrorActionPreference = $previous
     Pop-Location
   }
   Log "step.end $name exit=$code log=$name.log"

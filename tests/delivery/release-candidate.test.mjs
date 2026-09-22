@@ -397,6 +397,64 @@ test('RC6 R10 统一日志收集写失败时明说「日志包未生成」、不
   assert.match(log, /NOT_READY/);
 });
 
+test('E54 返工 B1 构建脚本在 Windows PowerShell 5.1 下按退出码判定每一步：stderr 加退出 0 继续、stderr 加非零失败、命令起不来不沿用上一步的 0、步骤日志写不进去就终止', async (t) => {
+  const shell = powershell();
+  if (!shell) return t.skip('Windows PowerShell 5.1 不可用');
+  // 假工具只放在临时目录里，排在 PATH 最前；cargo 的进度照真 cargo 的习惯写 stderr。
+  const rustc = '@echo rustc 1.95.0 (synthetic)\r\n';
+  const cargo = (code) => `@echo    Compiling synthetic v0.0.0 1>&2\r\n@echo synthetic stdout\r\n@exit /b ${code}\r\n`;
+  const build = async (label, tools) => {
+    const root = transientRun('delivery', `e54-build-${label}`);
+    const bin = path.join(root, 'bin');
+    const logRoot = path.join(root, 'logs');
+    await mkdir(bin, {recursive: true});
+    for (const [name, body] of Object.entries(tools)) await writeFile(path.join(bin, name), body);
+    // 自建最小环境（验收运行器只传 SystemRoot/WINDIR/TEMP/TMP）：假工具在前，其后是真 node 与系统目录；不带外面的 PSModulePath。
+    const system = process.env.SystemRoot || 'C:\\Windows';
+    const env = Object.fromEntries(Object.entries({
+      SystemRoot: system,
+      WINDIR: process.env.WINDIR || system,
+      TEMP: process.env.TEMP,
+      TMP: process.env.TMP,
+      ComSpec: path.join(system, 'System32', 'cmd.exe'),
+      PATHEXT: '.COM;.EXE;.BAT;.CMD',
+      PATH: [bin, path.dirname(process.execPath), path.join(system, 'System32'), path.join(system, 'System32', 'WindowsPowerShell', 'v1.0')].join(';'),
+      SYNTHETIC_LOG_ROOT: logRoot,
+    }).filter(([, value]) => value));
+    const result = spawnSync(shell, ['-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', 'tools/release/build-release.ps1', '-LogRoot', logRoot], {encoding: 'utf8', env});
+    const runs = existsSync(logRoot) ? readdirSync(logRoot) : [];
+    const dir = runs.length === 1 ? path.join(logRoot, runs[0]) : null;
+    const log = dir && existsSync(path.join(dir, 'build.log')) ? readFileSync(path.join(dir, 'build.log'), 'utf8') : '';
+    return {status: result.status, dir, log, output: `${result.stdout}${result.stderr}\n${log}`};
+  };
+
+  const noisy = await build('stderr-zero', {'cargo.cmd': cargo(0), 'rustc.cmd': rustc});
+  assert.match(noisy.log, /step\.end cargo-control exit=0 /, noisy.output);
+  assert.match(noisy.log, /step\.end cargo-service exit=0 /, noisy.output);
+  assert.match(readFileSync(path.join(noisy.dir, 'cargo-control.log'), 'utf8'), /Compiling synthetic/, 'stderr 照样进步骤日志');
+  assert.match(noisy.log, /build\.stop NOT_READY/, '本机没有真实产物，停在发布检查');
+  assert.equal(noisy.status, 2, noisy.output);
+
+  const failing = await build('stderr-nonzero', {'cargo.cmd': cargo(3), 'rustc.cmd': rustc});
+  assert.match(failing.log, /step\.end cargo-control exit=3 /, failing.output);
+  assert.match(failing.log, /build\.failed cargo-control/, failing.output);
+  assert.doesNotMatch(failing.log, /cargo-service/, '第一步失败就停');
+  assert.equal(failing.status, 1, failing.output);
+
+  // 前两步成功后 node 起不来（同名的非程序文件排在 PATH 最前）：不能沿用 cargo-service 留下的 0。
+  const unstartable = await build('start-failure', {'cargo.cmd': cargo(0), 'rustc.cmd': rustc, 'node.exe': 'not a program'});
+  assert.match(unstartable.log, /step\.end cargo-service exit=0 /, unstartable.output);
+  assert.match(unstartable.log, /step\.end release-check exit=-1 /, unstartable.output);
+  assert.doesNotMatch(unstartable.log, /release\.check READY|step\.begin assemble|build\.done/, unstartable.output);
+  assert.notEqual(unstartable.status, 0, unstartable.output);
+
+  // cargo 先在步骤日志的位置建一个同名目录，再输出：日志写不进去，构建终止，不记这一步结束、不进下一步。
+  const blocked = await build('log-unwritable', {'cargo.cmd': `@for /d %%d in ("%SYNTHETIC_LOG_ROOT%\\*") do @mkdir "%%d\\cargo-control.log"\r\n${cargo(0)}`, 'rustc.cmd': rustc});
+  assert.match(blocked.log, /step\.begin cargo-control/, blocked.output);
+  assert.doesNotMatch(blocked.log, /step\.end cargo-control|cargo-service|build\.done/, blocked.output);
+  assert.notEqual(blocked.status, 0, blocked.output);
+});
+
 test('RC6 R11 机器可读就绪清单与人工调用链：桥操作与控制端路由按代码实算，五段调用链的调用者、证据与异机编号都存在', () => {
   const readiness = JSON.parse(read('evidence/delivery/release-readiness.json'));
   assert.deepEqual(readiness.bridge_ops.ops.slice().sort(), Object.keys(OPS).sort());

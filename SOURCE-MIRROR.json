@@ -43,7 +43,7 @@
  },
  "totals": {
   "files": 350,
-  "bytes": 10439940
+  "bytes": 10445020
  },
  "files": [
   {
@@ -1318,8 +1318,8 @@
   },
   {
    "path": "tests/delivery/release-candidate.test.mjs",
-   "bytes": 58322,
-   "sha256": "0819a8fdfadb6d8653b65a9b4530dd8866c6a4b08f977e0349983cc87d6007e0"
+   "bytes": 62628,
+   "sha256": "69b270f1e970b56d006c7a1d7516c40fc6477453448ed2e321e537f0d820872b"
   },
   {
    "path": "tests/delivery/run-acceptance.mjs",
@@ -1548,8 +1548,8 @@
   },
   {
    "path": "tools/release/build-release.ps1",
-   "bytes": 3977,
-   "sha256": "f4875d4e8d9bee7b89310043729f1e9f1e84c97c1db0884927bc2443dd3604a2"
+   "bytes": 4751,
+   "sha256": "48cee63b288567e9c0f810cd86970080f2aeb3d047943fc9b646775e1600cf62"
   },
   {
    "path": "tools/release/call-chain.json",
@@ -1810,7 +1810,7 @@
     "path": "tests/delivery/release-candidate.test.mjs",
     "pattern": "pem-private-key",
     "reason": "日志收集器脱敏用例的合成输入：PEM 头尾之间只有 4 个字符 MIIB，不是可用私钥",
-    "sha256": "0819a8fdfadb6d8653b65a9b4530dd8866c6a4b08f977e0349983cc87d6007e0"
+    "sha256": "69b270f1e970b56d006c7a1d7516c40fc6477453448ed2e321e537f0d820872b"
    },
    {
     "path": "services/control-rs/tests/ai.rs",
@@ -1837,5 +1837,23 @@
     "sha256": "cdbb51ead27c079c0ad4b3a47077eba3fea020716932f747561547dfbc3a6330"
    }
   ]
- }
+ },
+ "resyncs": [
+  {
+   "utc": "2026-09-22T09:05:14.065Z",
+   "reason": "E54 Round 1 限定返工：build-release.ps1 的 Windows PowerShell 5.1 修复与回归用例 E54 返工 B1；复核清单文件的秘密模式命中种类与次数不变",
+   "files": [
+    {
+     "path": "tools/release/build-release.ps1",
+     "bytes": 4751,
+     "sha256": "48cee63b288567e9c0f810cd86970080f2aeb3d047943fc9b646775e1600cf62"
+    },
+    {
+     "path": "tests/delivery/release-candidate.test.mjs",
+     "bytes": 62628,
+     "sha256": "69b270f1e970b56d006c7a1d7516c40fc6477453448ed2e321e537f0d820872b"
+    }
+   ]
+  }
+ ]
 }
