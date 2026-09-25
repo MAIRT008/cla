@@ -16,17 +16,32 @@ accepted = [
     "GPL-3.0-or-later",
     # 2026-09-25 Codex 裁决：webpki-roots（Mozilla 根证书数据，经 ureq 默认 TLS 引入）；协议全文随 THIRD-PARTY-RUST.txt 分发。
     "CDLA-Permissive-2.0",
+    # 2026-09-25 Codex 裁决（第二次 pin）：doctest-file、recvmsg（经 kode-bridge → interprocess 引入）；只新增这一个许可标识。
+    "0BSD",
 ]
 
 targets = ["x86_64-pc-windows-msvc"]
 
-# 不查 clearlydefined.io：同一锁文件应得到同一份汇总，不依赖外部服务当时的数据。
+# cargo-about 0.8.0 起已移除 ClearlyDefined（clearlydefined.io）支持（CHANGELOG 0.8.0，PR#287）；0.8.4 仍接受此键，但不起作用。
+# 整次生成也不是离线的：没有加 --offline，cargo metadata 与下面的 rustls 澄清都可能联网。
 no-clearly-defined = true
 
-# cargo-about 内置、按许可文件 SHA-256 核对的澄清；文件变了就不生效，不扩大 accepted。
+# cargo-about 内置、按许可文件 SHA-256 核对的澄清，不扩大 accepted。rustls 以 registry 包进入依赖图、且未加 --offline 时，
+# 它的澄清会按该 rustls 发布包记录的提交，经 rawcdn.githack.com 抓取许可文件并核对摘要（cargo-about 0.8.4 fetch.rs）；
+# 抓取或核对不成就不采用该澄清，只记 debug 日志。所以网络结果可能影响汇总，仅凭相同的锁文件不能保证汇总逐字节一致。
 workarounds = [
     "chrono",
     "ring",
     "rustls",
     "unicode-ident",
 ]
+
+# 2026-09-25 Codex 裁决（第二次 pin）：vendored 的 steward-service-ipc 沿用上游清单的旧标识 "GPL-3.0"，SPDX 对该旧标识的全名是
+# "GNU General Public License v3.0 only"；本项目按 GPL-3.0-only 归类，不改写上游声明，也不扩大为 or-later。
+# 只在 LICENSE 与固定上游逐字节相同（SHA-256 如下）时采用；表必须放在所有顶层键之后。
+[steward-service-ipc.clarify]
+license = "GPL-3.0-only"
+
+[[steward-service-ipc.clarify.files]]
+path = "LICENSE"
+checksum = "8b1ba204bb69a0ade2bfcf65ef294a920f6bb361b317dba43c7ef29d96332b9b"

@@ -43,7 +43,7 @@
  },
  "totals": {
   "files": 350,
-  "bytes": 10448036
+  "bytes": 10450868
  },
  "files": [
   {
@@ -598,8 +598,8 @@
   },
   {
    "path": "evidence/development/opus-e54-github-actions-task.md",
-   "bytes": 17303,
-   "sha256": "034a9062035d96d34a400452ce1b407f2b09fe59d19c05e44d1fc6cb222b4307"
+   "bytes": 20077,
+   "sha256": "a4d0c6408263367ad7cd22d98a2956dbf443c11059eb6f36b14b06efbab2a937"
   },
   {
    "path": "services/control-rs/Cargo.toml",
@@ -1538,8 +1538,8 @@
   },
   {
    "path": "tools/release/NOTICE.md",
-   "bytes": 2241,
-   "sha256": "c09e7ed418c04fb58baad11ab638504f0b2fc93f409cb97be725d14c1e36a2cc"
+   "bytes": 2299,
+   "sha256": "2a7ca2656bfe42196a73e5b4e96f9ea5f570f77f7c5eb6667569d4d53e66bce0"
   },
   {
    "path": "tools/release/assemble.mjs",
@@ -1899,6 +1899,22 @@
      "path": "evidence/development/opus-e54-github-actions-task.md",
      "bytes": 17303,
      "sha256": "034a9062035d96d34a400452ce1b407f2b09fe59d19c05e44d1fc6cb222b4307"
+    }
+   ]
+  },
+  {
+   "utc": "2026-09-25T16:49:48.947Z",
+   "reason": "2026-09-25 第二次 pin 裁决（e54-pin2-ruling-and-task.md）：NOTICE 服务行改为 GPL-3.0-only（上游清单旧标识 GPL-3.0，经本次澄清）；施工单追加第二次 pin 裁决摘要",
+   "files": [
+    {
+     "path": "tools/release/NOTICE.md",
+     "bytes": 2299,
+     "sha256": "2a7ca2656bfe42196a73e5b4e96f9ea5f570f77f7c5eb6667569d4d53e66bce0"
+    },
+    {
+     "path": "evidence/development/opus-e54-github-actions-task.md",
+     "bytes": 20077,
+     "sha256": "a4d0c6408263367ad7cd22d98a2956dbf443c11059eb6f36b14b06efbab2a937"
     }
    ]
   }

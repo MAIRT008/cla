@@ -30,6 +30,18 @@
 - 许可脚本改为三个 manifest 都扫完再统一判失败；任一项失败都非零退出，不生成正式汇总。
 - 修正 pin 脚本：清单已固定且 EXE 摘要一致时继续，不一致时以 `PIN_MISMATCH` 失败，禁止自动重新定值。
 
+## 第二次 pin 裁决摘要（2026-09-25，Codex）
+
+第二次 pin（run 36141731755，提交 96ee25b）仍为 FAIL，RC6 仍 `NOT_READY`。Mihomo 按已固定且一致继续；控制端许可扫描通过；服务端与宿主各报三项：`doctest-file` 1.1.1 与 `recvmsg` 1.0.0 声明 `0BSD`，本地 vendored crate `steward-service-ipc` 声明旧标识 `GPL-3.0`。裁决：
+
+- A1：`tools/release/about.toml` 顶层 accepted 只新增 `0BSD`（附注释），列表 15 项变 16 项；不为单个包设例外，不改依赖，不排除 proc-macro，不启用 `private.ignore`。两个包仍按常规进入生成的许可汇总。
+- B1：同一文件末尾（所有顶层键之后）增加 `[steward-service-ipc.clarify]`，`license = "GPL-3.0-only"`，并用 `[[steward-service-ipc.clarify.files]]` 固定 `path = "LICENSE"`、`checksum = "8b1ba204bb69a0ade2bfcf65ef294a920f6bb361b317dba43c7ef29d96332b9b"`。依据是固定上游清单明确声明 `GPL-3.0`，SPDX 对该旧标识的全名为 “GNU General Public License v3.0 only”。vendored `Cargo.toml` 的 `license = "GPL-3.0"`、LICENSE 与历史哈希证据保持原样；不接受 `GPL-3.0` 旧标识本身，不跳过本地 crate。
+- `NOTICE.md` 只改产品网络服务一行：`GPL-3.0-only（上游清单旧标识 GPL-3.0，经本次澄清）`，仍指向 `service-ipc-LICENSE.txt`。
+- 修正 `about.toml` 注释，保留 rustls workaround。按 cargo-about 0.8.4 源码核实：`no-clearly-defined` 在 0.8.0 起已不起作用（CHANGELOG 0.8.0 移除了 ClearlyDefined 支持），这与裁决原文“只禁用 ClearlyDefined 查询”的措辞不同；整次生成并不离线。rustls 以 registry 包进入依赖图且未加 `--offline` 时，其澄清会尝试联网抓取许可文件并核对摘要，失败则不采用，所以仅凭相同锁文件不能保证汇总逐字节一致。
+- 不改锁文件生成方式、工作流顺序、构建脚本或产品代码；跨轮锁漂移记为事实，正式 build 须按当轮实际锁与汇总验收。
+- 公开资料请求如需自定义 User-Agent，固定为 `steward-license-review/1.0`，不得由邮箱、用户名、本地路径、环境变量或凭据拼接。
+- 停点：Codex 复核通过前不推送；推送后由 Owner 在网页手动运行 `mode=pin`，不自动触发、不自动重试、不自动转入 build；新诊断存 `run-pin-3/`。下一次算成功需要：Mihomo 为 match；三个 manifest 的 lock 与 scan 都成功；正式 `THIRD-PARTY-RUST.txt` 真实生成并记录哈希，其中含两个 0BSD 包、归为 GPL-3.0-only 的 `steward-service-ipc`（附原 LICENSE 文本）、CDLA-Permissive-2.0 的包与全文；若进入两个 crate 的用例，分别记录真实结果。任一步失败都完整交回。
+
 ## Global Constraints
 
 - 本轮只做 E54 构建闭环；不启动 Azure，不安装产品，不启停服务，不运行 Mihomo，不改 WFP/TUN/DNS/代理/路由，不做 E53、E55—E58。
