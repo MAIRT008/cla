@@ -4,7 +4,8 @@
   generate-rust-licenses.ps1
 
 - 三个 manifest 按固定顺序处理：先 cargo generate-lockfile，再用 tools\release\about.toml 与 about.hbs 生成片段。
-- 片段写在本次的临时目录，三段都成功才合并并改名成正式文件；任何一步非零退出都删掉本次片段与半成品，非零退出。
+- 每个 manifest 独立记锁文件与许可扫描的结果：锁文件失败则该项不扫描、记“未执行”，扫描失败保留完整输出；都继续处理其余 manifest。
+- 结束时集中列出失败项与未扫描项。三项扫描全部成功才按原顺序合并、改名成正式文件；否则非零退出，不生成正式汇总，清掉本次片段与半成品，已生成的锁文件留作诊断。
 - 正式文件已存在就拒绝，不覆盖上一轮结果；cargo-about 不是 0.8.4 时拒绝，文件头写的版本必须是真的。
 #>
 [CmdletBinding()]
@@ -28,20 +29,23 @@ $Work = Join-Path $InputsDir "third-party-rust.partial-$PID"
 $Partial = "$Target.partial-$PID"
 
 # Windows PowerShell 5.1 在 Stop 下会把原生命令写到 stderr 的第一行当成终止错误，cargo 的进度全在 stderr；
-# 这里临时切到 Continue，只按退出码判断成败。
+# 这里临时切到 Continue，只按退出码判断成败。命令起不来时按 -1 返回，不沿用上一条命令的退出码。
 function Invoke-Native([string]$file, [string[]]$arguments) {
   Write-Host "run: $file $($arguments -join ' ')"
   $previous = $ErrorActionPreference
   $ErrorActionPreference = 'Continue'
+  $global:LASTEXITCODE = -1
   try {
-    $lines = & $file @arguments 2>&1 | ForEach-Object { "$_" }
+    $lines = @(& $file @arguments 2>&1 | ForEach-Object { "$_" })
     $code = $LASTEXITCODE
+  } catch {
+    $lines = @("start failed: $($_.Exception.Message)")
+    $code = -1
   } finally {
     $ErrorActionPreference = $previous
   }
   $lines | ForEach-Object { Write-Host $_ }
-  if ($code -ne 0) { throw "$file $($arguments[0]) exited $code" }
-  return $lines
+  return [pscustomobject]@{ code = $code; lines = $lines }
 }
 
 if (Test-Path -LiteralPath $Target) {
@@ -58,20 +62,46 @@ foreach ($file in @($Config, $Template)) {
 [void](New-Item -ItemType Directory -Force -Path $InputsDir)
 [void](New-Item -ItemType Directory -Path $Work)
 $ok = $false
+$results = @()
 try {
-  $version = (Invoke-Native 'cargo' @('about', '--version')) -join ' '
-  if ($version -notmatch "\b$([regex]::Escape($AboutVersion))\b") { throw "cargo-about version is '$version', expected $AboutVersion" }
+  $version = Invoke-Native 'cargo' @('about', '--version')
+  if ($version.code -ne 0) { throw "cargo about --version exited $($version.code)" }
+  if (($version.lines -join ' ') -notmatch "\b$([regex]::Escape($AboutVersion))\b") { throw "cargo-about version is '$($version.lines -join ' ')', expected $AboutVersion" }
 
-  $fragments = @()
   $index = 0
   foreach ($manifest in $Manifests) {
     $index += 1
     $path = Join-Path $Repo $manifest
-    [void](Invoke-Native 'cargo' @('generate-lockfile', '--manifest-path', $path))
+    $lockFile = Join-Path (Split-Path -Parent $path) 'Cargo.lock'
     $fragment = Join-Path $Work "$index.txt"
-    [void](Invoke-Native 'cargo' @('about', 'generate', '--manifest-path', $path, '--config', $Config, '--all-features', '--locked', '--fail', '--output-file', $fragment, $Template))
-    if (-not (Test-Path -LiteralPath $fragment)) { throw "cargo about wrote no output for $manifest" }
-    $fragments += , @($manifest, $fragment)
+    $result = [ordered]@{ manifest = $manifest; fragment = $fragment; lock = 'ok'; scan = 'ok'; detail = '' }
+    $hadLock = Test-Path -LiteralPath $lockFile
+    $lock = Invoke-Native 'cargo' @('generate-lockfile', '--manifest-path', $path)
+    if ($lock.code -ne 0) {
+      $result.lock = "failed(exit=$($lock.code))"
+      $result.scan = 'not_run'
+      if ($hadLock) { $result.detail = 'a Cargo.lock older than this run is present and was not used' }
+    } else {
+      $scan = Invoke-Native 'cargo' @('about', 'generate', '--manifest-path', $path, '--config', $Config, '--all-features', '--locked', '--fail', '--output-file', $fragment, $Template)
+      if ($scan.code -ne 0) {
+        $kind = if (($scan.lines -join "`n") -match 'failed to satisfy license requirements') { 'license_requirements_not_satisfied' } else { 'other_error' }
+        $result.scan = "failed(exit=$($scan.code),$kind)"
+      } elseif (-not (Test-Path -LiteralPath $fragment)) {
+        $result.scan = 'failed(no_output)'
+      }
+    }
+    $results += , $result
+  }
+
+  foreach ($result in $results) {
+    $line = "licenses.summary $($result.manifest) lock=$($result.lock) scan=$($result.scan)"
+    if ($result.detail) { $line = "$line note=$($result.detail)" }
+    Write-Host $line
+  }
+  $failed = @($results | Where-Object { $_.scan -like 'failed*' } | ForEach-Object { $_.manifest })
+  $notRun = @($results | Where-Object { $_.scan -eq 'not_run' } | ForEach-Object { $_.manifest })
+  if ($failed.Count -or $notRun.Count) {
+    throw "not every manifest was scanned successfully; failed=[$($failed -join ', ')] not_run=[$($notRun -join ', ')]"
   }
 
   $text = New-Object System.Text.StringBuilder
@@ -80,11 +110,11 @@ try {
   [void]$text.Append("Target: $TargetTriple`n")
   [void]$text.Append("Manifests (each locked with cargo generate-lockfile, scanned with --all-features --locked):`n")
   foreach ($manifest in $Manifests) { [void]$text.Append("  $manifest`n") }
-  foreach ($pair in $fragments) {
+  foreach ($result in $results) {
     [void]$text.Append("`n################################################################################`n")
-    [void]$text.Append("Manifest: $($pair[0])`n")
+    [void]$text.Append("Manifest: $($result.manifest)`n")
     [void]$text.Append("################################################################################`n")
-    [void]$text.Append([System.IO.File]::ReadAllText($pair[1], $Utf8))
+    [void]$text.Append([System.IO.File]::ReadAllText($result.fragment, $Utf8))
   }
   [System.IO.File]::WriteAllText($Partial, $text.ToString(), $Utf8)
   Move-Item -LiteralPath $Partial -Destination $Target

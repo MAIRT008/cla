@@ -11,6 +11,7 @@
 | 日志收集脚本 | `support\collect-logs.ps1`、`support\collect-logs.cmd` | 本项目源码 `tools/release` | GPL-3.0-only |
 | js-yaml 4.3.0 | 内嵌页面（受管配置 YAML 编译） | npm `js-yaml@4.3.0`，与 CVR v2.5.2 锁定版本相同 | MIT，见 `js-yaml-LICENSE.txt` |
 | Rust 依赖（Tauri 等） | 编进上述程序 | crates.io，版本见各自 `Cargo.lock` | 见 `THIRD-PARTY-RUST.txt` |
+| Mozilla 根证书数据（crate `webpki-roots`，已核对版本 1.0.9） | 编进 `control\ai-steward-control.exe`，经 `ureq` 3.4.2 的默认 TLS 配置引入 | crates.io `webpki-roots`，内容是 Mozilla 的根证书列表；实际版本以 `services/control-rs/Cargo.lock` 与 `THIRD-PARTY-RUST.txt` 为准 | CDLA-Permissive-2.0，协议全文见随包的 `THIRD-PARTY-RUST.txt` |
 | WebView2 运行时 | 系统组件，安装器按需引导安装 | Microsoft | 微软再分发条款 |
 
 对应源码：以上 GPL 组件的完整对应源码（含本项目源码、上游固定提交与构建用 `Cargo.lock`）随发布一同提供。提供方式（随包附带或书面提供）由发布方在公开分发前确定，确定前本发布候选不公开分发。

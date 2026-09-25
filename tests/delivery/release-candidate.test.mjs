@@ -73,7 +73,11 @@ test('RC6 R01 发布检查在本机缺件时安全输出结构化 NOT_READY，�
   for (const id of ['control', 'service', 'service-install', 'service-uninstall', 'lock-host', 'lock-control', 'lock-service', 'rust-third-party']) {
     assert.deepEqual(byId.get(id)?.reasons, ['MISSING'], `${id}: ${JSON.stringify(byId.get(id))}`);
   }
-  assert.deepEqual(byId.get('mihomo').reasons, ['MISSING', 'PIN_REQUIRED'], 'Mihomo 二进制没有、哈希也没固定');
+  // E54 首次 pin 后按 Codex 裁决回写：固定的是解压后 EXE 的 SHA-256，归档摘要另记在交接里；本机仍没有程序本身。
+  const mihomo = inputs.items.find((item) => item.id === 'mihomo');
+  assert.equal(mihomo.sha256, 'f55b3028d9160beb9044f21b05dd7405b46524614a19642d6291492f5f985761', 'Mihomo 已固定 EXE 哈希');
+  assert.equal('pin' in mihomo, false, '固定后不再带 PIN_REQUIRED');
+  assert.deepEqual(byId.get('mihomo').reasons, ['MISSING'], 'Mihomo 哈希已固定，本机只是缺程序');
   for (const id of ['license-gpl', 'license-service-ipc', 'notice', 'collect-logs', 'collect-logs-cmd']) assert.equal(byId.get(id)?.status, 'PRESENT', id);
   assert.ok(report.tools.length >= 4 && report.tools.every((tool) => tool.status === 'TOOL_MISSING' || tool.status === 'UNCHECKED'), JSON.stringify(report.tools));
   assert.equal(report.frontend.status, 'OK', JSON.stringify(report.frontend.problems));

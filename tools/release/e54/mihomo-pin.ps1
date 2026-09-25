@@ -1,7 +1,8 @@
 ﻿<#
 从 MetaCubeX 官方 release metadata 取得并核对 Mihomo v1.19.30 Windows AMD64（Windows PowerShell 5.1，只在 GitHub runner 上跑）。
 
-  mihomo-pin.ps1 -Mode pin     取得、核对、写 build\logs\mihomo-pin.json，再生成把 EXE 哈希写进 release-inputs.json 的补丁（不提交）
+  mihomo-pin.ps1 -Mode pin     取得、核对、写 build\logs\mihomo-pin.json；清单未固定时生成把 EXE 哈希写进 release-inputs.json 的补丁（不提交），
+                               已固定且一致时只记录匹配、不改清单，已固定但不一致以 PIN_MISMATCH 失败、不重新定值
   mihomo-pin.ps1 -Mode build   同样取得与核对，再要求 release-inputs.json 已固定的哈希与本次 EXE 一致
 
 - 只接受资产名 mihomo-windows-amd64-v1.19.30.zip；tag 必须指向固定提交；资产必须带 GitHub 返回的 sha256 digest。
@@ -70,6 +71,29 @@ function Save-PinPatch([string]$repo, [string]$digest, [string]$patchPath) {
   if (-not (Test-Path -LiteralPath $patchPath) -or (Get-Item -LiteralPath $patchPath).Length -eq 0) { throw 'git diff produced no patch' }
 }
 
+# 清单里 mihomo 的固定状态：没有哈希且带未固定标记是 unpinned；已固定且与本次 EXE 一致是 match；
+# 已固定但不一致抛 PIN_MISMATCH，不重新定值。其他形状一律拒绝。
+function Get-PinState([string]$repo, [string]$digest) {
+  $file = Join-Path $repo ($InputsRelative.Replace('/', '\'))
+  $declared = @(([System.IO.File]::ReadAllText($file, $Utf8) | ConvertFrom-Json).items | Where-Object { $_.id -eq 'mihomo' })
+  if ($declared.Count -ne 1) { throw 'release-inputs.json must declare exactly one mihomo item' }
+  $item = $declared[0]
+  if (-not $item.sha256) {
+    if ($item.pin -ne 'PIN_REQUIRED') { throw 'the mihomo item has neither a sha256 nor the PIN_REQUIRED marker' }
+    return 'unpinned'
+  }
+  if ($item.pin -eq 'PIN_REQUIRED') { throw 'the mihomo item carries a sha256 and the PIN_REQUIRED marker at once' }
+  if ("$($item.sha256)" -ne $digest) { throw "PIN_MISMATCH: release-inputs.json mihomo sha256 is '$($item.sha256)', downloaded exe is $digest" }
+  return 'match'
+}
+
+# pin 模式的决定：未固定时生成单行补丁并原样还原清单；已固定且一致时不改清单、不生成补丁；不一致在 Get-PinState 里失败。
+function Invoke-PinDecision([string]$repo, [string]$digest, [string]$patchPath) {
+  $state = Get-PinState $repo $digest
+  if ($state -eq 'unpinned') { Save-PinPatch $repo $digest $patchPath }
+  return $state
+}
+
 function Invoke-Main {
   $logs = Join-Path $Repo 'build\logs'
   $inputs = Join-Path $Repo 'build\inputs'
@@ -136,18 +160,17 @@ function Invoke-Main {
   }
 
   [System.IO.File]::WriteAllText($pinJson, ($pin | ConvertTo-Json -Depth 6), $Utf8)
+  Write-Host "mihomo.exe entry=$exeEntry sha256=$exeDigest pe_machine=$machine"
   if ($Mode -eq 'pin') {
     $patch = Join-Path $logs 'mihomo-pin.patch'
-    Save-PinPatch $Repo $exeDigest $patch
-    $pin['patch'] = [ordered]@{ path = 'build/logs/mihomo-pin.patch'; sha256 = (Get-Sha256 $patch); applies_to = $InputsRelative }
+    $state = Invoke-PinDecision $Repo $exeDigest $patch
+    $pin['pin_state'] = $state
+    if ($state -eq 'unpinned') { $pin['patch'] = [ordered]@{ path = 'build/logs/mihomo-pin.patch'; sha256 = (Get-Sha256 $patch); applies_to = $InputsRelative } }
     [System.IO.File]::WriteAllText($pinJson, ($pin | ConvertTo-Json -Depth 6), $Utf8)
-  }
-  Write-Host "mihomo.exe entry=$exeEntry sha256=$exeDigest pe_machine=$machine"
-
-  if ($Mode -eq 'build') {
-    $declared = @(([System.IO.File]::ReadAllText((Join-Path $Repo $InputsRelative), $Utf8) | ConvertFrom-Json).items | Where-Object { $_.id -eq 'mihomo' })
-    if ($declared.Count -ne 1) { throw 'release-inputs.json must declare exactly one mihomo item' }
-    if ($declared[0].pin -eq 'PIN_REQUIRED' -or "$($declared[0].sha256)" -ne $exeDigest) { throw "PIN_MISMATCH: release-inputs.json mihomo sha256 is '$($declared[0].sha256)', downloaded exe is $exeDigest" }
+    if ($state -eq 'match') { Write-Host 'mihomo.pin MATCH release-inputs.json (already pinned; no patch)' } else { Write-Host 'mihomo.pin PATCH written (release-inputs.json left unchanged)' }
+  } else {
+    $state = Get-PinState $Repo $exeDigest
+    if ($state -ne 'match') { throw 'PIN_MISMATCH: release-inputs.json has not pinned mihomo yet' }
     Write-Host 'mihomo.pin MATCH release-inputs.json'
   }
 }

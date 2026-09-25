@@ -43,7 +43,7 @@
  },
  "totals": {
   "files": 350,
-  "bytes": 10445830
+  "bytes": 10448036
  },
  "files": [
   {
@@ -563,13 +563,13 @@
   },
   {
    "path": "evidence/delivery/release-inputs.md",
-   "bytes": 8033,
-   "sha256": "4ebe0f037db78a618b44bf571ebf004da0a7a53a67d9ef26089f6a3d5b49f9da"
+   "bytes": 8519,
+   "sha256": "e67b301df16e23387eb5d24744a1eee0cf173d29052e04049be5febd3a6dd808"
   },
   {
    "path": "evidence/delivery/release-readiness.json",
-   "bytes": 18861,
-   "sha256": "11019df59aa29cabdcfe91417c6547a68c3934562e5977f27f23683aeedffedb"
+   "bytes": 18840,
+   "sha256": "be94685d26a95962804e60c3e753989d6749aac0caf0675853509b45255554ed"
   },
   {
    "path": "evidence/delivery/t10-real-experiments.md",
@@ -598,8 +598,8 @@
   },
   {
    "path": "evidence/development/opus-e54-github-actions-task.md",
-   "bytes": 16402,
-   "sha256": "f99cde5b3c75201415cf17ac3acf2db4593c2c6a885b1a437ae4c5644349588b"
+   "bytes": 17303,
+   "sha256": "034a9062035d96d34a400452ce1b407f2b09fe59d19c05e44d1fc6cb222b4307"
   },
   {
    "path": "services/control-rs/Cargo.toml",
@@ -1318,8 +1318,8 @@
   },
   {
    "path": "tests/delivery/release-candidate.test.mjs",
-   "bytes": 62628,
-   "sha256": "69b270f1e970b56d006c7a1d7516c40fc6477453448ed2e321e537f0d820872b"
+   "bytes": 63040,
+   "sha256": "0c794364063d724a06fbcee5b6f3a076409b9ac296baf033ed246eac7961445c"
   },
   {
    "path": "tests/delivery/run-acceptance.mjs",
@@ -1538,8 +1538,8 @@
   },
   {
    "path": "tools/release/NOTICE.md",
-   "bytes": 1852,
-   "sha256": "4de1a4008916aa2faf463411df79ce69b98ba983a28e7dd62f6f1fd2adfce5fb"
+   "bytes": 2241,
+   "sha256": "c09e7ed418c04fb58baad11ab638504f0b2fc93f409cb97be725d14c1e36a2cc"
   },
   {
    "path": "tools/release/assemble.mjs",
@@ -1578,8 +1578,8 @@
   },
   {
    "path": "tools/release/release-inputs.json",
-   "bytes": 7817,
-   "sha256": "9c792d5dea8d5665d6521866d9f727f136fba39a7a1f9adbdec20d2f80d20401"
+   "bytes": 7856,
+   "sha256": "844031e5d082bcc9f76f94de3a39b587398814f1a03f999cdf4a026decdeb6e6"
   },
   {
    "path": "tools/release/release.mjs",
@@ -1810,7 +1810,7 @@
     "path": "tests/delivery/release-candidate.test.mjs",
     "pattern": "pem-private-key",
     "reason": "日志收集器脱敏用例的合成输入：PEM 头尾之间只有 4 个字符 MIIB，不是可用私钥",
-    "sha256": "69b270f1e970b56d006c7a1d7516c40fc6477453448ed2e321e537f0d820872b"
+    "sha256": "0c794364063d724a06fbcee5b6f3a076409b9ac296baf033ed246eac7961445c"
    },
    {
     "path": "services/control-rs/tests/ai.rs",
@@ -1863,6 +1863,42 @@
      "path": "evidence/development/opus-e54-github-actions-task.md",
      "bytes": 16402,
      "sha256": "f99cde5b3c75201415cf17ac3acf2db4593c2c6a885b1a437ae4c5644349588b"
+    }
+   ]
+  },
+  {
+   "utc": "2026-09-25T09:09:17.936Z",
+   "reason": "2026-09-25 首次 pin 裁决（e54-pin1-ruling-and-task.md）：回写 Mihomo EXE 哈希；NOTICE 补 webpki-roots/CDLA-Permissive-2.0；R01 改断言固定哈希；两份交付文档同步；施工单追加裁决摘要",
+   "files": [
+    {
+     "path": "tools/release/release-inputs.json",
+     "bytes": 7856,
+     "sha256": "844031e5d082bcc9f76f94de3a39b587398814f1a03f999cdf4a026decdeb6e6"
+    },
+    {
+     "path": "tools/release/NOTICE.md",
+     "bytes": 2241,
+     "sha256": "c09e7ed418c04fb58baad11ab638504f0b2fc93f409cb97be725d14c1e36a2cc"
+    },
+    {
+     "path": "tests/delivery/release-candidate.test.mjs",
+     "bytes": 63040,
+     "sha256": "0c794364063d724a06fbcee5b6f3a076409b9ac296baf033ed246eac7961445c"
+    },
+    {
+     "path": "evidence/delivery/release-inputs.md",
+     "bytes": 8519,
+     "sha256": "e67b301df16e23387eb5d24744a1eee0cf173d29052e04049be5febd3a6dd808"
+    },
+    {
+     "path": "evidence/delivery/release-readiness.json",
+     "bytes": 18840,
+     "sha256": "be94685d26a95962804e60c3e753989d6749aac0caf0675853509b45255554ed"
+    },
+    {
+     "path": "evidence/development/opus-e54-github-actions-task.md",
+     "bytes": 17303,
+     "sha256": "034a9062035d96d34a400452ce1b407f2b09fe59d19c05e44d1fc6cb222b4307"
     }
    ]
   }

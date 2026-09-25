@@ -21,6 +21,15 @@
 - 当前只运行 `mode=pin`。安装包和正式 build 产物的公开上传，要等 pin 复核和 GPL 源码提供方式的裁决之后再放行。
 - 不安装 `gh`：工作流在 GitHub 网页上手动运行，产物也从网页下载。
 
+## 首次 pin 裁决摘要（2026-09-25，Codex）
+
+全文见 [e54-pin1-ruling-and-task.md](e54-pin1-ruling-and-task.md)。首次 pin 仍为 FAIL，RC6 仍 `NOT_READY`。
+
+- `about.toml` 的 accepted 明确加入 `CDLA-Permissive-2.0`（`webpki-roots` 1.0.9，经 ureq 3.4.2 默认 TLS 引入）；不改 TLS 配置。许可全文进随包的 `THIRD-PARTY-RUST.txt`，`NOTICE.md` 补说明。
+- 回写 Mihomo 的 EXE SHA-256 `f55b3028d9160beb9044f21b05dd7405b46524614a19642d6291492f5f985761`，并同步 R01、`release-inputs.md`、`release-readiness.json` 和镜像哈希记录；保留“未固定哈希必须拒绝”的合成测试。
+- 许可脚本改为三个 manifest 都扫完再统一判失败；任一项失败都非零退出，不生成正式汇总。
+- 修正 pin 脚本：清单已固定且 EXE 摘要一致时继续，不一致时以 `PIN_MISMATCH` 失败，禁止自动重新定值。
+
 ## Global Constraints
 
 - 本轮只做 E54 构建闭环；不启动 Azure，不安装产品，不启停服务，不运行 Mihomo，不改 WFP/TUN/DNS/代理/路由，不做 E53、E55—E58。

@@ -1,6 +1,6 @@
 # 发布输入、来源、校验与许可
 
-日期：2026-09-21（RC6）。权威清单是 `tools/release/release-inputs.json`（显式 allowlist）；本页是它的人读版本，「本机状态」一列是 2026-09-21 在开发机上跑 `node tools/release/release.mjs check` 的结果，总体 `NOT_READY`（RC6 Round 2 复跑：七个构建工具都是必需项，只有探测到才算数；本机只有 node 与 powershell）。构建机步骤见 [build-packaging.md](build-packaging.md)。
+日期：2026-09-21（RC6）。权威清单是 `tools/release/release-inputs.json`（显式 allowlist）；本页是它的人读版本，「本机状态」一列是 2026-09-21 在开发机上跑 `node tools/release/release.mjs check` 的结果，总体 `NOT_READY`（RC6 Round 2 复跑：七个构建工具都是必需项，只有探测到才算数；本机只有 node 与 powershell）。构建机步骤见 [build-packaging.md](build-packaging.md)。2026-09-25 按 E54 首次 pin 的 Codex 裁决同步：Mihomo 的 EXE 哈希已固定，本机仍没有程序本身，所以该项只剩 `MISSING`；其余各项与 2026-09-21 的检查结果相同。
 
 分类：**普通用户运行文件**进 `install\` 随安装包安装；**许可与对应源码材料**进 `install\licenses\`；**构建输入**只把哈希记进 `release-manifest.json`；**构建机工具**与**异机测试材料**不入包。清单没列的文件，装配工具不会复制。
 
@@ -10,7 +10,7 @@
 | service | 普通用户运行文件 | `apps/desktop-host/vendor/service-ipc/target/release/ai-environmental-steward-service.exe` → `service/ai-environmental-steward-service.exe` | MISSING | 装配时记录 SHA-256 | license-service-ipc | cargo build --release --features service --manifest-path apps/desktop-host/vendor/service-ipc/Cargo.toml |
 | service-install | 普通用户运行文件 | `apps/desktop-host/vendor/service-ipc/target/release/ai-environmental-steward-service-install.exe` → `service/ai-environmental-steward-service-install.exe` | MISSING | 装配时记录 SHA-256 | license-service-ipc | 同上 |
 | service-uninstall | 普通用户运行文件 | `apps/desktop-host/vendor/service-ipc/target/release/ai-environmental-steward-service-uninstall.exe` → `service/ai-environmental-steward-service-uninstall.exe` | MISSING | 装配时记录 SHA-256 | license-service-ipc | 同上 |
-| mihomo | 普通用户运行文件 | `build/inputs/mihomo-windows-amd64-v1.19.30.exe` → `service/core/mihomo-windows-amd64-v1.19.30.exe` | MISSING、PIN_REQUIRED | 必须先固定哈希 | license-gpl | MetaCubeX/mihomo release v1.19.30 的 windows-amd64 资产（资产文件名以发布页为准），对应源码提交 ac017cdd246ce8bd547653d927e7bf77d7ee73d5；取得并核对后把解压出的程序哈希写进本项再装配 |
+| mihomo | 普通用户运行文件 | `build/inputs/mihomo-windows-amd64-v1.19.30.exe` → `service/core/mihomo-windows-amd64-v1.19.30.exe` | MISSING（哈希已固定） | 固定 SHA-256 f55b3028d916…（解压后的 EXE） | license-gpl | MetaCubeX/mihomo release v1.19.30（release id 371291937），对应源码提交 ac017cdd246ce8bd547653d927e7bf77d7ee73d5。E54 首次 pin 于 2026-09-22 在 GitHub runner 上按官方 release 元数据核对：资产 `mihomo-windows-amd64-v1.19.30.zip` 18,499,620 字节，归档 SHA-256 22c09fd67673…；其中唯一的 `mihomo-windows-amd64.exe` 是 AMD64 程序，SHA-256 f55b3028d9160beb9044f21b05dd7405b46524614a19642d6291492f5f985761 |
 | collect-logs | 普通用户运行文件 | `tools/release/collect-logs.ps1` → `support/collect-logs.ps1` | 有 | 装配时记录 SHA-256 | license-gpl | 本仓库 |
 | collect-logs-cmd | 普通用户运行文件 | `tools/release/collect-logs.cmd` → `support/collect-logs.cmd` | 有 | 装配时记录 SHA-256 | license-gpl | 本仓库 |
 | license-gpl | 许可与对应源码材料 | `tools/release/licenses/GPL-3.0.txt` → `licenses/GPL-3.0.txt` | 有 | 固定 SHA-256 3972dc9744f6… | （本身是许可材料） | 与 Mihomo v1.19.30、CVR v2.5.2 固定源码的 LICENSE 逐字节一致 |
@@ -38,7 +38,7 @@
 | 缺件 | 补的方式 | 由谁 |
 |---|---|---|
 | 控制端、网络服务与两个助手程序 | 构建机编译 | 构建机（E54） |
-| Mihomo v1.19.30 windows-amd64 程序与它的 SHA-256 | 从官方发布页取得、核对后写进清单 | 构建机，核对结果交验收方 |
+| Mihomo v1.19.30 windows-amd64 程序（SHA-256 已于 2026-09-22 核对并固定） | 构建机每次从官方发布取得，与固定哈希比对，不一致就失败 | 构建机 |
 | 三份 `Cargo.lock` | 构建机 cargo 生成 | 构建机 |
 | Rust、tauri-cli、cargo-about 与 tauri-cli 缓存里的 NSIS | 构建机准备，检查逐个探测 | 构建机 |
 | `THIRD-PARTY-RUST.txt` | 构建机 `cargo-about` 按锁文件生成 | 构建机 |
