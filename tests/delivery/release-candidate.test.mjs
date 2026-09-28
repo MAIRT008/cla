@@ -70,8 +70,22 @@ test('RC6 R01 发布检查在本机缺件时安全输出结构化 NOT_READY，�
   const report = await checkRelease({root: ROOT, inputs, probeTool: async () => ({found: false})});
   assert.equal(report.status, 'NOT_READY');
   const byId = new Map(report.items.map((item) => [item.id, item]));
-  for (const id of ['control', 'service', 'service-install', 'service-uninstall', 'lock-host', 'lock-control', 'lock-service', 'rust-third-party']) {
+  for (const id of ['control', 'service', 'service-install', 'service-uninstall', 'rust-third-party']) {
     assert.deepEqual(byId.get(id)?.reasons, ['MISSING'], `${id}: ${JSON.stringify(byId.get(id))}`);
+  }
+  // E54 第四次 pin 裁决：三份 Cargo.lock 以第三次 pin 的原始字节入库，清单固定哈希，不再标 built。
+  const locks = {
+    'lock-control': ['services/control-rs/Cargo.lock', '7e1457bd8962f5d522605e3e75dc064ec1a0ff82eda49a3a5f9161fe5ee9182a'],
+    'lock-service': ['apps/desktop-host/vendor/service-ipc/Cargo.lock', 'd4da8313b7029febcc381a175f79d71923f5a3d94ee95af441e64b57978500bc'],
+    'lock-host': ['apps/desktop-host/src-tauri/Cargo.lock', 'c06d1d6172862fbbfe5da8ce10d25f759d7268b66219c948f676e1f21105043f'],
+  };
+  for (const [id, [source, digest]] of Object.entries(locks)) {
+    const item = inputs.items.find((entry) => entry.id === id);
+    assert.equal(item.source, source, id);
+    assert.equal(item.sha256, digest, `${id} 固定哈希`);
+    assert.equal('built' in item, false, `${id} 是入库输入，不是构建机生成`);
+    assert.equal(byId.get(id)?.status, 'PRESENT', `${id}: ${JSON.stringify(byId.get(id))}`);
+    assert.equal(byId.get(id).sha256, digest, `${id} 本机文件等于批准基线`);
   }
   // E54 首次 pin 后按 Codex 裁决回写：固定的是解压后 EXE 的 SHA-256，归档摘要另记在交接里；本机仍没有程序本身。
   const mihomo = inputs.items.find((item) => item.id === 'mihomo');

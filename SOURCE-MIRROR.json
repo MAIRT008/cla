@@ -42,8 +42,8 @@
   ]
  },
  "totals": {
-  "files": 350,
-  "bytes": 10457152
+  "files": 353,
+  "bytes": 10654468
  },
  "files": [
   {
@@ -247,6 +247,11 @@
    "sha256": "03ed04c85e528a74921770fdd40c1610da6f9b73a00b88f7ff705792f1c2f30d"
   },
   {
+   "path": "apps/desktop-host/src-tauri/Cargo.lock",
+   "bytes": 134933,
+   "sha256": "c06d1d6172862fbbfe5da8ce10d25f759d7268b66219c948f676e1f21105043f"
+  },
+  {
    "path": "apps/desktop-host/src-tauri/Cargo.toml",
    "bytes": 2530,
    "sha256": "e7aa8b1c9c8b3b2b10851657e43783141b1dc799fda0bd528d774fb9f6a8dd19"
@@ -340,6 +345,11 @@
    "path": "apps/desktop-host/src-tauri/tauri.conf.json",
    "bytes": 2807,
    "sha256": "632c26626e8b95070bc9787d2d4ea781d7509e8d6e82eab4ade0471483b51304"
+  },
+  {
+   "path": "apps/desktop-host/vendor/service-ipc/Cargo.lock",
+   "bytes": 26896,
+   "sha256": "d4da8313b7029febcc381a175f79d71923f5a3d94ee95af441e64b57978500bc"
   },
   {
    "path": "apps/desktop-host/vendor/service-ipc/Cargo.toml",
@@ -548,8 +558,8 @@
   },
   {
    "path": "evidence/delivery/build-packaging.md",
-   "bytes": 9321,
-   "sha256": "af119f3acc055ecfc19f3ca49fb07b111102b8c20376ed91a5ca41dc845eb56e"
+   "bytes": 10025,
+   "sha256": "36552e9c47f4a88afff1824f1e1967655d590c8f8890119476d19756e3c421a8"
   },
   {
    "path": "evidence/delivery/portable-data.md",
@@ -563,13 +573,13 @@
   },
   {
    "path": "evidence/delivery/release-inputs.md",
-   "bytes": 8519,
-   "sha256": "e67b301df16e23387eb5d24744a1eee0cf173d29052e04049be5febd3a6dd808"
+   "bytes": 9150,
+   "sha256": "8805c18364e71447c040f7c9d1493cfe964a7b18285bcc68f1dea63e44a48d90"
   },
   {
    "path": "evidence/delivery/release-readiness.json",
-   "bytes": 18840,
-   "sha256": "be94685d26a95962804e60c3e753989d6749aac0caf0675853509b45255554ed"
+   "bytes": 18780,
+   "sha256": "e6822ff94ab91fb094fad43b60d1b2a69677b22eb6c9c3c5e2f1c0c9ee4172e2"
   },
   {
    "path": "evidence/delivery/t10-real-experiments.md",
@@ -598,8 +608,13 @@
   },
   {
    "path": "evidence/development/opus-e54-github-actions-task.md",
-   "bytes": 23083,
-   "sha256": "2e61b9d7a0e26311c3f260d48abb8836a49f5bbbd84072419b579d818d51b110"
+   "bytes": 26130,
+   "sha256": "96b60089fa347c2d2b3714f104ea2bb8718ef1381094e67a60c46a4e432b47c6"
+  },
+  {
+   "path": "services/control-rs/Cargo.lock",
+   "bytes": 29236,
+   "sha256": "7e1457bd8962f5d522605e3e75dc064ec1a0ff82eda49a3a5f9161fe5ee9182a"
   },
   {
    "path": "services/control-rs/Cargo.toml",
@@ -1318,8 +1333,8 @@
   },
   {
    "path": "tests/delivery/release-candidate.test.mjs",
-   "bytes": 63040,
-   "sha256": "0c794364063d724a06fbcee5b6f3a076409b9ac296baf033ed246eac7961445c"
+   "bytes": 64050,
+   "sha256": "a7bc83fced671a3ba00282875b88765a985951ec0ac1c197125f419bd925f8e7"
   },
   {
    "path": "tests/delivery/run-acceptance.mjs",
@@ -1548,8 +1563,8 @@
   },
   {
    "path": "tools/release/build-release.ps1",
-   "bytes": 4751,
-   "sha256": "48cee63b288567e9c0f810cd86970080f2aeb3d047943fc9b646775e1600cf62"
+   "bytes": 5335,
+   "sha256": "c9b758c0f0481860666cf3f9bcc4ed6400855a56a023edee6be809dae3bcc2ec"
   },
   {
    "path": "tools/release/call-chain.json",
@@ -1578,8 +1593,8 @@
   },
   {
    "path": "tools/release/release-inputs.json",
-   "bytes": 7856,
-   "sha256": "844031e5d082bcc9f76f94de3a39b587398814f1a03f999cdf4a026decdeb6e6"
+   "bytes": 8191,
+   "sha256": "54dc8c2a1e4d37ef2d0637771342a5c97280af943502bcdfb6959d8fcc04aa60"
   },
   {
    "path": "tools/release/release.mjs",
@@ -1810,7 +1825,7 @@
     "path": "tests/delivery/release-candidate.test.mjs",
     "pattern": "pem-private-key",
     "reason": "日志收集器脱敏用例的合成输入：PEM 头尾之间只有 4 个字符 MIIB，不是可用私钥",
-    "sha256": "0c794364063d724a06fbcee5b6f3a076409b9ac296baf033ed246eac7961445c"
+    "sha256": "a7bc83fced671a3ba00282875b88765a985951ec0ac1c197125f419bd925f8e7"
    },
    {
     "path": "services/control-rs/tests/ai.rs",
@@ -1931,6 +1946,65 @@
      "path": "evidence/development/opus-e54-github-actions-task.md",
      "bytes": 23083,
      "sha256": "2e61b9d7a0e26311c3f260d48abb8836a49f5bbbd84072419b579d818d51b110"
+    }
+   ]
+  },
+  {
+   "utc": "2026-09-28T05:11:44.799Z",
+   "reason": "2026-09-27 第四次 pin 裁决（e54-pin4-ruling-and-task.md，方向 4）：三份产品 Cargo.lock 以第三次 pin 原始字节入库；release-inputs.json 固定三锁哈希、不再 built；build-release.ps1 的 cargo 与 tauri 构建带 --locked，tauri build 后再做一次发布检查；R01 改为三锁 PRESENT；就绪清单用现有命令重生成；release-inputs.md、build-packaging.md 与施工单同步",
+   "files": [
+    {
+     "path": "services/control-rs/Cargo.lock",
+     "bytes": 29236,
+     "sha256": "7e1457bd8962f5d522605e3e75dc064ec1a0ff82eda49a3a5f9161fe5ee9182a",
+     "added": true
+    },
+    {
+     "path": "apps/desktop-host/vendor/service-ipc/Cargo.lock",
+     "bytes": 26896,
+     "sha256": "d4da8313b7029febcc381a175f79d71923f5a3d94ee95af441e64b57978500bc",
+     "added": true
+    },
+    {
+     "path": "apps/desktop-host/src-tauri/Cargo.lock",
+     "bytes": 134933,
+     "sha256": "c06d1d6172862fbbfe5da8ce10d25f759d7268b66219c948f676e1f21105043f",
+     "added": true
+    },
+    {
+     "path": "tools/release/build-release.ps1",
+     "bytes": 5335,
+     "sha256": "c9b758c0f0481860666cf3f9bcc4ed6400855a56a023edee6be809dae3bcc2ec"
+    },
+    {
+     "path": "tools/release/release-inputs.json",
+     "bytes": 8191,
+     "sha256": "54dc8c2a1e4d37ef2d0637771342a5c97280af943502bcdfb6959d8fcc04aa60"
+    },
+    {
+     "path": "tests/delivery/release-candidate.test.mjs",
+     "bytes": 64050,
+     "sha256": "a7bc83fced671a3ba00282875b88765a985951ec0ac1c197125f419bd925f8e7"
+    },
+    {
+     "path": "evidence/delivery/release-readiness.json",
+     "bytes": 18780,
+     "sha256": "e6822ff94ab91fb094fad43b60d1b2a69677b22eb6c9c3c5e2f1c0c9ee4172e2"
+    },
+    {
+     "path": "evidence/delivery/release-inputs.md",
+     "bytes": 9150,
+     "sha256": "8805c18364e71447c040f7c9d1493cfe964a7b18285bcc68f1dea63e44a48d90"
+    },
+    {
+     "path": "evidence/delivery/build-packaging.md",
+     "bytes": 10025,
+     "sha256": "36552e9c47f4a88afff1824f1e1967655d590c8f8890119476d19756e3c421a8"
+    },
+    {
+     "path": "evidence/development/opus-e54-github-actions-task.md",
+     "bytes": 26130,
+     "sha256": "96b60089fa347c2d2b3714f104ea2bb8718ef1381094e67a60c46a4e432b47c6"
     }
    ]
   }

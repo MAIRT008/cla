@@ -91,26 +91,20 @@
    {
     "id": "lock-host",
     "class": "build_input",
-    "status": "MISSING",
-    "reasons": [
-     "MISSING"
-    ]
+    "status": "PRESENT",
+    "reasons": []
    },
    {
     "id": "lock-control",
     "class": "build_input",
-    "status": "MISSING",
-    "reasons": [
-     "MISSING"
-    ]
+    "status": "PRESENT",
+    "reasons": []
    },
    {
     "id": "lock-service",
     "class": "build_input",
-    "status": "MISSING",
-    "reasons": [
-     "MISSING"
-    ]
+    "status": "PRESENT",
+    "reasons": []
    },
    {
     "id": "field-experiments",

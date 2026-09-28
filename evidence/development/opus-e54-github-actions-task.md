@@ -52,6 +52,18 @@
 - 第三次 artifact 的平台摘要已由 Codex 用官方 API 核实与本地 ZIP 一致，Owner 无需再核对。
 - 停点：Codex 复核通过前不推送；推送后由 Owner 在网页手动运行 `mode=pin`，不自动触发、不自动重试、不转入 build；新诊断存 `run-pin-4/`。下一次算成功需要：Mihomo 为 match；三个锁与许可扫描成功，正式汇总及其哈希与要求的正文存在；控制端与服务端两个 `cargo test` 都退出 0，有完整的实际结果，没有本次遗留的失败，也没有因失败漏跑的目标。用例总数以实际日志为准。编译失败、取消、超时或其他未执行的情况逐项标明，任何失败都完整交回，不自行追加许可、忽略用例或改用产品修法。
 
+## 第四次 pin 裁决摘要（2026-09-27，Codex）
+
+第四次 pin（run 36374112661，提交 835598d）FAIL，首个失败是 NSIS 预热。tauri 2.12 家族于 2026-09-26 发布，`tauri 2.11.5` 对 runtime、runtime-wry、macros、utils 是 caret 约束，于是配上了 2.12 的新版本；27 条编译错误都在 tauri 2.11.5 里。四个 `Cargo.toml` 都没变，镜像当时没有入库任何 `Cargo.lock`。许可扫描与用例都没执行，第三次裁决的改动仍未在真实 Rust 上验证。RC6 仍 `NOT_READY`。裁决（方向 4）：
+
+- 四份锁入库，逐字节取第三次 pin 的原件，不在本机运行 cargo 生成、更新或重排：`services/control-rs/Cargo.lock`（29236 字节，`7e1457bd…`）、`apps/desktop-host/vendor/service-ipc/Cargo.lock`（26896 字节，`d4da8313…`）、`apps/desktop-host/src-tauri/Cargo.lock`（134933 字节，`c06d1d61…`），以及镜像专用的 `tools/release/nsis-warmup/Cargo.lock`（109869 字节，`d15333f2…`）。宿主锁保留 tauri 2.11.6，预热保留 2.11.5，不为表面同版本改锁或根依赖。以后正常 pin/build 不更新锁；确需升级，另给依赖差异与许可验证。
+- 三份产品锁在 `release-inputs.json` 改为固定输入，不再 `built: true`，填入 SHA-256；完整性预检要求四份锁齐全且等于基线。
+- 许可脚本删掉 `cargo generate-lockfile`。每份锁先核对等于固定哈希，再按原参数 `--all-features --locked --fail` 扫描；锁缺失或不符记为未扫描，其余照做，最后非零退出；扫描后再核一次锁。许可允许列表、澄清、模板和正文都不变。汇总文件头已改，下次哈希不会等于第三次。
+- 所有解析产品依赖的入口带锁：三条 `cargo test` 与两条 `cargo build` 加 `--locked`，两条 `cargo tauri build` 以 `-- --locked` 结尾；`cargo install` 保留固定版本与 `--locked`；版本探测不加。
+- 工作流在开始、预热后、许可后、结束时核对四锁。漂移就失败并记录实际值，不上传候选，不恢复文件，不改基线。`build-release.ps1` 在 tauri build 之后再做一次发布检查。清单差异只作诊断；若 locked 构建要求改锁，保留失败交回裁决，不临时去掉 `--locked`。
+- 固定锁只保证依赖基线一致，不保证许可汇总逐字节复现：rustls workaround 仍读外部许可材料，输出也受配置、模板、工具与换行影响。
+- 停点：Codex 限定复核通过前不推送；推送后由 Owner 在网页手动运行第五次 `mode=pin`，诊断存 `run-pin-5/`。下一次算成功需要：预热实际编译成功，NSIS 缓存取得，四锁全程等于基线；Mihomo 为 match；三个 crate 的 locked 许可扫描成功，正式汇总生成；控制端全部测试目标（含 migration 新用例）和服务端测试真实执行并通过，以完整 Cargo 日志判断覆盖。任何新的编译、许可或测试失败都保留诊断后停在 pin，不自动重试、不自动解锁、不转 build。
+
 ## Global Constraints
 
 - 本轮只做 E54 构建闭环；不启动 Azure，不安装产品，不启停服务，不运行 Mihomo，不改 WFP/TUN/DNS/代理/路由，不做 E53、E55—E58。

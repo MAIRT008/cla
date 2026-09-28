@@ -1,6 +1,6 @@
 # 发布输入、来源、校验与许可
 
-日期：2026-09-21（RC6）。权威清单是 `tools/release/release-inputs.json`（显式 allowlist）；本页是它的人读版本，「本机状态」一列是 2026-09-21 在开发机上跑 `node tools/release/release.mjs check` 的结果，总体 `NOT_READY`（RC6 Round 2 复跑：七个构建工具都是必需项，只有探测到才算数；本机只有 node 与 powershell）。构建机步骤见 [build-packaging.md](build-packaging.md)。2026-09-25 按 E54 首次 pin 的 Codex 裁决同步：Mihomo 的 EXE 哈希已固定，本机仍没有程序本身，所以该项只剩 `MISSING`；其余各项与 2026-09-21 的检查结果相同。
+日期：2026-09-21（RC6）。权威清单是 `tools/release/release-inputs.json`（显式 allowlist）；本页是它的人读版本，「本机状态」一列是 2026-09-21 在开发机上跑 `node tools/release/release.mjs check` 的结果，总体 `NOT_READY`（RC6 Round 2 复跑：七个构建工具都是必需项，只有探测到才算数；本机只有 node 与 powershell）。构建机步骤见 [build-packaging.md](build-packaging.md)。2026-09-25 按 E54 首次 pin 的 Codex 裁决同步：Mihomo 的 EXE 哈希已固定，本机仍没有程序本身，所以该项只剩 `MISSING`；其余各项与 2026-09-21 的检查结果相同。2026-09-27 按 E54 第四次 pin 裁决同步：三份 `Cargo.lock` 以第三次 pin 生成的原始字节入库，清单固定各自的 SHA-256，本机检查为「有」；构建、测试与许可扫描一律 `--locked`，不再由构建机生成或更新锁。
 
 分类：**普通用户运行文件**进 `install\` 随安装包安装；**许可与对应源码材料**进 `install\licenses\`；**构建输入**只把哈希记进 `release-manifest.json`；**构建机工具**与**异机测试材料**不入包。清单没列的文件，装配工具不会复制。
 
@@ -17,10 +17,10 @@
 | license-service-ipc | 许可与对应源码材料 | `apps/desktop-host/vendor/service-ipc/LICENSE` → `licenses/service-ipc-LICENSE.txt` | 有 | 固定 SHA-256 8b1ba204bb69… | （本身是许可材料） | 上游 clash-verge-service-ipc 2.3.3 @ b964ed29 的 LICENSE |
 | license-js-yaml | 许可与对应源码材料 | `vendor/deps/js-yaml-4.3.0/LICENSE` → `licenses/js-yaml-LICENSE.txt` | 有 | 固定 SHA-256 a07bc24468b9… | （本身是许可材料） | js-yaml 4.3.0（npm，CVR pnpm-lock 锁定版本；vendor/deps/js-yaml-4.3.0/SOURCE.json），随页面装入 |
 | notice | 许可与对应源码材料 | `tools/release/NOTICE.md` → `licenses/NOTICE.md` | 有 | 装配时记录 SHA-256 | （本身是许可材料） | 本仓库：组件、版本、许可与对应源码取得方式 |
-| rust-third-party | 许可与对应源码材料 | `build/inputs/THIRD-PARTY-RUST.txt` → `licenses/THIRD-PARTY-RUST.txt` | MISSING | 装配时记录 SHA-256 | （本身是许可材料） | 构建机按三份 Cargo.lock 用 cargo-about 生成的 Rust 依赖许可汇总 |
-| lock-host | 构建输入（只记哈希） | `apps/desktop-host/src-tauri/Cargo.lock` | MISSING | 装配时记录 SHA-256 | — | 构建机 cargo 生成；哈希记进 release-manifest.json |
-| lock-control | 构建输入（只记哈希） | `services/control-rs/Cargo.lock` | MISSING | 装配时记录 SHA-256 | — | 同上 |
-| lock-service | 构建输入（只记哈希） | `apps/desktop-host/vendor/service-ipc/Cargo.lock` | MISSING | 装配时记录 SHA-256 | — | 同上 |
+| rust-third-party | 许可与对应源码材料 | `build/inputs/THIRD-PARTY-RUST.txt` → `licenses/THIRD-PARTY-RUST.txt` | MISSING | 装配时记录 SHA-256 | （本身是许可材料） | 构建机按三份已入库 Cargo.lock 用 cargo-about（--locked）生成的 Rust 依赖许可汇总 |
+| lock-host | 构建输入（只记哈希） | `apps/desktop-host/src-tauri/Cargo.lock` | 有 | 固定 SHA-256 c06d1d617286… | — | 入库的固定锁：E54 第三次 pin（run 36222801074）在 runner 上生成，2026-09-27 第四次 pin 裁决批准为基线；编译、测试与许可扫描都用 --locked，不重新生成；哈希记进 release-manifest.json |
+| lock-control | 构建输入（只记哈希） | `services/control-rs/Cargo.lock` | 有 | 固定 SHA-256 7e1457bd8962… | — | 同上 |
+| lock-service | 构建输入（只记哈希） | `apps/desktop-host/vendor/service-ipc/Cargo.lock` | 有 | 固定 SHA-256 d4da8313b702… | — | 同上 |
 | rustc | 构建机工具 | — | TOOL_MISSING | 探测 rustc --version | — | ≥ 1.85；复用决策记 1.95 |
 | cargo | 构建机工具 | — | TOOL_MISSING | 探测 cargo --version | — |  |
 | tauri-cli | 构建机工具 | — | TOOL_MISSING | 探测 cargo tauri --version | — | 2.x，与 tauri 2.11.5 配套 |
@@ -39,11 +39,12 @@
 |---|---|---|
 | 控制端、网络服务与两个助手程序 | 构建机编译 | 构建机（E54） |
 | Mihomo v1.19.30 windows-amd64 程序（SHA-256 已于 2026-09-22 核对并固定） | 构建机每次从官方发布取得，与固定哈希比对，不一致就失败 | 构建机 |
-| 三份 `Cargo.lock` | 构建机 cargo 生成 | 构建机 |
 | Rust、tauri-cli、cargo-about 与 tauri-cli 缓存里的 NSIS | 构建机准备，检查逐个探测 | 构建机 |
-| `THIRD-PARTY-RUST.txt` | 构建机 `cargo-about` 按锁文件生成 | 构建机 |
+| `THIRD-PARTY-RUST.txt` | 构建机 `cargo-about` 按入库锁文件（`--locked`）生成 | 构建机 |
 | 代码签名证书与签名方式、发布渠道 | 没有就保持 UNVERIFIED | Owner（E58） |
 | 对应源码的提供方式（随包或书面提供） | `NOTICE.md` 已写明提供前不公开分发 | Owner |
+
+三份 `Cargo.lock` 已入库，不再是缺件。正常 pin/build 不更新它们；确需升级依赖时，另给依赖差异与对应的许可验证，经裁决后再替换入库锁与清单哈希。
 
 ## 不采用、不进发布清单
 

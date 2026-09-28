@@ -2,12 +2,14 @@ import {existsSync, readdirSync, readFileSync, statSync} from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {checkRelease, loadReleaseInputs} from '../assemble.mjs';
+import {checkLocks, lockBaseline} from './locks.mjs';
 
 /**
  * E54 源镜像完整性预检（只读、不联网）：白名单漏带了正式编译或装配要读的源文件，就在下载依赖前失败。
  *   node tools/release/e54/preflight.mjs     全部齐全退出 0，缺任何一项退出 1；结果 JSON 打到标准输出。
  *
- * - 发布输入：除构建机生成的（built: true 或位于 build/ 下）以外，每一项都必须 PRESENT；固定哈希的许可文件哈希必须一致。
+ * - 发布输入：除构建机生成的（built: true 或位于 build/ 下）以外，每一项都必须 PRESENT；固定哈希的许可文件与三份入库 Cargo.lock 哈希必须一致。
+ * - 四份入库 Cargo.lock（三个产品 crate 与 NSIS 预热工程）必须都在且等于批准基线，见 locks.mjs。
  * - 页面：从正式入口走模块图，闭包里每个 import 都要解析到镜像内的文件。
  * - 三个 crate 与 NSIS 预热工程：Cargo.toml 里的 path、include_str!/include_bytes! 目标、tauri.conf.json 引用的图标与安装钩子都要存在。
  */
@@ -85,6 +87,11 @@ for (const crate of crates) {
 }
 checked.crates = crates.length;
 checked.crate_references = references;
+
+const locks = checkLocks(root, lockBaseline(inputs));
+if (locks.length !== 4) problems.push({code: 'CARGO_LOCK_BASELINE', count: locks.length});
+for (const lock of locks.filter((entry) => entry.status !== 'OK')) problems.push({code: 'CARGO_LOCK', id: lock.id, source: lock.source, status: lock.status, expected: lock.sha256, actual: lock.actual});
+checked.cargo_locks = locks.length;
 
 const status = problems.length ? 'FAIL' : 'PASS';
 process.stdout.write(`${JSON.stringify({schema: 'steward-e54-preflight-1', status, checked, problems}, null, 1)}\n`);
