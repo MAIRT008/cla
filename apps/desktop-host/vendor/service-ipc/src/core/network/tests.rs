@@ -881,7 +881,8 @@ fn an_expired_session_is_closed_after_the_host_and_service_restart_and_a_reused_
     reboot(&world);
     {
         let mut guard = world.lock().unwrap();
-        guard.processes.insert(5100, ProcessIdentity { pid: 5100, image_path: r"C:\Windows\System32\notepad.exe".into(), created_at_ms: guard.now + 60_000 });
+        let now = guard.now;
+        guard.processes.insert(5100, ProcessIdentity { pid: 5100, image_path: r"C:\Windows\System32\notepad.exe".into(), created_at_ms: now + 60_000 });
     }
     let reopened = open(&world);
     reopened.recover_after_start();

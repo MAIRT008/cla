@@ -43,7 +43,7 @@
  },
  "totals": {
   "files": 353,
-  "bytes": 10654468
+  "bytes": 10654491
  },
  "files": [
   {
@@ -433,8 +433,8 @@
   },
   {
    "path": "apps/desktop-host/vendor/service-ipc/src/core/network/tests.rs",
-   "bytes": 76608,
-   "sha256": "939d5fc35ca20d42279a4c052b6c82562f43d0f3a91f1dbc6227ada89cf3ac66"
+   "bytes": 76631,
+   "sha256": "5ccb249606594029aad2dd9a5abb6d97f355bd3a4972e41d41b24c2f16ea452d"
   },
   {
    "path": "apps/desktop-host/vendor/service-ipc/src/core/owner.rs",
@@ -2005,6 +2005,17 @@
      "path": "evidence/development/opus-e54-github-actions-task.md",
      "bytes": 26130,
      "sha256": "96b60089fa347c2d2b3714f104ea2bb8718ef1381094e67a60c46a4e432b47c6"
+    }
+   ]
+  },
+  {
+   "utc": "2026-09-28T08:25:16.856Z",
+   "reason": "2026-09-28 第五次 pin 裁决（Codex 批准最小测试修法）：service-ipc src/core/network/tests.rs 的 an_expired_session_is_closed_after_the_host_and_service_restart_and_a_reused_pid_is_not_killed 在 insert 前先取 let now = guard.now，消除 E0502；只改该测试函数，不动产品代码、锁与工作流",
+   "files": [
+    {
+     "path": "apps/desktop-host/vendor/service-ipc/src/core/network/tests.rs",
+     "bytes": 76631,
+     "sha256": "5ccb249606594029aad2dd9a5abb6d97f355bd3a4972e41d41b24c2f16ea452d"
     }
    ]
   }
