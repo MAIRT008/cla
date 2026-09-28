@@ -1,7 +1,9 @@
 # E54：构建镜像上的 Windows 发布候选构建。只手工触发，只读仓库，无项目秘密，不写回任何分支。
 # pin   ：边界检查 → 完整性预检（含四份入库锁）→ 固定版本工具 → NSIS 预热 → PlanOnly 红门 → Mihomo 取得与核对并生成补丁 → 按入库锁生成许可汇总 → 两个 crate 的用例 → 四锁复核
-# build ：同上（Mihomo 改为核对已固定哈希）→ 完整 build-release.ps1 → 宿主用例 → 安装包清单核对 → 四锁复核 → 全部通过才上传 e54-candidate
-# 2026-09-22 裁决更新：仓库保持公开，只记录可见性；公开仓库上 build 模式在第一步失败，等 pin 复核与 GPL 源码提供方式裁决后再放行。
+# build ：同上（Mihomo 改为核对已固定哈希）→ 完整 build-release.ps1 → 宿主用例 → 安装包清单核对 → 四锁复核 → 仓库私有且全部通过才上传 e54-candidate
+# 2026-09-22 裁决更新：仓库保持公开，只记录可见性。
+# 2026-09-28 裁决：公开仓库上的 build 只作诊断（取代 2026-09-22 的“第一步失败”）：照跑完整构建、宿主用例与安装包核对，
+#   但无论成败都不上传安装包或任何二进制，只上传 e54-diagnostics，candidate=false；对应源码提供完成并复核之前，候选上传一直阻断。
 # 2026-09-27 第四次 pin 裁决：四份 Cargo.lock 入库，所有解析产品依赖的 cargo 命令带 --locked，不再生成或更新锁；开始、预热后、许可后与结束时核对四锁，漂移就失败且不上传候选。
 name: E54 Windows release build
 
@@ -9,7 +11,7 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: "pin: pin Mihomo and generate inputs, no installer; build: full release build (refused while the repository is public)"
+        description: "pin: pin Mihomo and generate inputs, no installer; build: full release build (on a public repository diagnostics only: no installer or binary is uploaded)"
         type: choice
         options:
           - pin
@@ -61,14 +63,11 @@ jobs:
             run_attempt = $env:GITHUB_RUN_ATTEMPT
             workflow_ref = $env:GITHUB_WORKFLOW_REF
             mode = $env:E54_MODE
+            publication = $(if ($env:E54_REPO_PRIVATE -eq 'true') { 'candidate_when_all_gates_pass' } else { 'diagnostics_only_public_repository' })
             runner = [ordered]@{ os = $env:RUNNER_OS; arch = $env:RUNNER_ARCH; image_os = $env:ImageOS; image_version = $env:ImageVersion; windows = "$($os.Caption) $($os.Version)" }
             started_utc = (Get-Date).ToUniversalTime().ToString('o')
           } | ConvertTo-Json -Depth 4 | Set-Content -Path build/logs/e54-run.json
           "$((Get-Date).ToUniversalTime().ToString('o')) start $((Get-PSDrive -PSProvider FileSystem | ForEach-Object { '{0}: used={1:N1}G free={2:N1}G' -f $_.Name, ($_.Used / 1GB), ($_.Free / 1GB) }) -join '; ')" | Add-Content -Path build/logs/e54-disk.log
-          if ($env:E54_MODE -eq 'build' -and $env:E54_REPO_PRIVATE -ne 'true') {
-            'build mode is not released on a public repository: it waits for the pin review and the GPL source-offer ruling (2026-09-22)'
-            exit 1
-          }
 
       - name: Mirror boundary check (before any tool install or dependency download)
         id: boundary
@@ -277,17 +276,22 @@ jobs:
             $gates[$name.ToLowerInvariant()] = [Environment]::GetEnvironmentVariable("G_$name")
           }
           $failed = @($gates.Keys | Where-Object { $gates[$_] -eq 'failure' })
-          $candidate = ($env:E54_MODE -eq 'build') -and (@($gates.Values | Where-Object { $_ -ne 'success' }).Count -eq 0)
-          [ordered]@{ schema = 'steward-e54-gates-1'; mode = $env:E54_MODE; repository_private = $env:E54_REPO_PRIVATE; ended_utc = (Get-Date).ToUniversalTime().ToString('o'); candidate = $candidate; first_failure = $(if ($failed.Count) { $failed[0] } else { $null }); gates = $gates } | ConvertTo-Json -Depth 3 | Set-Content -Path build/logs/e54-gates.json
+          $applicable = @($gates.Keys | Where-Object { $env:E54_MODE -eq 'build' -or $_ -notin @('build', 'test_host', 'verify') })
+          $allPassed = @($applicable | Where-Object { $gates[$_] -ne 'success' }).Count -eq 0
+          $private = $env:E54_REPO_PRIVATE -eq 'true'
+          $publication = if ($private) { 'candidate_when_all_gates_pass' } else { 'diagnostics_only_public_repository' }
+          $candidate = ($env:E54_MODE -eq 'build') -and $private -and $allPassed
+          [ordered]@{ schema = 'steward-e54-gates-2'; mode = $env:E54_MODE; repository_private = $env:E54_REPO_PRIVATE; publication = $publication; ended_utc = (Get-Date).ToUniversalTime().ToString('o'); all_applicable_gates_success = $allPassed; failed_gates = @($failed); candidate = $candidate; first_failure = $(if ($failed.Count) { $failed[0] } else { $null }); gates = $gates } | ConvertTo-Json -Depth 3 | Set-Content -Path build/logs/e54-gates.json
           "$((Get-Date).ToUniversalTime().ToString('o')) end $((Get-PSDrive -PSProvider FileSystem | ForEach-Object { '{0}: used={1:N1}G free={2:N1}G' -f $_.Name, ($_.Used / 1GB), ($_.Free / 1GB) }) -join '; ')" | Add-Content -Path build/logs/e54-disk.log
           $summary = @("## E54 $env:E54_MODE", '', "commit ``$env:GITHUB_SHA`` · run $env:GITHUB_RUN_ID · image $env:ImageOS $env:ImageVersion · private=$env:E54_REPO_PRIVATE", '', '| gate | outcome |', '|---|---|')
           $summary += @($gates.Keys | ForEach-Object { "| $_ | $($gates[$_]) |" })
-          $summary += '', "candidate: $candidate"
+          $summary += '', "publication: $publication", "all applicable gates success: $allPassed", "candidate: $candidate"
           $summary | Add-Content -Path $env:GITHUB_STEP_SUMMARY
 
       - name: Upload e54-candidate
         id: upload_candidate
-        if: ${{ success() && inputs.mode == 'build' }}
+        # 2026-09-28 裁决：公开仓库的 Actions 产物有读取权限的人都能取得；对应源码提供完成并复核之前，候选只在私有仓库上传。
+        if: ${{ success() && inputs.mode == 'build' && github.event.repository.private }}
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: e54-candidate
@@ -305,7 +309,7 @@ jobs:
 
       - name: Upload e54-diagnostics
         id: upload_diagnostics
-        if: ${{ always() && !(success() && inputs.mode == 'build') }}
+        if: ${{ always() && !(success() && inputs.mode == 'build' && github.event.repository.private) }}
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: e54-diagnostics
