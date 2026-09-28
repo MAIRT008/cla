@@ -14,4 +14,23 @@
 | Mozilla 根证书数据（crate `webpki-roots`，已核对版本 1.0.9） | 编进 `control\ai-steward-control.exe`，经 `ureq` 3.4.2 的默认 TLS 配置引入 | crates.io `webpki-roots`，内容是 Mozilla 的根证书列表；实际版本以 `services/control-rs/Cargo.lock` 与 `THIRD-PARTY-RUST.txt` 为准 | CDLA-Permissive-2.0，协议全文见随包的 `THIRD-PARTY-RUST.txt` |
 | WebView2 运行时 | 系统组件，安装器按需引导安装 | Microsoft | 微软再分发条款 |
 
-对应源码：以上 GPL 组件的完整对应源码（含本项目源码、上游固定提交与构建用 `Cargo.lock`）随发布一同提供。提供方式（随包附带或书面提供）由发布方在公开分发前确定，确定前本发布候选不公开分发。
+## 对应源码
+
+本安装包的完整对应源码是 `e54-corresponding-source.zip`，与安装包放在同一个候选产物（GitHub Actions 产物 `e54-candidate`）里提供。取得步骤：
+
+1. 在取得本安装包的同一处，下载同一次构建运行的 `e54-candidate` 产物，并解压。
+2. 取出 `build/source/e54-corresponding-source.zip`，核对它的 SHA-256 与同目录 `build/source/e54-corresponding-source.json` 里 `archive.sha256` 一致。
+3. 解压源码 ZIP。`e54-corresponding-source/SOURCE-MANIFEST.json` 的 `mirror_commit` 是这次构建所用的本项目精确提交（40 位），`mihomo.commit` 是 Mihomo 的固定提交 `ac017cdd246ce8bd547653d927e7bf77d7ee73d5`；该文件还写明四份 `Cargo.lock` 的哈希，以及每个文件的来源和 SHA-256。`BUILD.md` 写明构建步骤与工具版本。
+4. 可以离线复核：`node e54-corresponding-source/first-party/tools/release/e54/corresponding-source.mjs verify e54-corresponding-source.zip`。
+
+安装包本身的 SHA-256 与构建提交也记在同一产物里：分别在 `build/logs/e54-hashes.json` 和 `build/logs/e54-run.json` 的 `sha` 字段。
+
+源码 ZIP 包含：
+
+- 本项目在构建提交的全部源码与构建、安装脚本，包括改造后的 service-ipc 和四份 `Cargo.lock`；
+- Mihomo 固定提交的官方源码归档；
+- 构建所用的全部 Rust crate 原始包，以及 Mihomo 的 Go 模块包。
+
+各组件的许可与版权声明都原样保留。安装器自带的 NSIS 运行时与插件、WebView2 引导程序不属于 GPL 作品，不随附源码。另有两个上游预编译组件没有源码：桌面宿主静态链接的微软 WebView2 加载器库（`WebView2LoaderStatic.lib`，来自 crate `webview2-com-sys`），以及 Mihomo 程序内嵌的 Wintun 库（`wintun.dll`，来自 Go 模块 `sing-tun`）；源码 ZIP 里只有它们的预编译原件。以上都已在 `SOURCE-MANIFEST.json` 的 `not_included` 里列明。
+
+在候选产物可以公开取得之前，本发布候选不公开分发。

@@ -1,6 +1,6 @@
 # E54：构建镜像上的 Windows 发布候选构建。只手工触发，只读仓库，无项目秘密，不写回任何分支。
 # pin   ：边界检查 → 完整性预检（含四份入库锁）→ 固定版本工具 → NSIS 预热 → PlanOnly 红门 → Mihomo 取得与核对并生成补丁 → 按入库锁生成许可汇总 → 两个 crate 的用例 → 四锁复核
-# build ：同上（Mihomo 改为核对已固定哈希）→ 完整 build-release.ps1 → 宿主用例 → 安装包清单核对 → 四锁复核 → 仓库私有且全部通过才上传 e54-candidate
+# build ：同上（Mihomo 改为核对已固定哈希）→ 完整 build-release.ps1 → 宿主用例 → 安装包清单核对 → 对应源码归档 → 四锁复核 → 仓库私有且全部通过才上传 e54-candidate（安装包与源码 ZIP 同在一个产物）
 # 2026-09-22 裁决更新：仓库保持公开，只记录可见性。
 # 2026-09-28 裁决：公开仓库上的 build 只作诊断（取代 2026-09-22 的“第一步失败”）：照跑完整构建、宿主用例与安装包核对，
 #   但无论成败都不上传安装包或任何二进制，只上传 e54-diagnostics，candidate=false；对应源码提供完成并复核之前，候选上传一直阻断。
@@ -240,6 +240,19 @@ jobs:
           powershell.exe -NoProfile -ExecutionPolicy Bypass -File tools/release/e54/verify-installer.ps1 2>&1 | ForEach-Object { "$_" } | Tee-Object -FilePath build/logs/e54-verify-installer.log
           exit $LASTEXITCODE
 
+      - name: GPL corresponding source archive for this build commit
+        id: source
+        # 2026-09-28 裁决第 2 步：按构建提交生成 e54-corresponding-source.zip 并逐项核对来源与哈希；它与安装包进同一个候选产物。
+        # 诊断只收记录 JSON 与日志，不收 ZIP（依赖源码里带有预编译库）。
+        if: inputs.mode == 'build'
+        run: |
+          node tools/release/e54/corresponding-source.mjs build --commit $env:GITHUB_SHA --out build/source --cache build/source-cache 2>&1 | ForEach-Object { "$_" } | Tee-Object -FilePath build/logs/e54-source.log
+          $code = $LASTEXITCODE
+          if (Test-Path build/source/e54-corresponding-source.json) { Copy-Item build/source/e54-corresponding-source.json build/logs/e54-corresponding-source.json }
+          if ($code) { exit $code }
+          node tools/release/e54/corresponding-source.mjs verify build/source/e54-corresponding-source.zip --repo . --commit $env:GITHUB_SHA 2>&1 | ForEach-Object { "$_" } | Tee-Object -FilePath build/logs/e54-source.log -Append
+          exit $LASTEXITCODE
+
       - name: Cargo.lock baseline at end of run
         id: locks
         # 2026-09-27 裁决：测试与构建之后核对四份入库锁；漂移只记录实际值并失败，不恢复、不改基线，候选上传随之取消。清单差异只作诊断。
@@ -268,15 +281,16 @@ jobs:
           G_BUILD: ${{ steps.build.outcome }}
           G_TEST_HOST: ${{ steps.test_host.outcome }}
           G_VERIFY: ${{ steps.verify.outcome }}
+          G_SOURCE: ${{ steps.source.outcome }}
           G_LOCKS: ${{ steps.locks.outcome }}
         run: |
           New-Item -ItemType Directory -Force -Path build/logs | Out-Null
           $gates = [ordered]@{}
-          foreach ($name in @('RECORD', 'BOUNDARY', 'PREFLIGHT', 'RUST', 'TOOLS', 'VERSIONS', 'WARMUP', 'PLANONLY', 'MIHOMO', 'LICENSES', 'TEST_CONTROL', 'TEST_SERVICE', 'BUILD', 'TEST_HOST', 'VERIFY', 'LOCKS')) {
+          foreach ($name in @('RECORD', 'BOUNDARY', 'PREFLIGHT', 'RUST', 'TOOLS', 'VERSIONS', 'WARMUP', 'PLANONLY', 'MIHOMO', 'LICENSES', 'TEST_CONTROL', 'TEST_SERVICE', 'BUILD', 'TEST_HOST', 'VERIFY', 'SOURCE', 'LOCKS')) {
             $gates[$name.ToLowerInvariant()] = [Environment]::GetEnvironmentVariable("G_$name")
           }
           $failed = @($gates.Keys | Where-Object { $gates[$_] -eq 'failure' })
-          $applicable = @($gates.Keys | Where-Object { $env:E54_MODE -eq 'build' -or $_ -notin @('build', 'test_host', 'verify') })
+          $applicable = @($gates.Keys | Where-Object { $env:E54_MODE -eq 'build' -or $_ -notin @('build', 'test_host', 'verify', 'source') })
           $allPassed = @($applicable | Where-Object { $gates[$_] -ne 'success' }).Count -eq 0
           $private = $env:E54_REPO_PRIVATE -eq 'true'
           $publication = if ($private) { 'candidate_when_all_gates_pass' } else { 'diagnostics_only_public_repository' }
@@ -298,6 +312,8 @@ jobs:
           path: |
             SOURCE-MIRROR.json
             apps/desktop-host/src-tauri/target/release/bundle/nsis/*.exe
+            build/source/e54-corresponding-source.zip
+            build/source/e54-corresponding-source.json
             build/release-staging/release-manifest.json
             services/control-rs/Cargo.lock
             apps/desktop-host/vendor/service-ipc/Cargo.lock

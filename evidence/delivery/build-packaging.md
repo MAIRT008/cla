@@ -1,6 +1,6 @@
 # 构建、打包与依赖源配置
 
-日期：2026-09-21（RC6 按当前代码重写；2026-09-14 版被 RC1—RC5 推翻的口径已改掉）。本页记录发布候选的构建输入、构建机步骤和本机做不到的部分。**当前开发机没有 Rust 工具链，没有构建、签名或安装过任何安装包；第 4 节的构建流程还没在任何机器上跑过，由 E54 首次执行。** 2026-09-27 按 E54 第四次 pin 裁决同步第 1、4、5 节的锁来源与命令：三份 `Cargo.lock` 已入库，构建机不再生成。
+日期：2026-09-21（RC6 按当前代码重写；2026-09-14 版被 RC1—RC5 推翻的口径已改掉）。本页记录发布候选的构建输入、构建机步骤和本机做不到的部分。**当前开发机没有 Rust 工具链，没有构建、签名或安装过任何安装包；第 4 节的构建流程还没在任何机器上跑过，由 E54 首次执行。** 2026-09-27 按 E54 第四次 pin 裁决同步第 1、4、5 节的锁来源与命令：三份 `Cargo.lock` 已入库，构建机不再生成。2026-09-28 同步第 4 节：NSIS 预热改用入库锁，并新增对应源码归档一步。
 
 逐项的发布输入、来源、校验、许可与入包分类见 [release-inputs.md](release-inputs.md)；调用链见 [release-call-chain.md](release-call-chain.md)；机器可读的就绪清单是 [release-readiness.json](release-readiness.json)。
 
@@ -42,7 +42,7 @@
 
 ## 4. 构建机步骤（顺序固定）
 
-1. 准备 Windows 构建机：Rust ≥ 1.85（复用决策记 1.95）与 MSVC、`cargo-tauri`（tauri-cli 2.x）、`cargo-about`、Node ≥ 22、Windows PowerShell 5.1，以及 NSIS。tauri-cli 在 Windows 上只用自己缓存目录 `%LOCALAPPDATA%\tauri\NSIS\` 里的 NSIS 与 `nsis_tauri_utils`，不找系统 PATH；缺了才在 `tauri build` 的打包阶段下载。发布检查要求它先就位（探测 `makensis.exe`），所以准备阶段先让 tauri-cli 取得它：在构建机上对任意一个 Tauri 2 示例工程跑一次 `cargo tauri build --bundles nsis`，或按该 tauri-cli 版本打包器源码里的固定下载地址与校验值放好。七个构建工具都是必需项，任何一个没探测到，检查都是 `NOT_READY`。
+1. 准备 Windows 构建机：Rust ≥ 1.85（复用决策记 1.95）与 MSVC、`cargo-tauri`（tauri-cli 2.x）、`cargo-about`、Node ≥ 22、Windows PowerShell 5.1，以及 NSIS。tauri-cli 在 Windows 上只用自己缓存目录 `%LOCALAPPDATA%\tauri\NSIS\` 里的 NSIS 与 `nsis_tauri_utils`，不找系统 PATH；缺了才在 `tauri build` 的打包阶段下载。发布检查要求它先就位（探测 `makensis.exe`），所以准备阶段先让 tauri-cli 取得它：在 E54 镜像的 `tools/release/nsis-warmup` 目录，用已入库的锁运行 `cargo tauri build --bundles nsis -- --locked`。不要拿任意示例工程不带锁地跑，那样会重新解析上游依赖，第四次 pin 就是这样失败的。七个构建工具都是必需项，任何一个没探测到，检查都是 `NOT_READY`。
 2. 先跑 `powershell -NoProfile -ExecutionPolicy Bypass -File tools\release\build-release.ps1 -PlanOnly`，看 `build\logs\<时间>-<进程号>\check.json` 里缺什么。
 3. 从 Mihomo v1.19.30 官方发布页取得 windows-amd64 发布包，核对后把程序放到 `build\inputs\mihomo-windows-amd64-v1.19.30.exe`，再把它的 SHA-256 写进 `tools/release/release-inputs.json` 的 `mihomo` 项。没写之前检查一直报 `PIN_REQUIRED`。
 4. 三份 `Cargo.lock` 已入库（E54 第三次 pin 生成的原始字节，SHA-256 固定在 `tools/release/release-inputs.json`），构建机不生成、不更新。E54 镜像里的 `tools\release\generate-rust-licenses.ps1` 先核对每份锁等于固定哈希，再用 `cargo-about` 以 `--locked` 扫描，生成 Rust 依赖许可汇总 `build\inputs\THIRD-PARTY-RUST.txt`；锁缺失、不符、需要更新或扫描期间被改写都失败，不产正式汇总。
@@ -50,6 +50,7 @@
 6. `tauri-build` 会核对 `frontendDist` 与资源存在，所以宿主的 `cargo check --features tauri`（E01）也要在 `assemble` 之后跑。
 7. 日志：每步的命令、退出码与输出都在 `build\logs\<时间>-<进程号>\`，失败也保留，不覆盖上一轮。连日志目录都建不了时，脚本提示先 `Start-Transcript` 保存控制台输出。
 8. 产出的 NSIS 安装包要记录文件清单与哈希，与 `release-manifest.json` 对照（E54）。代码签名与更新渠道没有配置（E58）。
+9. 对应源码：同一次构建用 E54 镜像的 `node tools/release/e54/corresponding-source.mjs build --commit <构建提交> --out build/source --cache build/source-cache` 生成 `e54-corresponding-source.zip` 与 `e54-corresponding-source.json`，再用 `verify` 逐项核对。归档里有构建提交的全部首方文件、Mihomo 固定提交的源码、三份产品锁里的全部 crate 原始包和 Mihomo 的 Go 模块包。它与安装包放进同一个候选产物，取得方法写在 `NOTICE.md`。
 
 装配规则：`assemble` 只按清单复制到临时目录，逐个复核哈希，`release-manifest.json` 最后写，全部成功才改名成 `build\release-staging\`。缺件、哈希不符、未固定哈希、目标重名、越界路径、许可不全、中途失败都非零退出，不留正式目录；输出目录已存在就拒绝，从不覆盖。
 

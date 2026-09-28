@@ -42,7 +42,7 @@
 | Rust、tauri-cli、cargo-about 与 tauri-cli 缓存里的 NSIS | 构建机准备，检查逐个探测 | 构建机 |
 | `THIRD-PARTY-RUST.txt` | 构建机 `cargo-about` 按入库锁文件（`--locked`）生成 | 构建机 |
 | 代码签名证书与签名方式、发布渠道 | 没有就保持 UNVERIFIED | Owner（E58） |
-| 对应源码的提供方式（随包或书面提供） | `NOTICE.md` 已写明提供前不公开分发 | Owner |
+| 对应源码 | E54 build 生成 `e54-corresponding-source.zip`，与安装包放进同一个候选产物；`NOTICE.md` 写明取得步骤。公开仓库上候选上传仍阻断，放开由 Codex 裁决 | 构建机／Codex |
 
 三份 `Cargo.lock` 已入库，不再是缺件。正常 pin/build 不更新它们；确需升级依赖时，另给依赖差异与对应的许可验证，经裁决后再替换入库锁与清单哈希。
 

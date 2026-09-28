@@ -43,7 +43,7 @@
  },
  "totals": {
   "files": 353,
-  "bytes": 10654491
+  "bytes": 10657051
  },
  "files": [
   {
@@ -558,8 +558,8 @@
   },
   {
    "path": "evidence/delivery/build-packaging.md",
-   "bytes": 10025,
-   "sha256": "36552e9c47f4a88afff1824f1e1967655d590c8f8890119476d19756e3c421a8"
+   "bytes": 10698,
+   "sha256": "6182d3f65aa71422c02d66f66d28db43c06daeeeb6e62c76c5a97236973fdbfe"
   },
   {
    "path": "evidence/delivery/portable-data.md",
@@ -573,8 +573,8 @@
   },
   {
    "path": "evidence/delivery/release-inputs.md",
-   "bytes": 9150,
-   "sha256": "8805c18364e71447c040f7c9d1493cfe964a7b18285bcc68f1dea63e44a48d90"
+   "bytes": 9261,
+   "sha256": "56230d605eef3f848ee72ee36f933d3f41e94690d60be598dfda08c27239d05b"
   },
   {
    "path": "evidence/delivery/release-readiness.json",
@@ -1553,8 +1553,8 @@
   },
   {
    "path": "tools/release/NOTICE.md",
-   "bytes": 2299,
-   "sha256": "2a7ca2656bfe42196a73e5b4e96f9ea5f570f77f7c5eb6667569d4d53e66bce0"
+   "bytes": 4075,
+   "sha256": "3b89fedf25b34ed1ccea7597c9517ea87904cddb2056614bcb3f09e39acb5ac5"
   },
   {
    "path": "tools/release/assemble.mjs",
@@ -2016,6 +2016,27 @@
      "path": "apps/desktop-host/vendor/service-ipc/src/core/network/tests.rs",
      "bytes": 76631,
      "sha256": "5ccb249606594029aad2dd9a5abb6d97f355bd3a4972e41d41b24c2f16ea452d"
+    }
+   ]
+  },
+  {
+   "utc": "2026-09-28T17:49:01.715Z",
+   "reason": "2026-09-28 GPL 对应源码归档（Codex 裁决第 2 步施工）：NOTICE.md 写明从同一候选产物取得 e54-corresponding-source.zip 的文件名、步骤、核对方法与提交记录位置，并列明没有源码的上游预编译组件；build-packaging.md 第 4 节预热改用入库锁（M1）并加对应源码一步；release-inputs.md 更新对应源码一行",
+   "files": [
+    {
+     "path": "tools/release/NOTICE.md",
+     "bytes": 4075,
+     "sha256": "3b89fedf25b34ed1ccea7597c9517ea87904cddb2056614bcb3f09e39acb5ac5"
+    },
+    {
+     "path": "evidence/delivery/build-packaging.md",
+     "bytes": 10698,
+     "sha256": "6182d3f65aa71422c02d66f66d28db43c06daeeeb6e62c76c5a97236973fdbfe"
+    },
+    {
+     "path": "evidence/delivery/release-inputs.md",
+     "bytes": 9261,
+     "sha256": "56230d605eef3f848ee72ee36f933d3f41e94690d60be598dfda08c27239d05b"
     }
    ]
   }
