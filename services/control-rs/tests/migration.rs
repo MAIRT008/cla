@@ -1,7 +1,7 @@
 //! 数据库版本迁移：RC1（v1）库在原路径事务升级到 v2。
 //! v1 库用 RC1 的建表语句在测试里直接造出来，模拟已经跑过 RC1 的状态目录。
 //!
-//! 本机没有 cargo/rustc，这些用例已写未运行。
+//! 本机没有 cargo/rustc；E54 第三次 pin（run 36222801074）在构建机首次运行，建表文本比对因排版差异误报，按裁决 A1 改用 normalize_sql。
 
 mod common;
 
@@ -93,6 +93,38 @@ fn version_of(dir: &std::path::Path) -> String {
         .unwrap()
 }
 
+/// 比较建表文本前的排版归一：引号外把连续空白折成一个空格，并去掉 `(` 之后、`)` 之前的空白；
+/// 单引号字面量与双引号、反引号标识符里的内容（空白、括号、两个引号连写的转义）一律原样保留。
+/// SQLite 把 CREATE 原文存进 sqlite_master，新库（store.rs 的多行 SCHEMA_V1）与夹具 RC1_SCHEMA（单行）只差这类排版。
+fn normalize_sql(sql: &str) -> String {
+    let mut normalized = String::with_capacity(sql.len());
+    let mut chars = sql.chars().peekable();
+    let mut pending_space = false;
+    while let Some(c) = chars.next() {
+        if c.is_whitespace() {
+            pending_space = true;
+            continue;
+        }
+        if pending_space && !normalized.is_empty() && !normalized.ends_with('(') && c != ')' {
+            normalized.push(' ');
+        }
+        pending_space = false;
+        normalized.push(c);
+        if matches!(c, '\'' | '"' | '`') {
+            while let Some(inner) = chars.next() {
+                normalized.push(inner);
+                if inner == c {
+                    match chars.next_if_eq(&c) {
+                        Some(escaped) => normalized.push(escaped),
+                        None => break,
+                    }
+                }
+            }
+        }
+    }
+    normalized
+}
+
 #[test]
 fn a_rc1_database_is_upgraded_in_place_keeping_admin_and_live_sessions() {
     let dir = rc1_state_dir("upgrade", "");
@@ -135,9 +167,38 @@ fn a_fresh_database_and_an_upgraded_one_have_the_same_schema() {
     let fresh_rows = schema_rows(&fresh.sql());
     let upgraded_rows = schema_rows(&rusqlite::Connection::open(upgraded_dir.join("control.sqlite3")).unwrap());
     let normalize = |rows: Vec<(String, String)>| -> Vec<(String, String)> {
-        rows.into_iter().map(|(name, sql)| (name, sql.split_whitespace().collect::<Vec<_>>().join(" "))).collect()
+        rows.into_iter().map(|(name, sql)| (name, normalize_sql(&sql))).collect()
     };
     assert_eq!(normalize(fresh_rows), normalize(upgraded_rows));
+}
+
+#[test]
+fn schema_text_normalization_ignores_only_layout_outside_quotes() {
+    // runner 上的真实差异：新库多行写法、夹具单行写法，只差换行与括号内侧空白。
+    let fresh = "CREATE TABLE control_meta (\n  key TEXT PRIMARY KEY NOT NULL,\n  value TEXT NOT NULL\n)";
+    let rc1 = "CREATE TABLE control_meta (key TEXT PRIMARY KEY NOT NULL, value TEXT NOT NULL)";
+    assert_eq!(normalize_sql(fresh), normalize_sql(rc1));
+    assert_eq!(normalize_sql(rc1), rc1, "已经紧凑的文本不变");
+    assert_eq!(normalize_sql("CHECK ( v = 'x' )"), normalize_sql("CHECK (v = 'x')"));
+    assert_eq!(normalize_sql("  CHECK (v = 'it''s ( x )')  "), "CHECK (v = 'it''s ( x )')", "引号内原样保留");
+}
+
+#[test]
+fn schema_text_normalization_still_reports_structural_and_literal_differences() {
+    let differs = |a: &str, b: &str| assert_ne!(normalize_sql(a), normalize_sql(b), "{a} 与 {b} 必须仍判为不同");
+    // 多一列
+    differs(
+        "CREATE TABLE control_meta (key TEXT PRIMARY KEY NOT NULL, value TEXT NOT NULL)",
+        "CREATE TABLE control_meta (key TEXT PRIMARY KEY NOT NULL, value TEXT NOT NULL, note TEXT)",
+    );
+    // CHECK 的取值与条件不同
+    differs("role TEXT NOT NULL CHECK (role IN ('admin', 'user'))", "role TEXT NOT NULL CHECK (role IN ('admin', 'owner'))");
+    differs("singleton INTEGER PRIMARY KEY NOT NULL CHECK (singleton = 1)", "singleton INTEGER PRIMARY KEY NOT NULL CHECK (singleton >= 1)");
+    // 引号内的括号、连续空格、转义引号附近、另一种引号里的单引号，都原样参与比较
+    differs("CHECK (v = '( x )')", "CHECK (v = '(x)')");
+    differs("DEFAULT 'a  b'", "DEFAULT 'a b'");
+    differs("CHECK (v = 'it''s ( x )')", "CHECK (v = 'it''s (x)')");
+    differs("CREATE TABLE \"it's  x\" (a TEXT)", "CREATE TABLE \"it's x\" (a TEXT)");
 }
 
 #[test]

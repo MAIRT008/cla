@@ -174,13 +174,15 @@ jobs:
       - name: cargo test control-rs
         id: test_control
         run: |
-          cargo test --manifest-path services/control-rs/Cargo.toml 2>&1 | ForEach-Object { "$_" } | Tee-Object -FilePath build/logs/e54-test-control.log
+          cargo test --no-fail-fast --manifest-path services/control-rs/Cargo.toml 2>&1 | ForEach-Object { "$_" } | Tee-Object -FilePath build/logs/e54-test-control.log
           exit $LASTEXITCODE
 
       - name: cargo test service-ipc (service feature)
         id: test_service
+        # 2026-09-27 裁决：许可成功且未取消时照跑，控制端用例失败不再让它跳过；失败退出码照常保留，不加 continue-on-error。
+        if: ${{ !cancelled() && steps.licenses.outcome == 'success' }}
         run: |
-          cargo test --features service --manifest-path apps/desktop-host/vendor/service-ipc/Cargo.toml 2>&1 | ForEach-Object { "$_" } | Tee-Object -FilePath build/logs/e54-test-service.log
+          cargo test --no-fail-fast --features service --manifest-path apps/desktop-host/vendor/service-ipc/Cargo.toml 2>&1 | ForEach-Object { "$_" } | Tee-Object -FilePath build/logs/e54-test-service.log
           $code = $LASTEXITCODE
           "$((Get-Date).ToUniversalTime().ToString('o')) crate-tests $((Get-PSDrive -PSProvider FileSystem | ForEach-Object { '{0}: used={1:N1}G free={2:N1}G' -f $_.Name, ($_.Used / 1GB), ($_.Free / 1GB) }) -join '; ')" | Add-Content -Path build/logs/e54-disk.log
           exit $code

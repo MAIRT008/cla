@@ -42,6 +42,16 @@
 - 公开资料请求如需自定义 User-Agent，固定为 `steward-license-review/1.0`，不得由邮箱、用户名、本地路径、环境变量或凭据拼接。
 - 停点：Codex 复核通过前不推送；推送后由 Owner 在网页手动运行 `mode=pin`，不自动触发、不自动重试、不自动转入 build；新诊断存 `run-pin-3/`。下一次算成功需要：Mihomo 为 match；三个 manifest 的 lock 与 scan 都成功；正式 `THIRD-PARTY-RUST.txt` 真实生成并记录哈希，其中含两个 0BSD 包、归为 GPL-3.0-only 的 `steward-service-ipc`（附原 LICENSE 文本）、CDLA-Permissive-2.0 的包与全文；若进入两个 crate 的用例，分别记录真实结果。任一步失败都完整交回。
 
+## 第三次 pin 裁决摘要（2026-09-27，Codex）
+
+第三次 pin（run 36222801074，提交 4d881a9）的许可子项 PASS，整轮仍 FAIL，RC6 仍 `NOT_READY`。控制端编译完成；已运行 49 条用例，48 条通过、1 条失败：`tests/migration.rs` 的 `a_fresh_database_and_an_upgraded_one_have_the_same_schema`。`network_admin`、`probe_services`、`process`、`quota`、`secrets_events` 共 24 条集成用例没有运行；doc-tests 没有执行记录；服务端用例被跳过。失败原因：新库的 `control_meta` 建表文本（产品 `store.rs` 多行 `SCHEMA_V1`）与升级库的（测试夹具单行 `RC1_SCHEMA`）只差括号内侧排版，旧比较只折叠空白。裁决：
+
+- A1，只修测试比较：`tests/migration.rs` 新增局部函数 `normalize_sql`。引号外把连续空白折成一个空格，并去掉 `(` 之后、`)` 之前的空白；单引号字面量和双引号、反引号标识符里的内容（空白、括号、两个引号连写的转义）原样保留。仍比较完整的 `schema_rows` 并用 `assert_eq!`。直接回归用例覆盖：本次排版差异判为相同；多一列、CHECK 取值或条件不同、引号内 `'( x )'` 与 `'(x)'`、引号内连续空格、转义引号附近的差异都仍判为不同。不采用对整条 SQL 的全局替换；不改 `RC1_SCHEMA`、产品 `store.rs`、迁移或 `SCHEMA_VERSION`。
+- 工作流：控制端与服务端两条 `cargo test` 都加 `--no-fail-fast`（放在任何 `--` 之前）；`test_service` 加 `if: ${{ !cancelled() && steps.licenses.outcome == 'success' }}`，控制端失败不再让它跳过。保留两步真实退出码与整轮失败状态，不加 `continue-on-error`；build、宿主、核对与 candidate 上传的条件不变。`--no-fail-fast` 不能保证编译失败、取消或超时后得到全部结果。不改宿主测试、测试特性、超时、工具版本、许可扫描、锁生成或 `--locked`。
+- 接受第三次生成的许可汇总：可以含首方 crate，可以保留 CDLA 的上游 Markdown 排版，不去重 GPL 文本，不启用 `private.ignore`，不改模板或允许列表。汇总里有 424 行上游 CRLF，归档、复制、打包都保持原始字节。
+- 第三次 artifact 的平台摘要已由 Codex 用官方 API 核实与本地 ZIP 一致，Owner 无需再核对。
+- 停点：Codex 复核通过前不推送；推送后由 Owner 在网页手动运行 `mode=pin`，不自动触发、不自动重试、不转入 build；新诊断存 `run-pin-4/`。下一次算成功需要：Mihomo 为 match；三个锁与许可扫描成功，正式汇总及其哈希与要求的正文存在；控制端与服务端两个 `cargo test` 都退出 0，有完整的实际结果，没有本次遗留的失败，也没有因失败漏跑的目标。用例总数以实际日志为准。编译失败、取消、超时或其他未执行的情况逐项标明，任何失败都完整交回，不自行追加许可、忽略用例或改用产品修法。
+
 ## Global Constraints
 
 - 本轮只做 E54 构建闭环；不启动 Azure，不安装产品，不启停服务，不运行 Mihomo，不改 WFP/TUN/DNS/代理/路由，不做 E53、E55—E58。

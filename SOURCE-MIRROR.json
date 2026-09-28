@@ -43,7 +43,7 @@
  },
  "totals": {
   "files": 350,
-  "bytes": 10450868
+  "bytes": 10457152
  },
  "files": [
   {
@@ -598,8 +598,8 @@
   },
   {
    "path": "evidence/development/opus-e54-github-actions-task.md",
-   "bytes": 20077,
-   "sha256": "a4d0c6408263367ad7cd22d98a2956dbf443c11059eb6f36b14b06efbab2a937"
+   "bytes": 23083,
+   "sha256": "2e61b9d7a0e26311c3f260d48abb8836a49f5bbbd84072419b579d818d51b110"
   },
   {
    "path": "services/control-rs/Cargo.toml",
@@ -743,8 +743,8 @@
   },
   {
    "path": "services/control-rs/tests/migration.rs",
-   "bytes": 8822,
-   "sha256": "d597dd639ad74de0d55f3ade44ddd918a2e504af40e12d7e43a8afe151f917a4"
+   "bytes": 12100,
+   "sha256": "5a20e4c680ef7f94c480f59e0cd6cbcfb8e19cf0c26cba7d5deb939e078b1058"
   },
   {
    "path": "services/control-rs/tests/network_admin.rs",
@@ -1915,6 +1915,22 @@
      "path": "evidence/development/opus-e54-github-actions-task.md",
      "bytes": 20077,
      "sha256": "a4d0c6408263367ad7cd22d98a2956dbf443c11059eb6f36b14b06efbab2a937"
+    }
+   ]
+  },
+  {
+   "utc": "2026-09-28T03:04:26.971Z",
+   "reason": "2026-09-27 第三次 pin 裁决（e54-pin3-ruling-and-task.md）：migration.rs 改用 normalize_sql 比较建表文本（A1，只改测试）并加两条回归用例；施工单追加第三次 pin 裁决摘要",
+   "files": [
+    {
+     "path": "services/control-rs/tests/migration.rs",
+     "bytes": 12100,
+     "sha256": "5a20e4c680ef7f94c480f59e0cd6cbcfb8e19cf0c26cba7d5deb939e078b1058"
+    },
+    {
+     "path": "evidence/development/opus-e54-github-actions-task.md",
+     "bytes": 23083,
+     "sha256": "2e61b9d7a0e26311c3f260d48abb8836a49f5bbbd84072419b579d818d51b110"
     }
    ]
   }
