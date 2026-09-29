@@ -13,7 +13,8 @@ import {WARMUP_LOCK} from './locks.mjs';
  *
  * - 首方源码取构建提交里的全部已跟踪文件（读 git blob，不读工作区），含构建与安装脚本、四份 Cargo.lock 与改造后的 service-ipc。
  * - 第三方源码：Mihomo 固定提交的官方源码 ZIP（按已记录的 SHA-256 核对）；三份产品锁里全部 crates.io 包的原始 .crate（按锁里的 checksum 核对）；
- *   Mihomo go.sum 列出的 Go 模块 zip 与 go.mod（按 go.sum 的 h1 核对），按 GOPROXY 目录布局存放。
+ *   Mihomo go.sum 列出的 Go 模块 zip 与 go.mod（按 go.sum 的 h1 核对），按 GOPROXY 目录布局存放；
+ *   Mihomo 经 sing-tun 内嵌的 Wintun：官方 0.14.1 源码快照与官方发布件（都按固定 SHA-256 核对），并核对内嵌 DLL 与官方发布件逐字节相同。
  * - 缓存里没有才下载（HTTPS GET，固定 UA，不带身份）；每个文件先核对再原子写入缓存。--offline 或 E54_SOURCE_OFFLINE=1 时缺文件就失败。
  * - 归档用 store 方式、条目按字节序排序、时间固定，同样的输入得到同样的字节；SOURCE-MANIFEST.json 逐项写来源与哈希，不含时间戳。
  * - verify 只靠归档自身逐项复核来源与哈希，给了 --repo 时再对照构建提交核对首方文件齐全；缺失、多出、来源不明或哈希不符都失败。
@@ -26,6 +27,14 @@ export const MIHOMO = Object.freeze({
   bytes: 1761718,
   sha256: 'd26880078fae7755c7ee9ce718ef6de5806d76c8d289237ec926b6a2f35d69be',
 });
+export const WINTUN = Object.freeze({
+  version: '0.14.1',
+  commit: 'bfef136abfa1665c2592be09a7e383d646cdbe6e',
+  source: Object.freeze({url: 'https://git.zx2c4.com/wintun/snapshot/wintun-0.14.1.zip', bytes: 89609, sha256: 'f3b49fde8a67ffbdbc845de0472f0b7c87a0b4046a2f39d10f16488f851ca843'}),
+  release: Object.freeze({url: 'https://www.wintun.net/builds/wintun-0.14.1.zip', bytes: 750540, sha256: '07c256185d6ee3652e09fa55c0b673e2624b565e02c4b9091c79ca7d2f24ef51'}),
+  embedded_in: Object.freeze({module: 'github.com/metacubex/sing-tun', version: 'v0.4.22', directory: 'internal/wintun'}),
+  architectures: Object.freeze(['amd64', 'arm', 'arm64', 'x86']),
+});
 export const ARCHIVE_NAME = 'e54-corresponding-source.zip';
 export const RECORD_NAME = 'e54-corresponding-source.json';
 const ROOT = 'e54-corresponding-source';
@@ -33,12 +42,13 @@ const PRODUCT_LOCKS = ['services/control-rs/Cargo.lock', 'apps/desktop-host/vend
 const CRATES_IO = 'registry+https://github.com/rust-lang/crates.io-index';
 const USER_AGENT = 'e54-source-archive';
 const MIHOMO_ENTRY = `third-party/mihomo/source-${MIHOMO.commit}.zip`;
+const WINTUN_SOURCE_ENTRY = `third-party/wintun/wintun-${WINTUN.version}-source.zip`;
+const WINTUN_RELEASE_ENTRY = `third-party/wintun/wintun-${WINTUN.version}.zip`;
 export const NOT_INCLUDED = Object.freeze([
   {item: 'NSIS 安装器运行时与插件（安装包里的 uninstall.exe、$PLUGINSDIR 下的 System.dll、nsDialogs.dll、StartMenu.dll、modern-wizard.bmp）', reason: '由 tauri-cli 2.10.1 取得的 NSIS 打包进安装器，zlib/libpng 许可，不属于 GPL 作品；未随附源码'},
   {item: 'nsis_tauri_utils.dll（安装包 $PLUGINSDIR）', reason: 'tauri-cli 2.10.1 固定下载的 tauri-apps/nsis-tauri-utils 插件，MIT/Apache-2.0，不属于 GPL 作品；未随附源码'},
   {item: 'MicrosoftEdgeWebview2Setup.exe（安装包 $TEMP）', reason: 'Microsoft 的 WebView2 引导程序，按再分发条款随附，不是本作品的一部分；没有源码'},
-  {item: 'WebView2LoaderStatic.lib（crate webview2-com-sys 0.38.2 自带，msvc 目标下以 kind = "static" 链接进桌面宿主）', reason: 'Microsoft WebView2 SDK 的预编译静态库，没有源码；归档里只有 crate 自带的预编译原件'},
-  {item: 'wintun.dll（Go 模块 github.com/metacubex/sing-tun v0.4.22 自带，经 go:embed 嵌进 Mihomo 的 Windows 程序）', reason: 'WireGuard LLC 发布的预编译 Wintun 库；归档里只有模块包自带的预编译原件，Wintun 本身的源码未随附'},
+  {item: 'WebView2LoaderStatic.lib（crate webview2-com-sys 0.38.2 自带，msvc 目标下以 kind = "static" 链接进桌面宿主）', reason: 'Microsoft WebView2 SDK 的预编译静态库，没有源码；归档里只有 crate 自带的预编译原件。2026-09-28 Codex 裁决：这是公开分发的阻断缺口，要等权利依据或替换方案'},
   {item: '构建 Mihomo 官方程序所用的 Go 工具链与发布流程', reason: '随附的是官方发布程序，其构建流程在 Mihomo 源码的 .github 与 Makefile 里；本项目没有自行编译 Mihomo，也未验证可逐字节重现'},
   {item: 'Rust 工具链、tauri-cli、cargo-about、Node、Windows PowerShell', reason: '通用、未修改的构建工具与系统库；版本写在 BUILD.md'},
   {item: 'NSIS 预热工程 tools/release/nsis-warmup 的依赖 crate', reason: '预热只用于让 tauri-cli 取得 NSIS，不进安装包；它的锁在首方源码里，依赖源码未随附'},
@@ -204,6 +214,29 @@ const verifyCrate = (crate) => (bytes) => sha256(bytes) === crate.checksum ? nul
 const verifyGoZip = (item) => (bytes) => { const actual = hash1(zipFiles(bytes)); return actual === item.hash ? null : `${actual} is not the go.sum hash ${item.hash}`; };
 const verifyGoMod = (item) => (bytes) => { const actual = hash1([{name: 'go.mod', bytes}]); return actual === item.hash ? null : `${actual} is not the go.sum hash ${item.hash}`; };
 const verifyMihomo = (bytes) => bytes.length === MIHOMO.bytes && sha256(bytes) === MIHOMO.sha256 ? null : `bytes=${bytes.length} sha256=${sha256(bytes)} is not the recorded Mihomo source archive`;
+const verifyFixed = (expected, label) => (bytes) => bytes.length === expected.bytes && sha256(bytes) === expected.sha256 ? null : `bytes=${bytes.length} sha256=${sha256(bytes)} is not the recorded ${label}`;
+const zipComment = (bytes) => {
+  let end = bytes.length - 22;
+  while (end >= 0 && bytes.readUInt32LE(end) !== 0x06054b50) end -= 1;
+  return end < 0 ? '' : bytes.toString('utf8', end + 22, end + 22 + bytes.readUInt16LE(end + 20));
+};
+
+/** Wintun 身份：源码快照由官方标签提交生成（git archive 把提交号写进 ZIP 注释），sing-tun 内嵌的每个架构的 wintun.dll 与官方发布件逐字节相同。 */
+export function wintunIdentity(sourceZip, releaseZip, singTunZip) {
+  const problems = [];
+  if (zipComment(sourceZip) !== WINTUN.commit) problems.push(`source snapshot comment ${JSON.stringify(zipComment(sourceZip))} is not commit ${WINTUN.commit}`);
+  const release = zipFiles(releaseZip);
+  const embedded = zipFiles(singTunZip);
+  const prefix = `${WINTUN.embedded_in.module}@${WINTUN.embedded_in.version}/${WINTUN.embedded_in.directory}/`;
+  const architectures = WINTUN.architectures.map((arch) => {
+    const official = release.find((file) => file.name === `wintun/bin/${arch}/wintun.dll`);
+    const inModule = embedded.find((file) => file.name === `${prefix}${arch}/wintun.dll`);
+    const identical = Boolean(official && inModule && Buffer.compare(official.bytes, inModule.bytes) === 0);
+    if (!identical) problems.push(`${arch}/wintun.dll embedded in ${WINTUN.embedded_in.module} ${WINTUN.embedded_in.version} is not the official ${WINTUN.version} release file`);
+    return {arch, sha256: inModule ? sha256(inModule.bytes) : null, identical_to_release: identical};
+  });
+  return {problems, architectures};
+}
 
 async function fetchVerified({url, cacheFile, check, offline}) {
   if (existsSync(cacheFile)) {
@@ -283,6 +316,7 @@ export function buildMarkdown(manifest) {
 - \`${MIHOMO_ENTRY}\`：${manifest.mihomo.repository} 标签 ${manifest.mihomo.tag}、提交 \`${manifest.mihomo.commit}\` 的官方源码 ZIP（${manifest.mihomo.bytes} 字节，SHA-256 \`${manifest.mihomo.sha256}\`，取自 ${manifest.mihomo.url}）。
 - \`third-party/rust/crates/\`：三份产品 \`Cargo.lock\` 里全部 crates.io 包的原始 \`.crate\`（${manifest.counts.crates} 个），SHA-256 等于锁里的 \`checksum\`。
 - \`third-party/go/\`：Mihomo \`go.sum\` 列出的模块 zip（${manifest.counts.go_zips} 个）与 \`go.mod\`（${manifest.counts.go_mods} 个），按 GOPROXY 目录布局存放，哈希等于 \`go.sum\` 的 \`h1\`。
+- \`${WINTUN_SOURCE_ENTRY}\` 与 \`${WINTUN_RELEASE_ENTRY}\`：Mihomo 经 \`${manifest.wintun.embedded_in.module} ${manifest.wintun.embedded_in.version}\` 内嵌的 Wintun ${manifest.wintun.version}。前者是官方标签 ${manifest.wintun.version}（提交 \`${manifest.wintun.commit}\`）的源码快照（${manifest.wintun.source.bytes} 字节，SHA-256 \`${manifest.wintun.source.sha256}\`，取自 ${manifest.wintun.source.url}），源码许可见其中的 \`COPYING\`。后者是官方发布件（${manifest.wintun.release.bytes} 字节，SHA-256 \`${manifest.wintun.release.sha256}\`，取自 ${manifest.wintun.release.url}），附预编译件许可。内嵌的 ${manifest.wintun.embedded.map((entry) => entry.arch).join('、')} 四个 \`wintun.dll\` 与官方发布件逐字节相同。
 
 四份锁：
 
@@ -332,10 +366,18 @@ export async function build({repo, rev, out, cache, offline}) {
     const bytes = await fetchVerified({url: `https://proxy.golang.org/${escapeGo(item.module)}/@v/${escapeGo(item.version)}.${item.ext}`, cacheFile, check: item.ext === 'zip' ? verifyGoZip(item) : verifyGoMod(item), offline});
     return {path: entry, bytes: bytes.length, sha256: sha256(bytes), file: cacheFile, origin: {kind: item.ext === 'zip' ? 'go-module-zip' : 'go-mod', module: item.module, version: item.version, go_sum: item.hash}};
   }));
+  const wintunSource = await fetchVerified({url: WINTUN.source.url, cacheFile: path.join(cache, 'wintun', path.basename(WINTUN_SOURCE_ENTRY)), check: verifyFixed(WINTUN.source, 'Wintun source snapshot'), offline});
+  const wintunRelease = await fetchVerified({url: WINTUN.release.url, cacheFile: path.join(cache, 'wintun', path.basename(WINTUN_RELEASE_ENTRY)), check: verifyFixed(WINTUN.release, 'Wintun release archive'), offline});
+  const singTun = third.find((entry) => entry.path === goEntry(WINTUN.embedded_in.module, WINTUN.embedded_in.version, 'zip'));
+  if (!singTun) throw new Error(`${WINTUN.embedded_in.module} ${WINTUN.embedded_in.version} is not in the Mihomo go.sum`);
+  const identity = wintunIdentity(wintunSource, wintunRelease, readFileSync(singTun.file));
+  if (identity.problems.length) throw new Error(`Wintun identity: ${identity.problems.join('; ')}`);
   const mihomoItem = releaseInputs.items.find((item) => item.id === 'mihomo');
   const entries = [
     ...files.map((file) => ({path: `first-party/${file.path}`, bytes: file.bytes.length, sha256: sha256(file.bytes), data: file.bytes, origin: {kind: 'git-blob', blob: file.blob}})),
     {path: MIHOMO_ENTRY, bytes: mihomoZip.length, sha256: sha256(mihomoZip), data: mihomoZip, origin: {kind: 'mihomo-source', url: MIHOMO.url, commit: MIHOMO.commit}},
+    {path: WINTUN_SOURCE_ENTRY, bytes: wintunSource.length, sha256: sha256(wintunSource), data: wintunSource, origin: {kind: 'wintun-source', url: WINTUN.source.url, commit: WINTUN.commit}},
+    {path: WINTUN_RELEASE_ENTRY, bytes: wintunRelease.length, sha256: sha256(wintunRelease), data: wintunRelease, origin: {kind: 'wintun-release', url: WINTUN.release.url}},
     ...third,
   ].sort((a, b) => byBytes(a.path, b.path));
   const manifest = {
@@ -343,9 +385,10 @@ export async function build({repo, rev, out, cache, offline}) {
     mirror_commit: commit,
     mihomo: {...MIHOMO},
     mihomo_binary: {target: mihomoItem.target, sha256: mihomoItem.sha256},
+    wintun: {...WINTUN, embedded: identity.architectures},
     locks,
     toolchain: workflowToolchain(files),
-    counts: {first_party: files.length, crates: crates.length, go_zips: sums.zips.length, go_mods: sums.mods.length},
+    counts: {first_party: files.length, crates: crates.length, go_zips: sums.zips.length, go_mods: sums.mods.length, wintun: 2},
     not_included: NOT_INCLUDED,
     entries: null,
   };
@@ -449,7 +492,22 @@ export function verify({zipPath, repo = null, rev = null}) {
     if (manifest.counts.go_zips !== sums.zips.length || manifest.counts.go_mods !== sums.mods.length) problem('COUNTS', 'go');
   }
   if (manifest.counts.crates !== crates.length || manifest.counts.first_party !== firstParty.length) problem('COUNTS', 'crates/first-party');
-  for (const entry of manifest.entries.filter((item) => item.path.startsWith('third-party/') && item.path !== MIHOMO_ENTRY)) {
+  const wintunRecord = {...WINTUN};
+  if (JSON.stringify({...manifest.wintun, embedded: undefined}) !== JSON.stringify(wintunRecord)) problem('WINTUN_RECORD', 'manifest.wintun');
+  const wintunSource = content.get(WINTUN_SOURCE_ENTRY);
+  const wintunRelease = content.get(WINTUN_RELEASE_ENTRY);
+  const singTunZip = content.get(goEntry(WINTUN.embedded_in.module, WINTUN.embedded_in.version, 'zip'));
+  if (!wintunSource) problem('MISSING', WINTUN_SOURCE_ENTRY);
+  else if (verifyFixed(WINTUN.source, 'Wintun source snapshot')(wintunSource)) problem('WINTUN_SOURCE', verifyFixed(WINTUN.source, 'Wintun source snapshot')(wintunSource));
+  if (!wintunRelease) problem('MISSING', WINTUN_RELEASE_ENTRY);
+  else if (verifyFixed(WINTUN.release, 'Wintun release archive')(wintunRelease)) problem('WINTUN_RELEASE', verifyFixed(WINTUN.release, 'Wintun release archive')(wintunRelease));
+  if (wintunSource && wintunRelease && singTunZip) {
+    const identity = wintunIdentity(wintunSource, wintunRelease, singTunZip);
+    for (const line of identity.problems) problem('WINTUN_IDENTITY', line);
+    if (JSON.stringify(identity.architectures) !== JSON.stringify(manifest.wintun?.embedded)) problem('WINTUN_RECORD', 'manifest.wintun.embedded');
+  } else if (!singTunZip) problem('MISSING', goEntry(WINTUN.embedded_in.module, WINTUN.embedded_in.version, 'zip'));
+  if (manifest.counts.wintun !== 2) problem('COUNTS', 'wintun');
+  for (const entry of manifest.entries.filter((item) => item.path.startsWith('third-party/') && ![MIHOMO_ENTRY, WINTUN_SOURCE_ENTRY, WINTUN_RELEASE_ENTRY].includes(item.path))) {
     const expected = expectedThird.get(entry.path);
     if (!expected) { problem('UNKNOWN_ORIGIN', entry.path); continue; }
     if (entry.origin?.kind !== expected.kind) problem('ORIGIN_KIND', entry.path);

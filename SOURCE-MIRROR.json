@@ -43,7 +43,7 @@
  },
  "totals": {
   "files": 353,
-  "bytes": 10657051
+  "bytes": 10657630
  },
  "files": [
   {
@@ -558,8 +558,8 @@
   },
   {
    "path": "evidence/delivery/build-packaging.md",
-   "bytes": 10698,
-   "sha256": "6182d3f65aa71422c02d66f66d28db43c06daeeeb6e62c76c5a97236973fdbfe"
+   "bytes": 10877,
+   "sha256": "6e08afbfa00ad92bd074d2e315a9fa8a8a5a1026332447225579129035bbf618"
   },
   {
    "path": "evidence/delivery/portable-data.md",
@@ -1553,8 +1553,8 @@
   },
   {
    "path": "tools/release/NOTICE.md",
-   "bytes": 4075,
-   "sha256": "3b89fedf25b34ed1ccea7597c9517ea87904cddb2056614bcb3f09e39acb5ac5"
+   "bytes": 4475,
+   "sha256": "aad240c22814dc46bb552e0e7534d3202ef5286b6770dcbb81c46bb7e1a3c515"
   },
   {
    "path": "tools/release/assemble.mjs",
@@ -2037,6 +2037,22 @@
      "path": "evidence/delivery/release-inputs.md",
      "bytes": 9261,
      "sha256": "56230d605eef3f848ee72ee36f933d3f41e94690d60be598dfda08c27239d05b"
+    }
+   ]
+  },
+  {
+   "utc": "2026-09-29T01:26:52.788Z",
+   "reason": "2026-09-28 对应源码第 2 步整改（Codex 裁决 NEEDS_REVISION 后）：NOTICE 不再称源码 ZIP 为完整对应源码，写明 WebView2LoaderStatic.lib 为未解决缺口、解决前不公开分发，并列出已随附的 Wintun 0.14.1 源码与发布件；build-packaging.md 第 4 节第 9 步同步归档内容与缺口",
+   "files": [
+    {
+     "path": "tools/release/NOTICE.md",
+     "bytes": 4475,
+     "sha256": "aad240c22814dc46bb552e0e7534d3202ef5286b6770dcbb81c46bb7e1a3c515"
+    },
+    {
+     "path": "evidence/delivery/build-packaging.md",
+     "bytes": 10877,
+     "sha256": "6e08afbfa00ad92bd074d2e315a9fa8a8a5a1026332447225579129035bbf618"
     }
    ]
   }

@@ -16,7 +16,7 @@
 
 ## 对应源码
 
-本安装包的完整对应源码是 `e54-corresponding-source.zip`，与安装包放在同一个候选产物（GitHub Actions 产物 `e54-candidate`）里提供。取得步骤：
+本安装包的对应源码归档是 `e54-corresponding-source.zip`，与安装包放在同一个候选产物（GitHub Actions 产物 `e54-candidate`）里提供。它**还不是完整的对应源码**，缺口见本节末尾；缺口解决之前，本发布候选不公开分发。取得步骤：
 
 1. 在取得本安装包的同一处，下载同一次构建运行的 `e54-candidate` 产物，并解压。
 2. 取出 `build/source/e54-corresponding-source.zip`，核对它的 SHA-256 与同目录 `build/source/e54-corresponding-source.json` 里 `archive.sha256` 一致。
@@ -29,8 +29,9 @@
 
 - 本项目在构建提交的全部源码与构建、安装脚本，包括改造后的 service-ipc 和四份 `Cargo.lock`；
 - Mihomo 固定提交的官方源码归档；
-- 构建所用的全部 Rust crate 原始包，以及 Mihomo 的 Go 模块包。
+- 构建所用的全部 Rust crate 原始包，以及 Mihomo 的 Go 模块包；
+- Mihomo 经 Go 模块 `sing-tun` 内嵌的 Wintun 0.14.1：官方标签源码快照（提交 `bfef136abfa1665c2592be09a7e383d646cdbe6e`，源码许可见其中的 `COPYING`）和附预编译件许可的官方发布件。内嵌的 `wintun.dll` 与官方发布件逐字节相同。
 
-各组件的许可与版权声明都原样保留。安装器自带的 NSIS 运行时与插件、WebView2 引导程序不属于 GPL 作品，不随附源码。另有两个上游预编译组件没有源码：桌面宿主静态链接的微软 WebView2 加载器库（`WebView2LoaderStatic.lib`，来自 crate `webview2-com-sys`），以及 Mihomo 程序内嵌的 Wintun 库（`wintun.dll`，来自 Go 模块 `sing-tun`）；源码 ZIP 里只有它们的预编译原件。以上都已在 `SOURCE-MANIFEST.json` 的 `not_included` 里列明。
+各组件的许可与版权声明都原样保留。安装器自带的 NSIS 运行时与插件、WebView2 引导程序不属于 GPL 作品，不随附源码，已在 `SOURCE-MANIFEST.json` 的 `not_included` 里列明。
 
-在候选产物可以公开取得之前，本发布候选不公开分发。
+**未解决的缺口**：桌面宿主在 MSVC 目标下静态链接了微软 WebView2 加载器库（`WebView2LoaderStatic.lib`，来自 crate `webview2-com-sys`）。它没有源码，源码 ZIP 里只有 crate 自带的预编译原件。这个组合是否被允许，目前没有权利依据。在这一缺口有权利依据或替换方案并经验证之前，本发布候选不公开分发。
