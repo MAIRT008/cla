@@ -3,7 +3,7 @@
  "product": {
   "name": "AI Environmental Steward",
   "identifier": "local.ai-environmental-steward.desktop",
-  "version": "0.1.0"
+  "version": "0.1.1"
  },
  "staging_root": "build/release-staging",
  "frontend": {
@@ -28,7 +28,7 @@
   {"id": "license-js-yaml", "class": "source_license", "source": "vendor/deps/js-yaml-4.3.0/LICENSE", "target": "licenses/js-yaml-LICENSE.txt", "sha256": "a07bc24468b9654ce76a547d47a2db282d07733b715db4c73a98bd63961f9550", "origin": "js-yaml 4.3.0（npm，CVR pnpm-lock 锁定版本；vendor/deps/js-yaml-4.3.0/SOURCE.json），随页面装入", "required": true},
   {"id": "notice", "class": "source_license", "source": "tools/release/NOTICE.md", "target": "licenses/NOTICE.md", "sha256": null, "origin": "本仓库：组件、版本、许可与对应源码取得方式", "required": true},
   {"id": "rust-third-party", "class": "source_license", "source": "build/inputs/THIRD-PARTY-RUST.txt", "target": "licenses/THIRD-PARTY-RUST.txt", "built": true, "sha256": null, "origin": "构建机按三份已入库 Cargo.lock 用 cargo-about（--locked）生成的 Rust 依赖许可汇总", "required": true},
-  {"id": "lock-host", "class": "build_input", "source": "apps/desktop-host/src-tauri/Cargo.lock", "target": null, "sha256": "c06d1d6172862fbbfe5da8ce10d25f759d7268b66219c948f676e1f21105043f", "origin": "入库的固定锁：E54 第三次 pin（run 36222801074）在 runner 上生成，2026-09-27 第四次 pin 裁决批准为基线；编译、测试与许可扫描都用 --locked，不重新生成；哈希记进 release-manifest.json", "required": true},
+  {"id": "lock-host", "class": "build_input", "source": "apps/desktop-host/src-tauri/Cargo.lock", "target": null, "sha256": "dbb2c9beaa04ab886d7663bf5ddc70d08d5bd9b705f6eb7cae407e0fa95d8eac", "origin": "入库的固定锁：E54 第三次 pin（run 36222801074）在 runner 上生成，2026-09-27 第四次 pin 裁决批准为基线；2026-09-29 为 E55 的 0.1.1 试验候选只把本包 ai-steward-desktop-host 的版本行改为 0.1.1，依赖项不变；编译、测试与许可扫描都用 --locked，不重新生成；哈希记进 release-manifest.json", "required": true},
   {"id": "lock-control", "class": "build_input", "source": "services/control-rs/Cargo.lock", "target": null, "sha256": "7e1457bd8962f5d522605e3e75dc064ec1a0ff82eda49a3a5f9161fe5ee9182a", "origin": "同上", "required": true},
   {"id": "lock-service", "class": "build_input", "source": "apps/desktop-host/vendor/service-ipc/Cargo.lock", "target": null, "sha256": "d4da8313b7029febcc381a175f79d71923f5a3d94ee95af441e64b57978500bc", "origin": "同上", "required": true},
   {"id": "rustc", "class": "build_tool", "required": true, "probe": ["rustc", "--version"], "note": "≥ 1.85；复用决策记 1.95"},

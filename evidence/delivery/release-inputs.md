@@ -18,7 +18,7 @@
 | license-js-yaml | 许可与对应源码材料 | `vendor/deps/js-yaml-4.3.0/LICENSE` → `licenses/js-yaml-LICENSE.txt` | 有 | 固定 SHA-256 a07bc24468b9… | （本身是许可材料） | js-yaml 4.3.0（npm，CVR pnpm-lock 锁定版本；vendor/deps/js-yaml-4.3.0/SOURCE.json），随页面装入 |
 | notice | 许可与对应源码材料 | `tools/release/NOTICE.md` → `licenses/NOTICE.md` | 有 | 装配时记录 SHA-256 | （本身是许可材料） | 本仓库：组件、版本、许可与对应源码取得方式 |
 | rust-third-party | 许可与对应源码材料 | `build/inputs/THIRD-PARTY-RUST.txt` → `licenses/THIRD-PARTY-RUST.txt` | MISSING | 装配时记录 SHA-256 | （本身是许可材料） | 构建机按三份已入库 Cargo.lock 用 cargo-about（--locked）生成的 Rust 依赖许可汇总 |
-| lock-host | 构建输入（只记哈希） | `apps/desktop-host/src-tauri/Cargo.lock` | 有 | 固定 SHA-256 c06d1d617286… | — | 入库的固定锁：E54 第三次 pin（run 36222801074）在 runner 上生成，2026-09-27 第四次 pin 裁决批准为基线；编译、测试与许可扫描都用 --locked，不重新生成；哈希记进 release-manifest.json |
+| lock-host | 构建输入（只记哈希） | `apps/desktop-host/src-tauri/Cargo.lock` | 有 | 固定 SHA-256 dbb2c9beaa04… | — | 入库的固定锁：E54 第三次 pin（run 36222801074）在 runner 上生成，2026-09-27 第四次 pin 裁决批准为基线；2026-09-29 为 E55 的 0.1.1 试验候选只把本包版本行改为 0.1.1，依赖项不变；编译、测试与许可扫描都用 --locked，不重新生成；哈希记进 release-manifest.json |
 | lock-control | 构建输入（只记哈希） | `services/control-rs/Cargo.lock` | 有 | 固定 SHA-256 7e1457bd8962… | — | 同上 |
 | lock-service | 构建输入（只记哈希） | `apps/desktop-host/vendor/service-ipc/Cargo.lock` | 有 | 固定 SHA-256 d4da8313b702… | — | 同上 |
 | rustc | 构建机工具 | — | TOOL_MISSING | 探测 rustc --version | — | ≥ 1.85；复用决策记 1.95 |

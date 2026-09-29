@@ -77,7 +77,7 @@ test('RC6 R01 发布检查在本机缺件时安全输出结构化 NOT_READY，�
   const locks = {
     'lock-control': ['services/control-rs/Cargo.lock', '7e1457bd8962f5d522605e3e75dc064ec1a0ff82eda49a3a5f9161fe5ee9182a'],
     'lock-service': ['apps/desktop-host/vendor/service-ipc/Cargo.lock', 'd4da8313b7029febcc381a175f79d71923f5a3d94ee95af441e64b57978500bc'],
-    'lock-host': ['apps/desktop-host/src-tauri/Cargo.lock', 'c06d1d6172862fbbfe5da8ce10d25f759d7268b66219c948f676e1f21105043f'],
+    'lock-host': ['apps/desktop-host/src-tauri/Cargo.lock', 'dbb2c9beaa04ab886d7663bf5ddc70d08d5bd9b705f6eb7cae407e0fa95d8eac'],
   };
   for (const [id, [source, digest]] of Object.entries(locks)) {
     const item = inputs.items.find((entry) => entry.id === id);

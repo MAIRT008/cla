@@ -43,7 +43,7 @@
  },
  "totals": {
   "files": 353,
-  "bytes": 10657442
+  "bytes": 10657660
  },
  "files": [
   {
@@ -249,12 +249,12 @@
   {
    "path": "apps/desktop-host/src-tauri/Cargo.lock",
    "bytes": 134933,
-   "sha256": "c06d1d6172862fbbfe5da8ce10d25f759d7268b66219c948f676e1f21105043f"
+   "sha256": "dbb2c9beaa04ab886d7663bf5ddc70d08d5bd9b705f6eb7cae407e0fa95d8eac"
   },
   {
    "path": "apps/desktop-host/src-tauri/Cargo.toml",
    "bytes": 2530,
-   "sha256": "e7aa8b1c9c8b3b2b10851657e43783141b1dc799fda0bd528d774fb9f6a8dd19"
+   "sha256": "3ba664cda9f9f743b2f9608b5ee1d508c7748f5a3b9234a345c6bd0fe9ac6437"
   },
   {
    "path": "apps/desktop-host/src-tauri/build.rs",
@@ -344,7 +344,7 @@
   {
    "path": "apps/desktop-host/src-tauri/tauri.conf.json",
    "bytes": 2807,
-   "sha256": "632c26626e8b95070bc9787d2d4ea781d7509e8d6e82eab4ade0471483b51304"
+   "sha256": "110c57257ae4c54c1778ce2489b624cd8900549d1ff12728033f938edd0ec219"
   },
   {
    "path": "apps/desktop-host/vendor/service-ipc/Cargo.lock",
@@ -573,8 +573,8 @@
   },
   {
    "path": "evidence/delivery/release-inputs.md",
-   "bytes": 9256,
-   "sha256": "cd562e8cc9009fd6da515f8272659d8ee679db2d2a4986ba148ecfaf695d5ee7"
+   "bytes": 9351,
+   "sha256": "e70d335b91505726fe3967df9219202c1166303efc58faeee9b1a3c91725cc30"
   },
   {
    "path": "evidence/delivery/release-readiness.json",
@@ -1334,7 +1334,7 @@
   {
    "path": "tests/delivery/release-candidate.test.mjs",
    "bytes": 64050,
-   "sha256": "a7bc83fced671a3ba00282875b88765a985951ec0ac1c197125f419bd925f8e7"
+   "sha256": "b5141d5f666d97e9a8d0601ee17eb85cfa9185dc014b66555aed9c09e288907e"
   },
   {
    "path": "tests/delivery/run-acceptance.mjs",
@@ -1593,8 +1593,8 @@
   },
   {
    "path": "tools/release/release-inputs.json",
-   "bytes": 8191,
-   "sha256": "54dc8c2a1e4d37ef2d0637771342a5c97280af943502bcdfb6959d8fcc04aa60"
+   "bytes": 8314,
+   "sha256": "19581598049adefb19632d4fc718b2a77c2aa8527b5fcaee8c73eec5aa532ca1"
   },
   {
    "path": "tools/release/release.mjs",
@@ -1825,7 +1825,7 @@
     "path": "tests/delivery/release-candidate.test.mjs",
     "pattern": "pem-private-key",
     "reason": "日志收集器脱敏用例的合成输入：PEM 头尾之间只有 4 个字符 MIIB，不是可用私钥",
-    "sha256": "a7bc83fced671a3ba00282875b88765a985951ec0ac1c197125f419bd925f8e7"
+    "sha256": "b5141d5f666d97e9a8d0601ee17eb85cfa9185dc014b66555aed9c09e288907e"
    },
    {
     "path": "services/control-rs/tests/ai.rs",
@@ -2074,6 +2074,42 @@
      "path": "evidence/delivery/release-inputs.md",
      "bytes": 9256,
      "sha256": "cd562e8cc9009fd6da515f8272659d8ee679db2d2a4986ba148ecfaf695d5ee7"
+    }
+   ]
+  },
+  {
+   "utc": "2026-09-29T12:45:35.218Z",
+   "reason": "2026-09-29 E55 的 0.1.1 试验候选（不改产品行为）：宿主 Cargo 包版本、tauri.conf.json 与 release-inputs.json 产品版本同步为 0.1.1；宿主 Cargo.lock 只改本包版本一行，锁哈希 c06d1d61… → dbb2c9be…，同步 release-inputs.json、R01 与 release-inputs.md；其余三份锁不变",
+   "files": [
+    {
+     "path": "apps/desktop-host/src-tauri/Cargo.toml",
+     "bytes": 2530,
+     "sha256": "3ba664cda9f9f743b2f9608b5ee1d508c7748f5a3b9234a345c6bd0fe9ac6437"
+    },
+    {
+     "path": "apps/desktop-host/src-tauri/tauri.conf.json",
+     "bytes": 2807,
+     "sha256": "110c57257ae4c54c1778ce2489b624cd8900549d1ff12728033f938edd0ec219"
+    },
+    {
+     "path": "apps/desktop-host/src-tauri/Cargo.lock",
+     "bytes": 134933,
+     "sha256": "dbb2c9beaa04ab886d7663bf5ddc70d08d5bd9b705f6eb7cae407e0fa95d8eac"
+    },
+    {
+     "path": "tools/release/release-inputs.json",
+     "bytes": 8314,
+     "sha256": "19581598049adefb19632d4fc718b2a77c2aa8527b5fcaee8c73eec5aa532ca1"
+    },
+    {
+     "path": "tests/delivery/release-candidate.test.mjs",
+     "bytes": 64050,
+     "sha256": "b5141d5f666d97e9a8d0601ee17eb85cfa9185dc014b66555aed9c09e288907e"
+    },
+    {
+     "path": "evidence/delivery/release-inputs.md",
+     "bytes": 9351,
+     "sha256": "e70d335b91505726fe3967df9219202c1166303efc58faeee9b1a3c91725cc30"
     }
    ]
   }

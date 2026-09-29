@@ -1,6 +1,6 @@
 [package]
 name = "ai-steward-desktop-host"
-version = "0.1.0"
+version = "0.1.1"
 description = "桌面宿主：受限原生桥、本地授权，以及经产品网络服务执行的受管网络命令"
 edition = "2021"
 license = "GPL-3.0-only"
