@@ -48,7 +48,7 @@ export const NOT_INCLUDED = Object.freeze([
   {item: 'NSIS 安装器运行时与插件（安装包里的 uninstall.exe、$PLUGINSDIR 下的 System.dll、nsDialogs.dll、StartMenu.dll、modern-wizard.bmp）', reason: '由 tauri-cli 2.10.1 取得的 NSIS 打包进安装器，zlib/libpng 许可，不属于 GPL 作品；未随附源码'},
   {item: 'nsis_tauri_utils.dll（安装包 $PLUGINSDIR）', reason: 'tauri-cli 2.10.1 固定下载的 tauri-apps/nsis-tauri-utils 插件，MIT/Apache-2.0，不属于 GPL 作品；未随附源码'},
   {item: 'MicrosoftEdgeWebview2Setup.exe（安装包 $TEMP）', reason: 'Microsoft 的 WebView2 引导程序，按再分发条款随附，不是本作品的一部分；没有源码'},
-  {item: 'WebView2LoaderStatic.lib（crate webview2-com-sys 0.38.2 自带，msvc 目标下以 kind = "static" 链接进桌面宿主）', reason: 'Microsoft WebView2 SDK 的预编译静态库，没有源码；归档里只有 crate 自带的预编译原件。2026-09-28 Codex 裁决：这是公开分发的阻断缺口，要等权利依据或替换方案'},
+  {item: 'WebView2LoaderStatic.lib（crate webview2-com-sys 0.38.2 自带，msvc 目标下以 kind = "static" 链接进桌面宿主）', reason: 'Microsoft WebView2 SDK 的预编译静态库，没有源码；归档里只有 crate 自带的预编译原件'},
   {item: '构建 Mihomo 官方程序所用的 Go 工具链与发布流程', reason: '随附的是官方发布程序，其构建流程在 Mihomo 源码的 .github 与 Makefile 里；本项目没有自行编译 Mihomo，也未验证可逐字节重现'},
   {item: 'Rust 工具链、tauri-cli、cargo-about、Node、Windows PowerShell', reason: '通用、未修改的构建工具与系统库；版本写在 BUILD.md'},
   {item: 'NSIS 预热工程 tools/release/nsis-warmup 的依赖 crate', reason: '预热只用于让 tauri-cli 取得 NSIS，不进安装包；它的锁在首方源码里，依赖源码未随附'},

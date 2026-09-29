@@ -50,7 +50,7 @@
 6. `tauri-build` 会核对 `frontendDist` 与资源存在，所以宿主的 `cargo check --features tauri`（E01）也要在 `assemble` 之后跑。
 7. 日志：每步的命令、退出码与输出都在 `build\logs\<时间>-<进程号>\`，失败也保留，不覆盖上一轮。连日志目录都建不了时，脚本提示先 `Start-Transcript` 保存控制台输出。
 8. 产出的 NSIS 安装包要记录文件清单与哈希，与 `release-manifest.json` 对照（E54）。代码签名与更新渠道没有配置（E58）。
-9. 对应源码：同一次构建用 E54 镜像的 `node tools/release/e54/corresponding-source.mjs build --commit <构建提交> --out build/source --cache build/source-cache` 生成 `e54-corresponding-source.zip` 与 `e54-corresponding-source.json`，再用 `verify` 逐项核对。归档里有构建提交的全部首方文件、Mihomo 固定提交的源码、三份产品锁里的全部 crate 原始包、Mihomo 的 Go 模块包，以及 Mihomo 内嵌的 Wintun 0.14.1 官方源码与发布件。它与安装包放进同一个候选产物，取得方法写在 `NOTICE.md`。桌面宿主静态链接的微软 `WebView2LoaderStatic.lib` 没有源码，这个缺口解决前不公开分发。
+9. 对应源码：同一次构建用 E54 镜像的 `node tools/release/e54/corresponding-source.mjs build --commit <构建提交> --out build/source --cache build/source-cache` 生成 `e54-corresponding-source.zip` 与 `e54-corresponding-source.json`，再用 `verify` 逐项核对。归档里有构建提交的全部首方文件、Mihomo 固定提交的源码、三份产品锁里的全部 crate 原始包、Mihomo 的 Go 模块包，以及 Mihomo 内嵌的 Wintun 0.14.1 官方源码与发布件。它与安装包放进同一个候选产物，取得方法写在 `NOTICE.md`。桌面宿主静态链接的微软 `WebView2LoaderStatic.lib` 没有源码，归档里只有它的预编译原件。
 
 装配规则：`assemble` 只按清单复制到临时目录，逐个复核哈希，`release-manifest.json` 最后写，全部成功才改名成 `build\release-staging\`。缺件、哈希不符、未固定哈希、目标重名、越界路径、许可不全、中途失败都非零退出，不留正式目录；输出目录已存在就拒绝，从不覆盖。
 

@@ -16,7 +16,7 @@
 
 ## 对应源码
 
-本安装包的对应源码归档是 `e54-corresponding-source.zip`，与安装包放在同一个候选产物（GitHub Actions 产物 `e54-candidate`）里提供。它**还不是完整的对应源码**，缺口见本节末尾；缺口解决之前，本发布候选不公开分发。取得步骤：
+本安装包的对应源码归档是 `e54-corresponding-source.zip`，与安装包放在同一个候选产物（GitHub Actions 产物 `e54-candidate`）里提供。其中有一个组件没有源码，见本节末尾。取得步骤：
 
 1. 在取得本安装包的同一处，下载同一次构建运行的 `e54-candidate` 产物，并解压。
 2. 取出 `build/source/e54-corresponding-source.zip`，核对它的 SHA-256 与同目录 `build/source/e54-corresponding-source.json` 里 `archive.sha256` 一致。
@@ -34,4 +34,4 @@
 
 各组件的许可与版权声明都原样保留。安装器自带的 NSIS 运行时与插件、WebView2 引导程序不属于 GPL 作品，不随附源码，已在 `SOURCE-MANIFEST.json` 的 `not_included` 里列明。
 
-**未解决的缺口**：桌面宿主在 MSVC 目标下静态链接了微软 WebView2 加载器库（`WebView2LoaderStatic.lib`，来自 crate `webview2-com-sys`）。它没有源码，源码 ZIP 里只有 crate 自带的预编译原件。这个组合是否被允许，目前没有权利依据。在这一缺口有权利依据或替换方案并经验证之前，本发布候选不公开分发。
+**没有源码的组件**：桌面宿主在 MSVC 目标下静态链接了微软 WebView2 加载器库（`WebView2LoaderStatic.lib`，来自 crate `webview2-com-sys`）。它没有源码，源码 ZIP 里只有 crate 自带的预编译原件，也在 `not_included` 里列明。

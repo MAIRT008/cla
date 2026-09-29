@@ -43,7 +43,7 @@
  },
  "totals": {
   "files": 353,
-  "bytes": 10657630
+  "bytes": 10657442
  },
  "files": [
   {
@@ -559,7 +559,7 @@
   {
    "path": "evidence/delivery/build-packaging.md",
    "bytes": 10877,
-   "sha256": "6e08afbfa00ad92bd074d2e315a9fa8a8a5a1026332447225579129035bbf618"
+   "sha256": "ec3696906ecd4827608200d7f66fa4d5953966a4b50697ea626bdea1d86dd579"
   },
   {
    "path": "evidence/delivery/portable-data.md",
@@ -573,8 +573,8 @@
   },
   {
    "path": "evidence/delivery/release-inputs.md",
-   "bytes": 9261,
-   "sha256": "56230d605eef3f848ee72ee36f933d3f41e94690d60be598dfda08c27239d05b"
+   "bytes": 9256,
+   "sha256": "cd562e8cc9009fd6da515f8272659d8ee679db2d2a4986ba148ecfaf695d5ee7"
   },
   {
    "path": "evidence/delivery/release-readiness.json",
@@ -1553,8 +1553,8 @@
   },
   {
    "path": "tools/release/NOTICE.md",
-   "bytes": 4475,
-   "sha256": "aad240c22814dc46bb552e0e7534d3202ef5286b6770dcbb81c46bb7e1a3c515"
+   "bytes": 4292,
+   "sha256": "0b70536e9203864548b087a89c246336c9fb43ee85947036cccb00c23e5206bc"
   },
   {
    "path": "tools/release/assemble.mjs",
@@ -2053,6 +2053,27 @@
      "path": "evidence/delivery/build-packaging.md",
      "bytes": 10877,
      "sha256": "6e08afbfa00ad92bd074d2e315a9fa8a8a5a1026332447225579129035bbf618"
+    }
+   ]
+  },
+  {
+   "utc": "2026-09-29T06:24:40.459Z",
+   "reason": "2026-09-29 Owner 决定公开分享：NOTICE 去掉“不公开分发”的承诺，WebView2LoaderStatic.lib 一段只保留事实；build-packaging.md 第 9 步同步；release-inputs.md 对应源码一行改为全部门通过即随候选上传",
+   "files": [
+    {
+     "path": "tools/release/NOTICE.md",
+     "bytes": 4292,
+     "sha256": "0b70536e9203864548b087a89c246336c9fb43ee85947036cccb00c23e5206bc"
+    },
+    {
+     "path": "evidence/delivery/build-packaging.md",
+     "bytes": 10877,
+     "sha256": "ec3696906ecd4827608200d7f66fa4d5953966a4b50697ea626bdea1d86dd579"
+    },
+    {
+     "path": "evidence/delivery/release-inputs.md",
+     "bytes": 9256,
+     "sha256": "cd562e8cc9009fd6da515f8272659d8ee679db2d2a4986ba148ecfaf695d5ee7"
     }
    ]
   }
